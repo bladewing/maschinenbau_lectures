@@ -1,0 +1,270 @@
+\documentclass[xelatex,aspectratio=169]{beamer}
+\input{preamble.tex}
+
+% Title
+\title{Einführung in Python}
+\author{Prof. Dr. Lukas Iffländer}
+\institute{HTW Dresden}
+\date{}
+\usepackage{svg}
+
+% Begin document
+\begin{document}
+
+% Title slide
+\begin{frame}
+  \titlepage
+\end{frame}
+
+
+\begin{frame}{Warum Python?}
+  \includegraphics[width=.3\linewidth]{img/python_logo.png}
+  \begin{itemize}
+    \item Einfach zu lernen
+    \item Vielseitig einsetzbar
+    \item Große Community
+    \item Viele Bibliotheken
+    \item Open Source
+    \item Hohe Nachfrage nach Python-Entwicklern
+    \item Ideal für Datenanalyse und Machine Learning
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Hello world in Python}
+  Wir erstellen mit einem Texteditor (Notepad, Kate, Gedit) eine Pythondatei mit folgendem Inhalt:
+
+  \begin{listing}
+    \caption{hello\_world.py}
+    \inputminted{python}{src/hello_world.py}
+  \end{listing}
+
+  Wir führen das Script aus, indem wir in der Konsole \texttt{python hello\_world.py} eingeben:
+
+  \only<1>{\inputminted{console}{src/hello_world_pre}}
+
+  \only<2->{\inputminted{console}{src/hello_world_post}}
+
+  \only<3>{Auf diese Art und Weise können beliebige Python-Programme erstellt und ausgeführt werden.}
+
+\end{frame}
+
+\begin{frame}{Python-Programme werden interpretiert}
+  \begin{block}{Unterschiede zu kompilierten Sprachen}
+    \begin{itemize}
+      \item Python-Programme werden nicht kompiliert, sondern interpretiert
+      \item Der Python-Interpreter führt den Code Zeile für Zeile aus
+      \item Fehler werden erst zur Laufzeit erkannt
+      \item Python-Programme sind plattformunabhängig
+    \end{itemize}
+  \end{block}
+
+  Python kann auch interaktiv genutzt werden. Dazu starten wir den Python-Interpreter mit dem Befehl \texttt{python}:
+
+  \only<1>{\inputminted{console}{src/python_interactive0}}
+  \only<2>{\inputminted{console}{src/python_interactive1}}
+  \only<3>{\inputminted{console}{src/python_interactive2}}
+
+\end{frame}
+
+\begin{frame}{Gesprächiger: ipython}
+  Zum Testen gibt es einen etwas gesprächigeren Interpreter namens \texttt{ipython}. Das \enquote{i} steht dabei für \enquote{interactive}.
+
+  \only<1>{\inputminted{console}{src/ipython_interactive1}}
+  \only<2>{\inputminted{console}{src/ipython_interactive2}}
+  \only<3>{\inputminted{console}{src/ipython_interactive3}}
+\end{frame}
+
+\begin{frame}[plain,t]{Spyder Overview}
+  \vspace{-.65cm}
+  \includegraphics[height=\paperheight]{img/spyder_overview.png}
+\end{frame}
+
+\begin{frame}{Programme und Scripts}
+  \begin{block}{Python-Scripts}
+    Python-Skripts sind Textdateien, die Anweisungen enthalten,
+    die schrittweise vom Python-Interpreter ausgeführt werden.
+  \end{block}
+
+  \begin{block}{Python-Programme}
+    Python-Programme sind auch Skripte, sind aber komplexer,
+    z.B. bestehen aus mehreren Python-Dateien (Module).
+  \end{block}
+\end{frame}
+
+\begin{frame}{Wie programmiert man in Python}
+  \begin{block}{Interaktive Programmierung}
+    \begin{itemize}
+      \item Umsetzen von Rechenoperationen und Ausdrücken in der Python-Shell.
+      \item Ideal zum Ausprobieren und Testen von Code.
+    \end{itemize}
+  \end{block}
+  \begin{block}{Skripte und Programme im Editor schreiben}
+    \begin{itemize}
+      \item Python-Code in einer Textdatei speichern.
+      \item Für Programme, die öfter ausgeführt werden sollen.
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Einfaches Mathe}
+  \begin{columns}
+    \begin{column}{.25\linewidth}
+      \inputminted{python}{src/math_example.py}
+    \end{column}
+    \begin{column}{.8\linewidth}
+      \inputminted{console}{src/math_example_interactive}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Mehr Mathe ist schon fertig}
+  \inputminted{python}{src/math_libraries.py}
+\end{frame}
+
+\begin{frame}{Arithmetische Operatoren}
+  \begin{table}[]
+    \begin{tabular}{cll}
+      \toprule
+      \textbf{Operator} & \textbf{Beschreibung} & \textbf{Beispiel}    \\ \midrule
+      \texttt{+}        & Addition              & \texttt{2 + 3 = 5}   \\
+      \texttt{-}        & Subtraktion           & \texttt{5 - 2 = 3}   \\
+      \texttt{*}        & Multiplikation        & \texttt{2 * 3 = 6}   \\
+      \texttt{/}        & Division              & \texttt{6 / 3 = 2.0} \\
+      \texttt{//}       & Ganzzahldivision      & \texttt{7 // 3 = 2}  \\
+      \texttt{\%}       & Modulo                & \texttt{7 \% 3 = 1}  \\
+      \texttt{**}       & Potenz                & \texttt{2 ** 3 = 8}  \\ \bottomrule
+    \end{tabular}
+  \end{table}
+\end{frame}
+
+\begin{frame}{Zuweisungsoperatoren}
+  \vspace{-12pt}
+  \begin{table}[]
+    \small
+    \begin{tabular}{clll}
+      \toprule
+      \textbf{Operator} & \textbf{Beschreibung}            & \textbf{Beispiel}      & \textbf{Äquivalent}          \\
+      \midrule
+      \texttt{=}        & Zuweisung                        & \texttt{a = b}         & \texttt{-           }        \\
+      \texttt{+=}       & Addition und Zuweisung           & \texttt{a += b}        & \texttt{a = a + b   }        \\
+      \texttt{-=}       & Subtraktion und Zuweisung        & \texttt{a -= b}        & \texttt{a = a - b   }        \\
+      \texttt{*=}       & Multiplikation und Zuweisung     & \texttt{a *= b}        & \texttt{a = a * b   }        \\
+      \texttt{/=}       & Division und Zuweisung           & \texttt{a /= b}        & \texttt{a = a / b   }        \\
+      \texttt{\%=}      & Modulo und Zuweisung             & \texttt{a \%= b}       & \texttt{a = a \% b  }        \\
+      \texttt{//=}      & Ganzzahldivision und Zuweisung   & \texttt{a //= b}       & \texttt{a = a // b  }        \\
+      \texttt{**=}      & Potenzierung und Zuweisung       & \texttt{a **= b}       & \texttt{a = a ** b  }        \\
+      \texttt{\&=}      & Bitweises UND und Zuweisung      & \texttt{a \&= b}       & \texttt{a = a \& b  }        \\
+      \texttt{$|$=}     & Bitweises ODER und Zuweisung     & \texttt{a $|$= b}      & \texttt{a = a $|$ b }        \\
+      \texttt{\^{}=}    & Bitweises XOR und Zuweisung      & \texttt{a \^{}= b}     & \texttt{a = a \^{} b}        \\
+      \texttt{>>=}      & Rechtsverschiebung und Zuweisung & \texttt{a >>= b}       & \texttt{a = a >> b  }        \\
+      \texttt{<<=}      & Linke Verschiebung und Zuweisung & \texttt{a <<= b}       & \texttt{a = a << b  }        \\
+      \texttt{:=}       & Zuweisung in Ausdrücken          & \texttt{print(a := b)} & \texttt{x = 3           }    \\
+                        &                                  &                        & \texttt{print(x)           } \\
+      \bottomrule
+    \end{tabular}
+  \end{table}
+\end{frame}
+
+\begin{frame}{Vergleichsoperatoren}
+  \vspace{-12pt}
+  \begin{table}[]
+    \small
+    \begin{tabular}{clll}
+      \toprule
+      \textbf{Operator} & \textbf{Beschreibung} & \textbf{True Beispiel} & \textbf{False Beispiel} \\
+      \midrule
+      \texttt{==}       & Gleichheit            & \texttt{2 == 2}        & \texttt{2 == 3}         \\
+      \texttt{!=}       & Ungleichheit          & \texttt{2 != 3}        & \texttt{2 != 2}         \\
+      \texttt{>}        & Größer als            & \texttt{3 > 2}         & \texttt{2 > 3}          \\
+      \texttt{<}        & Kleiner als           & \texttt{2 < 3}         & \texttt{3 < 2}          \\
+      \texttt{>=}       & Größer oder gleich    & \texttt{3 >= 3}        & \texttt{2 >= 3}         \\
+      \texttt{<=}       & Kleiner oder gleich   & \texttt{2 <= 3}        & \texttt{3 <= 2}         \\
+      \bottomrule
+    \end{tabular}
+  \end{table}
+\end{frame}
+
+\begin{frame}{Ausgabe}
+  \begin{block}{\texttt{print()}-Funktion}
+    \begin{itemize}
+      \item Ausgabe der Werte aller Argumente in deren Reihenfolge
+      \item Zwischen den Ausgaben werden Leerzeichen eingefügt
+    \end{itemize}
+  \end{block}
+  \begin{exampleblock}{Beispiel}
+    \inputminted{python}{src/print_komma_example.py}
+    Output:
+    \inputminted{console}{src/print_komma_example_output}
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}{Eingabe}
+  \vspace{-7pt}
+  \begin{block}{\texttt{input()-Funktion}}
+    \begin{itemize}
+      \item Die input() Funktion liest eine Texteingabe bis zum Abschluss mit Enter und gibt den Text als Zeichenkette zurück.
+      \item Bei Eingabe von Zahlenwerten ist der Text in den gewünschten numerischen Typ umzuwandeln, hier \texttt{int(...)} oder \texttt{float(...)}
+    \end{itemize}
+  \end{block}
+
+  \begin{exampleblock}{Beispiel}
+    \inputminted{python}{src/input_example.py}
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}{Zeichenketten aka Strings}
+  \begin{block}{Zeichenketten}
+    Zeichenkettenkonstante zur Initialisierung werden in einfache oder doppelte Hochkomma-Zeichen eingefasst, bspw. \texttt{'Hund'} oder \texttt{''Katze''}
+  \end{block}
+  \begin{exampleblock}{Beispiel}
+    \inputminted{python}{src/string_example.py}
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Datentypen}
+  Anders als in vielen Sprachen legt man den Datentyp in Python nicht explizit fest.
+
+  Der Interpreter wählt den Datentyp:
+  \begin{itemize}
+    \item anhand von Konstanten und dem Typ der benutzten Variablen
+    \item durch verwendete Operatoren
+  \end{itemize}
+
+  \begin{alertblock}{Vorsicht}
+    Der Typ ergibt sich möglicherweise erst zur Laufzeit des Programms, d.h. kann nicht ohne weiteres vorhergesagt werden (Schwierigkeit bei der Fehlersuche, Programmverifikation)
+  \end{alertblock}
+
+  \begin{exampleblock}{Wichtige Datentypen}
+    \begin{table}
+      \begin{tabular}{ll}
+        \toprule
+        \textbf{Datentypkürzel} & \textbf{Beschreibung} \\
+        \midrule
+        int                     & Ganzzahl              \\
+        float                   & Gleitkommazahl        \\
+        str                     & Zeichenkette          \\
+        bool                    & Boolescher Wert       \\
+        \bottomrule
+      \end{tabular}
+    \end{table}
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Funktionen}
+  Vergleichbar mit mathematischen Funktionen, die aus Argumenten Ergebniswerte berechnen, können in Python Funktionen definiert werden.
+
+  \begin{block}{Funktionsformat}
+    \inputminted{python}{src/funktion_definition.py}
+  \end{block}
+
+  Mit \texttt{return} wird die Funktion verlassen und optional ein Rückgabewert zurückgegeben.
+
+  \small
+  \begin{exampleblock}{Beispiel}
+    \inputminted{python}{src/function_example.py}
+  \end{exampleblock}
+
+\end{frame}
+
+% End document
+\end{document}

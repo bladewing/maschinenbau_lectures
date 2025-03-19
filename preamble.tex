@@ -1,0 +1,256 @@
+
+\hfuzz=10pt
+\vfuzz=10pt
+
+% Theme
+\usetheme{htw}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{theorems}[numbered]
+\setbeamercovered{transparent}
+
+%\logo{\includegraphics[height=0.5cm]{HTWD_color.png}}
+
+% Packages
+\usepackage{polyglossia}
+\setmainlanguage{german}
+\setotherlanguage{english}
+
+\usepackage[bigfiles]{pdfbase}
+\ExplSyntaxOn
+\NewDocumentCommand\embedvideo{smm}{
+\group_begin:
+\leavevmode
+\tl_if_exist:cTF{file_\file_mdfive_hash:n{#3}}{
+  \tl_set_eq:Nc\video{file_\file_mdfive_hash:n{#3}}
+}{
+  \IfFileExists{#3}{}{\GenericError{}{File~`#3'~not~found}{}{}}
+  \pbs_pdfobj:nnn{}{fstream}{{}{#3}}
+  \pbs_pdfobj:nnn{}{dict}{
+    /Type/Filespec/F~(#3)/UF~(#3)
+    /EF~<</F~\pbs_pdflastobj:>>
+  }
+  \tl_set:Nx\video{\pbs_pdflastobj:}
+  \tl_gset_eq:cN{file_\file_mdfive_hash:n{#3}}\video
+}
+%
+\pbs_pdfobj:nnn{}{dict}{
+  /Type/RichMediaInstance/Subtype/Video
+  /Asset~\video
+  /Params~<</FlashVars (
+  source=#3&
+  skin=SkinOverAllNoFullNoCaption.swf&
+  skinAutoHide=true&
+  skinBackgroundColor=0x5F5F5F&
+  skinBackgroundAlpha=0.75
+  )>>
+}
+%
+\pbs_pdfobj:nnn{}{dict}{
+/Type/RichMediaConfiguration/Subtype/Video
+/Instances~[\pbs_pdflastobj:]
+}
+%
+\pbs_pdfobj:nnn{}{dict}{
+/Type/RichMediaContent
+/Assets~<<
+/Names~[(#3)~\video]
+>>
+/Configurations~[\pbs_pdflastobj:]
+}
+\tl_set:Nx\rmcontent{\pbs_pdflastobj:}
+%
+\pbs_pdfobj:nnn{}{dict}{
+  /Activation~<<
+  /Condition/\IfBooleanTF{#1}{PV}{XA}
+  /Presentation~<</Style/Embedded>>
+  >>
+  /Deactivation~<</Condition/PI>>
+}
+%
+\hbox_set:Nn\l_tmpa_box{#2}
+\tl_set:Nx\l_box_wd_tl{\dim_use:N\box_wd:N\l_tmpa_box}
+\tl_set:Nx\l_box_ht_tl{\dim_use:N\box_ht:N\l_tmpa_box}
+\tl_set:Nx\l_box_dp_tl{\dim_use:N\box_dp:N\l_tmpa_box}
+\pbs_pdfxform:nnnnn{1}{1}{}{}{\l_tmpa_box}
+%
+\pbs_pdfannot:nnnn{\l_box_wd_tl}{\l_box_ht_tl}{\l_box_dp_tl}{
+  /Subtype/RichMedia
+  /BS~<</W~0/S/S>>
+  /Contents~(embedded~video~file:#3)
+  /NM~(rma:#3)
+  /AP~<</N~\pbs_pdflastxform:>>
+  /RichMediaSettings~\pbs_pdflastobj:
+  /RichMediaContent~\rmcontent
+}
+\phantom{#2}
+\group_end:
+}
+\ExplSyntaxOff
+
+
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+\usepackage{animate}
+%\usepackage[dvipdfmx]{movie15_dvipdfmx}
+\usepackage{media9}
+\usepackage{tabularx}
+\usepackage{colortbl}
+\usepackage{booktabs}
+\usepackage{makecell}
+\usepackage{ltablex}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{amsthm}
+%\renewcommand{\arraystretch}{1.5}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+%\renewcommand\thesatz{\arabic{section}.\arabic{theorem}}
+\makeatletter
+\@addtoreset{theorem}{lecture}
+\makeatother
+
+\newtheorem{satz}{Satz}[section]
+\newtheorem{lem}{Lemma}[section]
+\newtheorem{beh}{Behauptung}[section]
+\newtheorem{define}{Definition}[section]
+\numberwithin{equation}{section}
+\usepackage{ragged2e}
+\usepackage{etoolbox}
+
+\usepackage{color}
+\usepackage{colortbl}
+\definecolor{hellgrau}{rgb}{0.85,0.85,0.85}
+\definecolor{hellrot}{rgb}{1,0.7,0.7}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows.meta,calc,arrows,positioning,patterns}
+%\usepackage{tikz-uml}
+\usepackage{pgfplots}  % for elliptic curves (part 8)
+\pgfplotsset{compat=1.18}
+\usepackage{pgfmath-xfp}
+\tikzset{>=latex}
+\tikzset{
+  invisible/.style={opacity=0},
+  visible on/.style={alt={#1{}{invisible}}},
+  alt/.code args={<#1>#2#3}{%
+      \alt<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}} % \pgfkeysalso doesn't change the path
+    },
+}
+
+\usepackage{paralist}
+
+\usepackage{url}
+\def\UrlBreaks{\do\/\do-}
+\PassOptionsToPackage{hyphens}{url}\usepackage{hyperref}
+
+\usepackage[normalem]{ulem} % gestrichelte Unterstreichung (\dashuline{})
+\usepackage{cancel}
+
+\makeatletter
+\renewcommand{\itemize}[1][]{%
+  \beamer@ifempty{#1}{}{\def\beamer@defaultospec{#1}}%
+  \ifnum \@itemdepth >2\relax\@toodeep\else
+    \advance\@itemdepth\@ne
+    \beamer@computepref\@itemdepth% sets \beameritemnestingprefix
+    \usebeamerfont{itemize/enumerate \beameritemnestingprefix body}%
+    \usebeamercolor[fg]{itemize/enumerate \beameritemnestingprefix body}%
+    \usebeamertemplate{itemize/enumerate \beameritemnestingprefix body begin}%
+    \list
+    {\usebeamertemplate{itemize \beameritemnestingprefix item}}
+    {\def\makelabel##1{%
+        {%
+            \hss\llap{{%
+                  \usebeamerfont*{itemize \beameritemnestingprefix item}%
+                  \usebeamercolor[fg]{itemize \beameritemnestingprefix item}##1}}%
+          }%
+      }%
+    }
+  \fi%
+  \beamer@cramped%
+  \justifying% NEW
+  %\raggedright% ORIGINAL
+  \beamer@firstlineitemizeunskip%
+}
+\makeatother
+
+\apptocmd{\frame}{}{\justifying}{}
+
+\renewcommand\theadfont{\bfseries\sffamily}
+\usepackage{ragged2e}
+\usepackage{newpxtext}
+
+\setsansfont{texgyreheros}[
+  Scale=MatchLowercase,
+  UprightFont=*-regular,
+  BoldFont=*-bold,
+  ItalicFont=*-italic,
+  BoldItalicFont=*-bolditalic,
+]
+
+% Title
+\usepackage[usetransparent=false]{svg}
+% Import references
+\usepackage[backend=biber,style=numeric,sorting=none]{biblatex}
+\addbibresource{references.bib}
+
+%\AtBeginSection[]{
+%  \begin{frame}
+%    \vfill
+%    \centering
+%    \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+%      \usebeamerfont{title}\thesection.~\secname\par%
+%    \end{beamercolorbox}
+%    \vfill
+%  \end{frame}
+%}
+
+\makeatletter
+\newenvironment{noheadline}{
+  \setbeamertemplate{headline}{}
+  \addtobeamertemplate{frametitle}{\vspace*{-0.9\baselineskip}}{}
+}{}
+\makeatother
+
+
+\usepackage{xcolor}
+\usepackage{algorithm}
+\usepackage[linesnumbered,ruled,lined,commentsnumbered,algo2e,ngerman,ngermankw]{algorithm2e}
+\usepackage{algorithmic}
+\usepackage{caption}
+\usepackage[newfloat]{minted}
+\captionsetup[listing]{position=top}
+\definecolor{mintedbg}{HTML}{282828}
+\setminted{
+  breaklines=true,
+  bgcolor=mintedbg,
+  style=monokai,
+  formatcom=\color{white}
+}
+\usepackage{etoolbox}
+\makeatletter
+% replace \medskip before and after the box with nothing, i.e., remove it
+\patchcmd{\minted@colorbg}{\medskip}{}{}{}
+\patchcmd{\endminted@colorbg}{\medskip}{}{}{}
+\makeatother
+
+\renewcommand{\theFancyVerbLine}{\textcolor{black}{\arabic{FancyVerbLine}}}
+
+\usepackage{pifont}
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+
+\newenvironment{changemargin}[2]{%
+  \begin{list}{}{%
+      \setlength{\topsep}{0pt}%
+      \setlength{\leftmargin}{#1}%
+      \setlength{\rightmargin}{#2}%
+      \setlength{\listparindent}{\parindent}%
+      \setlength{\itemindent}{\parindent}%
+      \setlength{\parsep}{\parskip}%
+    }%
+    \item[]}{\end{list}}
+
+
+\usepackage{csquotes}
