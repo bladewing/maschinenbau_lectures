@@ -1,0 +1,129 @@
+\documentclass[xelatex,aspectratio=169]{beamer}
+\input{preamble.tex}
+
+% Title
+\title{Zahlensysteme}
+\author{Prof. Dr. Lukas Iffländer}
+\institute{HTW Dresden}
+\date{}
+\usepackage{svg}
+
+% Begin document
+\begin{document}
+
+% Title slide
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Zahlen und Ziffern}
+  \begin{itemize}
+    \item Buchstaben (a, b, c, ...) bilden Wörter
+
+          Die Bedeutung hängt von Kontext und Sprache ab (z. B. Chat ist ein englisches Wort für Unterhaltung, aber auch ein französisches Wort für Katze).
+    \item Ziffern (0, 1, ...) bilden Zahlen
+
+          Die Bedeutung hängt von der Basis ab (z. B. 10 ist eine Dezimalzahl, aber auch eine Binärzahl).
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Zahlensysteme}
+  \begin{itemize}
+    \item Ein Zahlensystem legt die jeweiligen Regeln fest, wie Zahlen als Ziffernfolge dargestellt werden können \textrightarrow Anordnung der Ziffern festlegen
+    \item Ein Zahlensystem legt fest, welcher Wert einer Ziffernfolge zugeordnet ist (A = 10, 1010 = 10 usw.) \textrightarrow Vorschrift zur Ermittlung des Zahlenwerts festlegen
+    \item (Gleiche) Zahlen lassen sich in unterschiedlichen Zahlensystemen in verschiedener Form darstellen
+  \end{itemize}
+
+  \begin{block}{Unterscheidung}
+    \begin{itemize}
+      \item Additionssysteme
+      \item Stellenwertsysteme (Positionssysteme)
+      \item Hybrid-Systeme
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Additionssysteme}
+  \begin{itemize}
+    \item Jede Ziffer hat einen festen Wert
+    \item Der Wert einer Ziffernfolge ergibt sich aus der Summe der Werte der einzelnen Ziffern
+          \begin{exampleblock}{Unärsystem}
+            Im Unärsystem wird jede Zahl durch eine wiederholte Ziffer dargestellt. Zum Beispiel wird die Zahl 3 als 111 dargestellt.
+          \end{exampleblock}
+          \begin{exampleblock}{Römische Zahlen}
+            Die römischen Zahlen sind ein Additionssystem. Die Ziffern I, V, X, L, C, D und M haben die Werte 1, 5, 10, 50, 100, 500 und 1000.
+
+            Besonderheit: Die Ziffernfolge wird von links nach rechts gelesen. Ist eine Ziffer kleiner als die nächste, wird sie subtrahiert.
+
+            Beispiel: Die Zahl IX wird als 9 interpretiert, da I (1) vor X (10) steht.
+          \end{exampleblock}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Stellenwertsysteme}
+  \begin{itemize}
+    \item Jede Ziffer hat einen festen Wert
+    \item Der Wert einer Ziffernfolge ergibt sich aus der Summe der Produkte der Ziffern mit den zugehörigen Potenzen der Basis
+          \begin{exampleblock}{Dezimalsystem}
+            Im Dezimalsystem haben die Ziffern die Werte 0 bis 9. Die Basis ist 10.
+
+            Beispiel: Die Zahl 1234 wird als $1 \cdot 10^3 + 2 \cdot 10^2 + 3 \cdot 10^1 + 4 \cdot 10^0 = 1234$ interpretiert.
+          \end{exampleblock}
+          \begin{exampleblock}{Binärsystem}
+            Im Binärsystem haben die Ziffern die Werte 0 und 1. Die Basis ist 2.
+
+            Beispiel: Die Zahl 1011 wird als $1 \cdot 2^3 + 0 \cdot 2^2 + 1 \cdot 2^1 + 1 \cdot 2^0 = 11$ interpretiert.
+          \end{exampleblock}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Stellenwertsysteme}{Darstellung natürlicher Zahlen}
+  In der Informatik verwenden wir in der Regel vier Zahlensysteme:
+  \begin{table}
+    \begin{tabular}{lrrr}
+      \toprule
+      System            & Basis & Ziffern                                        & Beispiel \\
+      \midrule
+      Binärsystem       & 2     & 0, 1                                           & 1011     \\
+      Oktalsystem       & 8     & 0, 1, 2, 3, 4, 5, 6, 7                         & 1234     \\
+      Dezimalsystem     & 10    & 0, 1, 2, 3, 4, 5, 6, 7, 8, 9                   & 1234     \\
+      Hexadezimalsystem & 16    & 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F & 4D2      \\
+      \bottomrule
+    \end{tabular}
+  \end{table}
+\end{frame}
+
+\begin{frame}{Stellenwertsysteme}{Unterscheidung (Mathematik)}
+  \textbf{Welchen Wert hat 1010?}
+
+  In der Informatik ist es wichtig, die Basis des Zahlensystems zu kennen, um den Wert einer Ziffernfolge zu bestimmen.
+
+  \begin{block}{Konvention}
+    Zur eindeutigen Darstellung von Zahlen in verschiedenen Zahlensystemen wird die Basis oft als Index hinter der Zahl geschrieben. Zum Beispiel wird die Zahl 1010 im Binärsystem als $1010_2$ und im Dezimalsystem als $1010_{10}$ dargestellt.
+  \end{block}
+
+
+
+\end{frame}
+
+\begin{frame}{Stellenwertsysteme}{Unterscheidung}
+  \textbf{Wie mache ich denn einen Index in Python?}
+
+  Antwort: Gar nicht. Stattdessen gibt es unterschiedliche Möglichkeiten, Python zu sagen, dass eine Zahl in einem bestimmten Zahlensystem dargestellt ist.
+
+  \begin{table}
+    \begin{tabular}{ll}
+      \toprule
+      Zahlensystem & Darstellung in Python \\
+      \midrule
+      Binär        & \texttt{0b1010}       \\
+      Oktal        & \texttt{0o1234}       \\
+      Dezimal      & \texttt{1234}         \\
+      Hexadezimal  & \texttt{0x4D2}        \\
+      \bottomrule
+    \end{tabular}
+  \end{table}
+\end{frame}
+
+% End document
+\end{document}
