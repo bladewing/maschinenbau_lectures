@@ -47,8 +47,71 @@
       \item Die Definition eines Algorithmus enthält keine Forderungen an die praktische Ausführbarkeit des Algorithmus auf einer realen Maschine (z.B. Computer)
     \end{itemize}
   \end{alertblock}
+\end{frame}
+
+\begin{frame}{Algorithmen als mathematische Funktionen}
+  Ein Algorithmus kann als mathematische Funktion aufgefasst werden:
+  \[ y = f \left(x\right) \mbox{ oder } f: D \rightarrow Z, x \rightarrow y \]
+  \[ D: \mbox{Definitionsmenge}, Z: \mbox{Zielmenge} \]
+
+  \begin{definition}
+    In der Mathematik ist eine Funktion oder Abbildung eine Beziehung zwischen zwei Mengen, die jedem Element der einen Menge (Funktionsargument, unabhängige Variable, x-Wert) genau ein Element der anderen Menge (Funktionswert, abhängige Variable, y-Wert) zuordnet.
+  \end{definition}
+  \begin{block}{Interpretation}
+    \begin{itemize}
+      \item Element aus Mengen: Eingabe und Ausgabe
+      \item Die Elemente können auch Mengen, Vektoren, Matrizen, etc. sein
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Berechenbarkeit}
+  Somit wird einer Funktion ein Algorithmus zugeordnet.
+
+  Es gibt aber Funktionen, denen kein Algorithmus zugeordnet werden kann. Diese Funktionen sind damit nicht berechenbar.
+
+  \begin{definition}
+    Eine Funktion $f$ heißt berechenbar, wenn es einen Algorithmus gibt, der für jedes Argument $x$ den Funktionswert $f\left(x\right)$ berechnet.
+  \end{definition}
+
+  \begin{exampleblock}{Beispiel}
+    Ein einfaches Beispiel für eine berechenbare Funktion ist die Addition: $f\left(x\right) = x + 1$.
+  \end{exampleblock}
+
+  Weitere Beispiele folgen auf den nächsten Folien.
 
 \end{frame}
 
+
+\begin{frame}{Berechenbarkeit}{Beispiel: Sieb des Eratosthenes}
+  \begin{block}{Problem}
+    Finde alle Primzahlen bis zu einer gegebenen Zahl $n$.
+  \end{block}
+
+  \begin{block}{Algorithmus}
+    \begin{enumerate}
+      \item Erstelle eine Liste aller Zahlen von 2 bis $n$.
+      \item Setze $p = 2$.
+      \item Streiche alle Vielfachen von $p$ aus der Liste.
+      \item Setze $p$ auf die nächste ungestrichene Zahl in der Liste.
+      \item Wiederhole Schritte 3 und 4, bis $p^2 > n$.
+      \item Die verbleibenden Zahlen in der Liste sind die Primzahlen.
+    \end{enumerate}
+  \end{block}
+
+  \begin{exampleblock}{Zusatzübung}
+    Implementierung als Python-Programm.
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}{Berechenbarkeit}{Beispiel: Diskrete Funktion}
+  Bereche die Funktionswerte der Funktion
+  \[
+    f\left(x+1\right) = 2 ** f\left(x\right) \mbox{ mit } f\left(0\right) = 0
+  \]
+  für \( 6 \leq x \leq 12 \).
+
+
+\end{frame}
 % End document
 \end{document}
