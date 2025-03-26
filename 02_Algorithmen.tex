@@ -107,11 +107,180 @@
 \begin{frame}{Berechenbarkeit}{Beispiel: Diskrete Funktion}
   Bereche die Funktionswerte der Funktion
   \[
-    f\left(x+1\right) = 2 ** f\left(x\right) \mbox{ mit } f\left(0\right) = 0
+    f\left(x+1\right) = 2 ^ {f\left(x\right)} \mbox{ mit } f\left(0\right) = 0
   \]
   für \( 6 \leq x \leq 12 \).
 
+  \only<2->{\inputminted[firstline=8]{python}{src/algorithmus_funktion_weglaufend.py}}
+
+  \only<3->{\begin{alertblock}{Problem}
+      Die Werte der Funktion sind so groß, dass sie nicht mehr verarbeitet werden können.
+    \end{alertblock}}
 
 \end{frame}
+
+\begin{frame}{Berechenbarkeit}{Ackermannfunktion I}
+
+  \begin{definition}
+    Die Ackermannfunktion ist eine Funktion, die für zwei natürliche Zahlen $m$ und $n$ definiert ist. Sie ist rekursiv definiert durch:
+    \[
+      A\left(m, n\right) = \begin{cases}
+        n + 1                                   & \mbox{falls } m = 0                    \\
+        A\left(m-1, 1\right)                    & \mbox{falls } m > 0 \mbox{ und } n = 0 \\
+        A\left(m-1, A\left(m, n-1\right)\right) & \mbox{falls } m > 0 \mbox{ und } n > 0
+      \end{cases}
+    \]
+  \end{definition}
+
+\end{frame}
+\begin{frame}{Berechenbarkeit}{Ackermannfunktion II}
+
+  \inputminted[firstline=8,lastline=16]{python}{src/algorithmus_ackermann.py}
+
+  \begin{alertblock}{Problem}
+    %Die Ackermannfunktion wächst sehr schnell und ist für größere Werte von $m$ und $n$ nicht mehr berechenbar.
+
+    \begin{itemize}
+      \item $A\left(3, 2\right) = 29$
+      \item $A\left(3, 3\right) = 61$
+      \item $A\left(4, 3\right)$ ist nach fünf Minuten noch nicht berechnet
+    \end{itemize}
+
+
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{Berechenbarkeit}{Niht berechenbare Funktion}
+  \begin{block}{Problem}
+    Es gibt Funktionen, die nicht berechenbar sind.
+  \end{block}
+
+  \begin{exampleblock}{Beispiel}
+    \begin{itemize}
+      \item \enquote{Berechne} alle reellen Zahlen zwischen 0 und 1.
+      \item Es kann bewiesen werden, dass ein solcher Algorithmus nicht existiert.
+    \end{itemize}
+  \end{exampleblock}
+
+  \begin{alertblock}{Problem}
+    Es gibt keine allgemeine Methode, um zu entscheiden, ob eine Funktion berechenbar ist.
+  \end{alertblock}
+
+\end{frame}
+
+\begin{frame}{Berechenbarkeit}{Schlussfolgerungen}
+  \begin{itemize}
+    \item Viele Funktionen sind berechenbar und praktisch anwendbar (z.~B. Sieb des Eratosthenes).
+    \item Manche Funktionen sind unter realistischem Ressourcen- und Zeitaufwand nicht auf einem Rechner umsetzbar, obwohl sie prinzipiell berechenbar sind (z. B. die gezeigte diskrete Funktion und die Ackermannfunktion).
+    \item Einige Funktionen sind prinzipiell nicht berechenbar (wie die Berechnung aller reellen Zahlen zwischen 0 und 1).
+  \end{itemize}
+  \Rightarrow Es ist zweckmäßig, an Algorithmen solche Forderungen zu stellen, dass sie auf realen Maschinen praktisch ausgeführt werden können.
+
+\end{frame}
+
+\begin{frame}{Charakteristische Eigenschaften von Algorithmen I}
+  \begin{itemize}
+    \item \textbf{Endlichkeit}
+
+          Ein Algorithmus muss aus einer endlichen Anzahl von Lösungsschritten bestehen und nach Abarbeitung dieser endlich vielen Schritte nach einer endlichen Zeit das Ende erreichen.
+
+    \item \textbf{Eindeutigkeit}
+
+          Die einzelnen Schritte eines Algorithmus und ihre Aufeinanderfolge müssen eindeutig beschrieben sein.
+    \item \textbf{Allgemeinheit}
+
+          Ein Algorithmus darf nicht nur die Lösung einer speziellen Aufgabe (z.B. Lösung der Gleichung $x^2 + 2x + 1=0$) , sondern muss die Lösung einer Klasse von Problemen (z.B. die Lösung aller quadratischen Gleichungen $ax^2 + bx + c = 0$) beschreiben.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Charakteristische Eigenschaften von Algorithmen II}
+  \begin{itemize}
+    \item \textbf{Determiniertheit}
+
+          Die mehrmalige Anwendung des Algorithmus mit denselben Eingangsdaten muss immer wieder dieselben usgangsdaten
+          liefern.
+
+          Hinweis: Es gibt auch nichtdeterministische Algorithmen
+    \item \textbf{Effizienz}
+
+          Ein Algorithmus muss möglichst wenig Ressourcen einer Maschine, d.h. möglichst wenig Rechenzeit und möglichst wenig Speicher in Anspruch nehmen.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Darstellung von Algorithmen}{Natürliche Sprache}
+  Zur Darstellung von Algorithmen sind Grundelemente notwendig.
+  \begin{exampleblock}{Beispiel: Lösung einer quadratischen Gleichung}
+    \[ a x^2 + b x + c = 0 \]
+    nach der Mitternachtsformel:
+    \[ x_{1,2} = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \]
+  \end{exampleblock}
+
+  Neben der Notation einzelner elementarer Aktionen/Anweisungen, wie z.~B. \enquote{Gebe die Werte der Koeffizienten $a, b, c$ ein}, sind auch Strukturen notwendig, die die zeitliche Ablauffolge darstellen
+  \begin{enumerate}
+    \item Gebe die Werte der Koeffizienten $a, b, c$ ein.
+    \item Berechne die Diskriminante $d = b^2 - 4ac$.
+  \end{enumerate}
+  oder eine Entscheidung repräsentieren.
+  \begin{itemize}
+    \item Falls $d < 0$: \ldots
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Darstellung von Algorithmen}{Liste in natürlicher Sprache}
+  \vspace{-1em}
+  \begin{columns}
+    \begin{column}{.5\linewidth}
+      \begin{enumerate}
+        \item Gebe Werte der Koeffizienten $a,b,c$ ein
+        \item Berechne $d = b*b - 4*a*c$
+        \item Falls $d \geq 0$: setze fort mit Schritt 6
+        \item Ausgabe: "Keine Lösung"
+        \item Stop
+        \item Berechne $x_1 = \frac{-b + \sqrt{d}}{2*a}$
+        \item Berechne $x_2 = \frac{-b - \sqrt{d}}{2*a}$
+        \item Falls $d > 0$: setze fort mit Schritt 11
+        \item Ausgabe: "Eine Lösung: ",$x_1$
+        \item Stop
+        \item Ausgabe: "Zwei Lösungen: ",$x_1$, " und ", $x_2$
+        \item Stop
+      \end{enumerate}
+    \end{column}
+    \begin{column}{.5\linewidth}
+      \begin{block}{enthaltene Strukturen}
+        \begin{itemize}
+          \item Sequenz, d.h. Abarbeitung in der Reihenfolge der Nummerierung
+          \item Auswahl, d.h. Entscheidung zwischen verschiedenen Alternativen (Überspringen von Schritten)
+        \end{itemize}
+      \end{block}
+      \begin{alertblock}{Achtung}
+        In Python kann dies nicht direkt umgesetzt werden, da die Logik \enquote{setze fort mit Schritt x} nicht existiert. Python hat keine GOTO-Anweisung.
+      \end{alertblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Darstellung von Algorithmen}{Formale Darstellung}
+  Bei der Darstellung von Algorithmen liegt der Schwerpunkt vor allem auf der Darstellung der zeitlichen Ablauffolge, dem sogenannten Steuerfluss.
+
+  \begin{block}{Theorem von Böhm und Jacopini (1966)}
+    Jeder Algorithmus kann durch eine Kombination von Sequenz, Auswahl und Iteration dargestellt werden.
+  \end{block}
+
+  \includegraphics[width=\textwidth]{img/structured_program_patterns.png}
+\end{frame}
+
+\begin{frame}{Darstellung von Algorithmen}{Formale Darstellung -- Möglichkeiten}
+  Es wurden zwei verschiedene Darstellungsformen entwickelt, die hauptsächlich in Gebrauch sind und auf grafische Symbole zurückgreifen:
+
+  \begin{itemize}
+    \item Früher Programmablaufplan (PAP) \rightarrow heute durch UML-Aktivitätsdiagramm ersetzt
+    \item Struktogramm
+  \end{itemize}
+
+  Beide repräsentieren eine sogenannte Syntax, die die Ausdrucksformen der Beschreibung formal spezifiziert.
+
+  Die Bedeutung der Darstellung wird als Semantik bezeichnet.
+\end{frame}
+
 % End document
 \end{document}
