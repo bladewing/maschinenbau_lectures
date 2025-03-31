@@ -16,6 +16,8 @@
   \titlepage
 \end{frame}
 
+\section{Allgemeines}
+
 \begin{frame}{Was ist ein Algorithmus?}{Motivation}
   Täglich führen wir Dinge nach festen Handlungsvorschriften aus:
   \begin{itemize}
@@ -281,6 +283,177 @@
 
   Die Bedeutung der Darstellung wird als Semantik bezeichnet.
 \end{frame}
+
+\begin{frame}{Aktivitätsdiagramm und Struktogramm}
+  \begin{columns}
+    \begin{column}{.6\linewidth}
+      \includegraphics{fig/algorithmus_aktivitaetsdiagram.drawio.pdf}
+    \end{column}
+    \begin{column}{.3\linewidth}
+      \includegraphics[width=\textwidth]{fig/algorithmus_struktogram.pdf}
+
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\section{Grundkonstrukte}
+
+\begin{frame}{Sequenz}
+
+  \begin{columns}[t]
+    \begin{column}{.3\linewidth}
+      \begin{block}{Im Struktogramm}
+        \centering
+        \includegraphics[height=.7\textheight]{fig/algorithmus_sequenz_struktogram.pdf}
+      \end{block}
+    \end{column}
+    \begin{column}{.3\linewidth}
+      \begin{block}{Im Aktivitätsdiagramm}
+        \centering
+        \includegraphics[height=.7\textheight]{fig/algorithmus_sequenz_aktivitaetsdiagram.drawio.pdf}
+      \end{block}
+
+    \end{column}
+    \begin{column}{.4\linewidth}
+      \begin{block}{In Python}
+        \inputminted{python}{src/algorithmus_sequenz.py}
+      \end{block}
+
+    \end{column}
+  \end{columns}
+
+\end{frame}
+
+
+\begin{frame}{Einseitige Selektion}
+
+  \begin{columns}[t]
+    \begin{column}{.4\linewidth}
+      \begin{block}{Im Struktogramm}
+        \centering
+        \includegraphics[width=\textwidth]{fig/algorithmus_einseitige_selektion_struktogram.pdf}
+      \end{block}
+    \end{column}
+    \begin{column}{.3\linewidth}
+      \begin{block}{Im Aktivitätsdiagramm}
+        \centering
+        \includegraphics[height=.7\textheight]{fig/algorithmus_einseitige_selektion_aktivitaetsdiagram.drawio.pdf}
+      \end{block}
+
+    \end{column}
+    \begin{column}{.3\linewidth}
+      \begin{block}{In Python}
+        \inputminted{python}{src/algorithmus_einseitige_selektion.py}
+      \end{block}
+
+    \end{column}
+  \end{columns}
+
+\end{frame}
+
+\begin{frame}{Zweiseitige Selektion}
+
+  \begin{columns}[t]
+    \begin{column}{.4\linewidth}
+      \begin{block}{Im Struktogramm}
+        \centering
+        \includegraphics[width=\textwidth]{fig/algorithmus_zweiseitige_selektion_struktogram.pdf}
+      \end{block}
+    \end{column}
+    \begin{column}{.3\linewidth}
+      \begin{block}{Im Aktivitätsdiagramm}
+        \centering
+        \includegraphics[width=\textwidth]{fig/algorithmus_zweiseitige_selektion_aktivitaetsdiagram.drawio.pdf}
+      \end{block}
+
+    \end{column}
+    \begin{column}{.3\linewidth}
+      \begin{block}{In Python}
+        \inputminted{python}{src/algorithmus_zweiseitige_selektion.py}
+      \end{block}
+
+    \end{column}
+  \end{columns}
+
+\end{frame}
+
+\begin{frame}{Mehrstufige Selektion}{Mit if, elif und else}
+  Selektionen können mehr als nur eine Wahr-/Falsch-Entscheidung enthalten.
+
+  \inputminted{python}{src/algorithmus_mehrstufige_selektion.py}
+
+  Der \texttt{else}-Fall ist optional und kann weggelassen werden.
+\end{frame}
+
+
+\begin{frame}{Mehrstufige Selektion}{Mit match-case}
+  Seit Python 2010 gibt es das Schlüsselwort \texttt{match} für mehrstufige Selektionen.
+
+  \inputminted{python}{src/algorithmus_mehrstufige_selektion_match.py}
+
+\end{frame}
+
+
+\begin{frame}{Zyklus}
+
+  \begin{columns}[t]
+    \begin{column}{.3\linewidth}
+      \begin{block}{Im Struktogramm}
+        \centering
+        \includegraphics[width=\textwidth]{fig/algorithmus_zyklus_struktogram.pdf}
+      \end{block}
+    \end{column}
+    \begin{column}{.3\linewidth}
+      \begin{block}{Im Aktivitätsdiagramm}
+        \centering
+        \includegraphics[width=\textwidth]{fig/algorithmus_zyklus_aktivitaetsdiagram.drawio.pdf}
+      \end{block}
+
+    \end{column}
+    \begin{column}{.4\linewidth}
+      \begin{block}{In Python}
+        \inputminted{python}{src/algorithmus_zyklus.py}
+      \end{block}
+
+    \end{column}
+  \end{columns}
+
+\end{frame}
+
+\begin{frame}{Zählzyklus}{Arten}
+  Für alle Zahlen vom Startwert (einschließlich) bis zum Endwert (ausschließlich) in Schritten von 1:
+  \inputminted{python}{src/algorithmus_zaehlzyklus_range.py}
+
+  Für alle Zahlen vom Startwert (einschließlich) bis zum Endwert (ausschließlich) in Schritten von 1:
+  \inputminted{python}{src/algorithmus_zaehlzyklus_while.py}
+
+  Für alle Zahlen in der Liste:
+  \inputminted{python}{src/algorithmus_zaehlzyklus_list.py}
+\end{frame}
+
+\begin{frame}{Python: Range}
+  \inputminted{python}{src/algorithmus_zaehlzyklus_range.py}
+
+  \inputminted{python}{src/algorithmus_zaehlzyklus_range_step.py}
+
+  \begin{itemize}
+    \item Alle ganzzahligen Werte von start bis end in Schritten von step, wobei der Endwert nicht erreicht wird.
+    \item Wird step weggelassen, wird der Standardwert 1 verwendet.
+    \item Negative steps sind möglich, wenn der Startwert größer als der Endwert ist.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Wie komm ich hier raus? continue und break}
+
+  In Python können Sie die Anweisungen \texttt{continue} und \texttt{break} verwenden, um Schleifen zu steuern.
+  \begin{itemize}
+    \item \texttt{continue} überspringt den aktuellen Durchlauf und fährt mit dem nächsten Durchlauf fort.
+    \item \texttt{break} beendet die Schleife vorzeitig.
+  \end{itemize}
+
+  \inputminted{python}{src/algorithmus_break_continue.py}
+\end{frame}
+
 
 % End document
 \end{document}
