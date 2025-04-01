@@ -107,7 +107,7 @@
 \end{frame}
 
 \begin{frame}{Berechenbarkeit}{Beispiel: Diskrete Funktion}
-  Bereche die Funktionswerte der Funktion
+  Berechne die Funktionswerte der Funktion
   \[
     f\left(x+1\right) = 2 ^ {f\left(x\right)} \mbox{ mit } f\left(0\right) = 0
   \]
@@ -148,11 +148,10 @@
       \item $A\left(4, 3\right)$ ist nach fünf Minuten noch nicht berechnet
     \end{itemize}
 
-
   \end{alertblock}
 \end{frame}
 
-\begin{frame}{Berechenbarkeit}{Niht berechenbare Funktion}
+\begin{frame}{Berechenbarkeit}{Nicht berechenbare Funktion}
   \begin{block}{Problem}
     Es gibt Funktionen, die nicht berechenbar sind.
   \end{block}
@@ -199,15 +198,16 @@
   \begin{itemize}
     \item \textbf{Determiniertheit}
 
-          Die mehrmalige Anwendung des Algorithmus mit denselben Eingangsdaten muss immer wieder dieselben usgangsdaten
-          liefern.
+          Die mehrmalige Anwendung des Algorithmus mit denselben Eingangsdaten muss immer wieder dieselben Ausgangsdaten liefern.
 
-          Hinweis: Es gibt auch nichtdeterministische Algorithmen
+          Hinweis: Es gibt auch nicht-deterministische Algorithmen.
     \item \textbf{Effizienz}
 
-          Ein Algorithmus muss möglichst wenig Ressourcen einer Maschine, d.h. möglichst wenig Rechenzeit und möglichst wenig Speicher in Anspruch nehmen.
+          Ein Algorithmus muss möglichst wenig Ressourcen einer Maschine, d. h. möglichst wenig Rechenzeit und möglichst wenig Speicher in Anspruch nehmen.
   \end{itemize}
 \end{frame}
+
+\section{Darstellung}
 
 \begin{frame}{Darstellung von Algorithmen}{Natürliche Sprache}
   Zur Darstellung von Algorithmen sind Grundelemente notwendig.
@@ -217,12 +217,12 @@
     \[ x_{1,2} = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \]
   \end{exampleblock}
 
-  Neben der Notation einzelner elementarer Aktionen/Anweisungen, wie z.~B. \enquote{Gebe die Werte der Koeffizienten $a, b, c$ ein}, sind auch Strukturen notwendig, die die zeitliche Ablauffolge darstellen
+  Neben der Notation einzelner elementarer Aktionen/Anweisungen, wie z. B. \enquote{Gebe die Werte der Koeffizienten $a, b, c$ ein}, sind auch Strukturen notwendig, die die zeitliche Ablauffolge darstellen:
   \begin{enumerate}
     \item Gebe die Werte der Koeffizienten $a, b, c$ ein.
     \item Berechne die Diskriminante $d = b^2 - 4ac$.
   \end{enumerate}
-  oder eine Entscheidung repräsentieren.
+  oder eine Entscheidung repräsentieren:
   \begin{itemize}
     \item Falls $d < 0$: \ldots
   \end{itemize}
@@ -287,7 +287,7 @@
 \begin{frame}{Aktivitätsdiagramm und Struktogramm}
   \begin{columns}
     \begin{column}{.6\linewidth}
-      \includegraphics{fig/algorithmus_aktivitaetsdiagram.drawio.pdf}
+      \includegraphics[width=\textwidth]{fig/algorithmus_aktivitaetsdiagram.drawio.pdf}
     \end{column}
     \begin{column}{.3\linewidth}
       \includegraphics[width=\textwidth]{fig/algorithmus_struktogram.pdf}
@@ -303,20 +303,26 @@
   \begin{columns}[t]
     \begin{column}{.3\linewidth}
       \begin{block}{Im Struktogramm}
-        \centering
-        \includegraphics[height=.7\textheight]{fig/algorithmus_sequenz_struktogram.pdf}
+        \begin{minipage}[c][.7\textheight][c]{\textwidth}
+          \centering
+          \includegraphics[height=.7\textheight]{fig/algorithmus_sequenz_struktogram.pdf}
+        \end{minipage}
       \end{block}
     \end{column}
     \begin{column}{.3\linewidth}
       \begin{block}{Im Aktivitätsdiagramm}
-        \centering
-        \includegraphics[height=.7\textheight]{fig/algorithmus_sequenz_aktivitaetsdiagram.drawio.pdf}
+        \begin{minipage}[c][.7\textheight][c]{\textwidth}
+          \centering
+          \includegraphics[height=.7\textheight]{fig/algorithmus_sequenz_aktivitaetsdiagram.drawio.pdf}
+        \end{minipage}
       \end{block}
 
     \end{column}
     \begin{column}{.4\linewidth}
       \begin{block}{In Python}
-        \inputminted{python}{src/algorithmus_sequenz.py}
+        \begin{minipage}[c][.7\textheight][c]{\textwidth}
+          \inputminted{python}{src/algorithmus_sequenz.py}
+        \end{minipage}
       \end{block}
 
     \end{column}
@@ -330,22 +336,26 @@
   \begin{columns}[t]
     \begin{column}{.4\linewidth}
       \begin{block}{Im Struktogramm}
-        \centering
-        \includegraphics[width=\textwidth]{fig/algorithmus_einseitige_selektion_struktogram.pdf}
+        \begin{minipage}[c][.7\textheight][c]{\textwidth}
+          \centering
+          \includegraphics[width=\textwidth]{fig/algorithmus_einseitige_selektion_struktogram.pdf}
+        \end{minipage}
       \end{block}
     \end{column}
     \begin{column}{.3\linewidth}
       \begin{block}{Im Aktivitätsdiagramm}
-        \centering
-        \includegraphics[height=.7\textheight]{fig/algorithmus_einseitige_selektion_aktivitaetsdiagram.drawio.pdf}
+        \begin{minipage}[c][.7\textheight][c]{\textwidth}
+          \centering
+          \includegraphics[width=\textwidth]{fig/algorithmus_einseitige_selektion_aktivitaetsdiagram.drawio.pdf}
+        \end{minipage}
       \end{block}
-
     \end{column}
     \begin{column}{.3\linewidth}
       \begin{block}{In Python}
-        \inputminted{python}{src/algorithmus_einseitige_selektion.py}
+        \begin{minipage}[c][.7\textheight][c]{\textwidth}
+          \inputminted{python}{src/algorithmus_einseitige_selektion.py}
+        \end{minipage}
       \end{block}
-
     \end{column}
   \end{columns}
 
@@ -356,20 +366,26 @@
   \begin{columns}[t]
     \begin{column}{.4\linewidth}
       \begin{block}{Im Struktogramm}
-        \centering
-        \includegraphics[width=\textwidth]{fig/algorithmus_zweiseitige_selektion_struktogram.pdf}
+        \begin{minipage}[c][.7\textheight][c]{\textwidth}
+          \centering
+          \includegraphics[width=\textwidth]{fig/algorithmus_zweiseitige_selektion_struktogram.pdf}
+        \end{minipage}
       \end{block}
     \end{column}
     \begin{column}{.3\linewidth}
       \begin{block}{Im Aktivitätsdiagramm}
-        \centering
-        \includegraphics[width=\textwidth]{fig/algorithmus_zweiseitige_selektion_aktivitaetsdiagram.drawio.pdf}
+        \begin{minipage}[c][.7\textheight][c]{\textwidth}
+          \centering
+          \includegraphics[width=\textwidth]{fig/algorithmus_zweiseitige_selektion_aktivitaetsdiagram.drawio.pdf}
+        \end{minipage}
       \end{block}
 
     \end{column}
     \begin{column}{.3\linewidth}
       \begin{block}{In Python}
-        \inputminted{python}{src/algorithmus_zweiseitige_selektion.py}
+        \begin{minipage}[c][.7\textheight][c]{\textwidth}
+          \inputminted{python}{src/algorithmus_zweiseitige_selektion.py}
+        \end{minipage}
       \end{block}
 
     \end{column}
@@ -399,20 +415,26 @@
   \begin{columns}[t]
     \begin{column}{.3\linewidth}
       \begin{block}{Im Struktogramm}
-        \centering
-        \includegraphics[width=\textwidth]{fig/algorithmus_zyklus_struktogram.pdf}
+        \begin{minipage}[c][.7\textheight][c]{\textwidth}
+          \centering
+          \includegraphics[width=\textwidth]{fig/algorithmus_zyklus_struktogram.pdf}
+        \end{minipage}
       \end{block}
     \end{column}
     \begin{column}{.3\linewidth}
       \begin{block}{Im Aktivitätsdiagramm}
-        \centering
-        \includegraphics[width=\textwidth]{fig/algorithmus_zyklus_aktivitaetsdiagram.drawio.pdf}
+        \begin{minipage}[c][.7\textheight][c]{\textwidth}
+          \centering
+          \includegraphics[width=\textwidth]{fig/algorithmus_zyklus_aktivitaetsdiagram.drawio.pdf}
+        \end{minipage}
       \end{block}
 
     \end{column}
     \begin{column}{.4\linewidth}
       \begin{block}{In Python}
-        \inputminted{python}{src/algorithmus_zyklus.py}
+        \begin{minipage}[c][.7\textheight][c]{\textwidth}
+          \inputminted{python}{src/algorithmus_zyklus.py}
+        \end{minipage}
       \end{block}
 
     \end{column}
@@ -452,6 +474,247 @@
   \end{itemize}
 
   \inputminted{python}{src/algorithmus_break_continue.py}
+\end{frame}
+
+\section{Unterprogramme}
+
+\begin{frame}{Definition von Unterprogrammen (Funktionen)}
+
+  \begin{block}{In Python}
+    \inputminted{python}{src/algorithmus_unterprogramme.py}
+  \end{block}
+  \begin{itemize}
+    \item Als Definition bezeichnet man das Programmieren des Unterprogramms.
+    \item Dabei wird das Unterprogramm noch nicht ausgeführt. Die Ausführung wird durch Aufrufe an anderen Stellen im Programm ausgelöst.
+    \item Alle Größen, die der Teilalgorithmus aus der Umgebung zur Abarbeitung benötigt, müssen in der Parameterliste angegeben werden.
+    \item Ergebnisse können mittels \mintinline{python}|return| zurückgegeben werden.
+    \item \mintinline{python}|return| veranlasst auch die Rückkehr aus dem Unterprogramm.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Paramater und Argumente}
+  \begin{exampleblock}{Definition}
+    \begin{itemize}
+      \item Parameter sind die Variablen, die in der Funktionsdefinition angegeben werden.
+      \item Argumente sind die Werte, die beim Aufruf der Funktion übergeben werden.
+    \end{itemize}
+  \end{exampleblock}
+  \begin{block}{Grundform der Wertübergabe an Funktionen}
+    Die Argumente werden entsprechend der Anzahl und Reihenfolge der einzelnen Parameter angegeben.
+  \end{block}
+
+  \begin{columns}[t]
+    \begin{column}{.35\linewidth}
+      \inputminted[lastline=4,escapeinside=??]{python}{src/algorithmus_parameter.py}
+    \end{column}
+    \begin{column}{.65\linewidth}
+      \inputminted[firstline=7,escapeinside=??]{python}{src/algorithmus_parameter.py}
+    \end{column}
+  \end{columns}
+
+
+  \begin{tikzpicture}[remember picture]
+    \draw[overlay, ->, line width=5pt, color=red]
+    ([yshift=.7\baselineskip]pic cs:mass) --
+    ([yshift=5\baselineskip]pic cs:mass) --
+    ([yshift=3\baselineskip,xshift=-0.3em]pic cs:m) --
+    ([xshift=-.3em,yshift=.7\baselineskip]pic cs:m);
+    \draw[overlay, ->, line width=5pt, color=blue]
+    ([yshift=.7\baselineskip]pic cs:speed) --
+    ([yshift=4.5\baselineskip]pic cs:speed) --
+    ([yshift=2.5\baselineskip,xshift=-0.3em]pic cs:v) --
+    ([xshift=-.3em,yshift=.7\baselineskip]pic cs:v);
+  \end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Unterprogramme -- Warum?}
+  Wann sollte Code in ein Unterprogramm ausgelagert werden?
+  \begin{itemize}
+    \item wenn gleiche Codeabschnitte mehrfach in Programm vorkommen.
+
+          Durch Unterprogrammen wird Coderedundanz (gleicher Code an mehreren Stellen) vermieden.
+    \item wenn Teilprobleme von der Lösung des Gesamtproblems entkoppelt werden sollen. Es ergibt sich dann eine bessere Übersichtlichkeit und bessere Änderungsfreundlichkeit.
+    \item wenn mehrere Programme (bzw. Skripte) gleiche Codeabschnitte benötigen.
+  \end{itemize}
+
+  \begin{exampleblock}{Beispiel}
+    \texttt{ggT} und \texttt{kgV} sind Teillösungen für andere Probleme und deshabl für Unterprogramme prädestiniert.
+  \end{exampleblock}
+
+\end{frame}
+
+\begin{frame}{Platzierung von Funktionen und aufrufendem Code}{Variante I: In einer gemeinsamen Datei}
+  \vspace{-\baselineskip}
+  \begin{columns}
+    \begin{column}{.5\linewidth}
+      \begin{itemize}
+        \item Oben werden die Funktionen definiert, unten wird der Scriptcode eingefügt.
+
+        \item Die Verarbeitung startet mit der ersten Anweisung, die nicht in einer Funktion steht.
+
+        \item Theoretisch können die Funktionen an einer beliebigen Stelle im Code stehen. Die Konvention ist jedoch, dass die Funktionen immer am Anfang stehen.
+      \end{itemize}
+    \end{column}
+    \begin{column}{.5\linewidth}
+      \begin{listing}
+        \small
+        \caption{algorithmus\_partialsumme\_1.py}
+        \inputminted{python}{src/algorithmus_partialsumme_1.py}
+      \end{listing}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Platzierung von Funktionen und aufrufendem Code}{Variante II: Aufteilung auf mehrere Dateien}
+  \begin{itemize}
+    \item Das Python-Skript muss das Modul importieren, um die Funktionen nutzen zu können.
+    \item Beim Funktionsaufruf muss der Modulname vorangestellt werden.
+    \item Die Verarbeitung startet mit der Skriptdatei, die aufgerufen wird.
+  \end{itemize}
+  \vspace{-\baselineskip}
+  \begin{columns}[t]
+    \begin{column}{.5\linewidth}
+      \begin{listing}
+        \caption{algorithmus\_ps\_modul.py}
+        \inputminted{python}{src/algorithmus_ps_modul.py}
+      \end{listing}
+    \end{column}
+    \begin{column}{.5\linewidth}
+      \begin{listing}
+        \caption{algorithmus\_partialsumme\_2.py}
+        \inputminted{python}{src/algorithmus_partialsumme_2.py}
+      \end{listing}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Import von Modulen}
+  Für den Import müssen sich die Moduldateien entweder
+  \begin{itemize}
+    \item im lokalen Verzeichnis oder
+    \item im globalen Suchpfad des Python-Interpreters befinden.
+  \end{itemize}
+
+  Importierte Module können auch mit einem Alias versehen werden:
+
+  \inputminted{python}{src/algorithmus_import_psm.py}
+  \inputminted{python}{src/algorithmus_import_math.py}
+
+  Unkonventionelle Aliase sind nicht empfehlenswert, da sie den Code unleserlich machen. Etabliert sind dagegen \texttt{np} für \texttt{numpy} und \texttt{pd} für \texttt{pandas}.
+\end{frame}
+
+\section{Felder und Listen}
+
+\begin{frame}{Felder bzw. Python-Listen}
+  \begin{block}{Definition: Felder (engl. Array)}
+    Algorithmen arbeiten oft auf Feldvariablen, die \(n\) einzelne Variablen als Folge enthalten, z.~B. \( z_1, z_2, \ldots, z_n \).
+  \end{block}
+
+  \begin{block}{Konvention: Felder (engl. Array)}
+    In Programmiersprachen beginnt die Indizierung meistens mit 0. Bei der Länge von \(n\) Elementen wird das letzte Element mit \(n-1\) indiziert: \( z_0 , z_1, \ldots, z_{n-1} \).
+  \end{block}
+
+  \begin{exampleblock}{Anwendung}
+    \begin{itemize}
+      \item Vektoren im mathematischen Sinn
+      \item Zeitreihen, beispielsweise für tägliche Temperaturmessungen
+      \item möglich auch für mehrelementige Wertangabe (z.B. Koordinaten)
+    \end{itemize}
+  \end{exampleblock}
+
+\end{frame}
+
+\begin{frame}{Darstellung von Feldern in Diagrammen}
+  Bei der Darstellung von Feldern in Aktivitätsdiagrammen und Struktogrammen git es zwei Möglichkeiten, als mathematische Notation mit tiefergestellten Indizes oder wie im Programmcode in eckigen Klammern.
+
+  \tiny\centering
+  \includesvg[width=\textwidth,height=.6\textheight]{fig/algorithmus_indices.svg}
+\end{frame}
+
+\begin{frame}{Felder in Python}
+  Felder in Python werden durch den Datentyp Liste (\texttt{list}) dargestellt unterstützt. Bei anderen Prgorammiersprachen sind Felder und Listen unterschiedliche Datentypen.
+
+  Geordnete Zuweisung von Werten in einer Liste:
+
+  \inputminted[firstline=1, lastline=3]{python}{src/algorithmus_list.py}
+
+  Zugriff auf Elemente durch Indexwert in eckigen Klammern:
+  \inputminted[firstline=5, lastline=5]{python}{src/algorithmus_list.py}
+
+  Die Länge einer Liste kann mit der Funktion \texttt{len()} ermittelt werden:
+  \inputminted[firstline=7, lastline=7]{python}{src/algorithmus_list.py}
+\end{frame}
+
+\begin{frame}{Features von Python-Listen}
+  Pythen Listen bieten eine Vielzahl nützlicher Funktionen zur Manipulation (nicht vollständig):
+  \begin{tabularx}{\textwidth}{lXl}
+    \toprule
+    \textbf{Funktion}  & \textbf{Beschreibung}                                          & \textbf{Beispiel}          \\
+    \midrule
+    \texttt{append()}  & Fügt ein Element am Ende der Liste hinzu                       & \texttt{list.append(5)}    \\
+    \texttt{clear()}   & Entfernt alle Elemente aus der Liste                           & \texttt{list.clear()}      \\
+    \texttt{count()}   & Zählt die Vorkommen eines Elements in der Liste                & \texttt{list.count(5)}     \\
+    \texttt{index()}   & Gibt den Index des ersten Vorkommens eines Elements zurück     & \texttt{list.index(5)}     \\
+    \texttt{insert()}  & Fügt ein Element an einer bestimmten Position in die Liste ein & \texttt{list.insert(0, 5)} \\
+    \texttt{sort()}    & Sortiert die Liste in aufsteigender Reihenfolge                & \texttt{list.sort()}       \\
+    \texttt{remove()}  & Entfernt das erste Vorkommen eines Elements aus der Liste      & \texttt{list.remove(5)}    \\
+    \texttt{reverse()} & Kehrt die Reihenfolge der Elemente in der Liste um             & \texttt{list.reverse()}    \\
+    \bottomrule
+  \end{tabularx}
+\end{frame}
+\begin{frame}{Features von Python-Listen}
+  Weitere vordefinierte Funktionen für Listen sind:
+  \begin{tabularx}{\textwidth}{lXl}
+    \toprule
+    \textbf{Funktion} & \textbf{Beschreibung}                              & \textbf{Beispiel}                                \\
+    \midrule
+    \texttt{len()}    & Gibt die Anzahl der Elemente in der Liste zurück.  & \texttt{len([1, 2, 3])} $\rightarrow$ \texttt{3} \\
+    \texttt{max()}    & Gibt das größte Element in der Liste zurück.       & \texttt{max([1, 2, 3])} $\rightarrow$ \texttt{3} \\
+    \texttt{min()}    & Gibt das kleinste Element in der Liste zurück.     & \texttt{min([1, 2, 3])} $\rightarrow$ \texttt{1} \\
+    \texttt{sum()}    & Gibt die Summe aller Elemente in der Liste zurück. & \texttt{sum([1, 2, 3])} $\rightarrow$ \texttt{6} \\
+    \bottomrule
+  \end{tabularx}
+
+  \begin{exampleblock}{Hinweis}
+    In den Übungen werden wir viele dieser Funktionen einmal ohne die vordefinierten Funktionen implementieren.
+    Dies dient dem Verständnis, der Übung und der Wertschätzung der Existenz dieser Funktionen.
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}{Verwendung von Listen}
+  Die Listen-Variablen können wie Objekte (werden später noch erklärt) verwendet werden und vehalten sich vergleichbar.
+
+  \begin{exampleblock}{Beispiel}
+    \inputminted[escapeinside=??]{python}{src/algorithmus_list_methods.py}
+
+  \end{exampleblock}
+
+  \begin{tikzpicture}[remember picture, overlay]
+    \node[
+      draw=red,
+      thick,
+      fill=white,
+      text=black,
+      rectangle,
+      name=objektvariable
+    ] at ([xshift=10cm, yshift=1.5cm]pic cs:object2) {Objektvariable};
+    \draw[overlay, ->, line width=3pt, color=red]
+    (objektvariable) -- ([yshift=1.5cm]pic cs:object2) -- (pic cs:object1);
+    \draw[overlay, ->, line width=3pt, color=red]
+    (objektvariable) -- ([yshift=1.5cm]pic cs:object2) -- ([yshift=.6\baselineskip]pic cs:object2);
+    \node[
+      draw=blue,
+      thick,
+      fill=white,
+      text=black,
+      rectangle,
+      name=methode
+    ] at ([xshift=10cm, yshift=.8cm]pic cs:object2) {Methode};
+    \draw[overlay, ->, line width=3pt, color=blue]
+    (methode) -- ([yshift=.8cm]pic cs:meth2) -- (pic cs:meth1);
+    \draw[overlay, ->, line width=3pt, color=blue]
+    (methode) -- ([yshift=.8cm]pic cs:meth2) -- ([yshift=.6\baselineskip]pic cs:meth2);
+  \end{tikzpicture}
 \end{frame}
 
 
