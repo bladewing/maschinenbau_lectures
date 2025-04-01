@@ -403,7 +403,7 @@
 
 
 \begin{frame}{Mehrstufige Selektion}{Mit match-case}
-  Seit Python 2010 gibt es das Schlüsselwort \texttt{match} für mehrstufige Selektionen.
+  Seit Python 3.10 gibt es das Schlüsselwort \texttt{match} für mehrstufige Selektionen.
 
   \inputminted{python}{src/algorithmus_mehrstufige_selektion_match.py}
 
@@ -538,7 +538,7 @@
   \end{itemize}
 
   \begin{exampleblock}{Beispiel}
-    \texttt{ggT} und \texttt{kgV} sind Teillösungen für andere Probleme und deshabl für Unterprogramme prädestiniert.
+    \texttt{ggT} und \texttt{kgV} sind Teillösungen für andere Probleme und deshalb für Unterprogramme prädestiniert.
   \end{exampleblock}
 
 \end{frame}
@@ -625,14 +625,14 @@
 \end{frame}
 
 \begin{frame}{Darstellung von Feldern in Diagrammen}
-  Bei der Darstellung von Feldern in Aktivitätsdiagrammen und Struktogrammen git es zwei Möglichkeiten, als mathematische Notation mit tiefergestellten Indizes oder wie im Programmcode in eckigen Klammern.
+  Bei der Darstellung von Feldern in Aktivitätsdiagrammen und Struktogrammen gibt es zwei Möglichkeiten, als mathematische Notation mit tiefergestellten Indizes oder wie im Programmcode in eckigen Klammern.
 
   \tiny\centering
   \includesvg[width=\textwidth,height=.6\textheight]{fig/algorithmus_indices.svg}
 \end{frame}
 
 \begin{frame}{Felder in Python}
-  Felder in Python werden durch den Datentyp Liste (\texttt{list}) dargestellt unterstützt. Bei anderen Prgorammiersprachen sind Felder und Listen unterschiedliche Datentypen.
+  Felder in Python werden durch den Datentyp Liste (\texttt{list}) dargestellt. Bei anderen Programmiersprachen sind Felder und Listen unterschiedliche Datentypen.
 
   Geordnete Zuweisung von Werten in einer Liste:
 
@@ -646,7 +646,7 @@
 \end{frame}
 
 \begin{frame}{Features von Python-Listen}
-  Pythen Listen bieten eine Vielzahl nützlicher Funktionen zur Manipulation (nicht vollständig):
+  Python Listen bieten eine Vielzahl nützlicher Funktionen zur Manipulation (nicht vollständig):
   \begin{tabularx}{\textwidth}{lXl}
     \toprule
     \textbf{Funktion}  & \textbf{Beschreibung}                                          & \textbf{Beispiel}          \\
@@ -682,7 +682,7 @@
 \end{frame}
 
 \begin{frame}{Verwendung von Listen}
-  Die Listen-Variablen können wie Objekte (werden später noch erklärt) verwendet werden und vehalten sich vergleichbar.
+  Die Listen-Variablen können wie Objekte (werden später noch erklärt) verwendet werden und verhalten sich vergleichbar.
 
   \begin{exampleblock}{Beispiel}
     \inputminted[escapeinside=??]{python}{src/algorithmus_list_methods.py}
@@ -717,6 +717,50 @@
   \end{tikzpicture}
 \end{frame}
 
+\begin{frame}{Flächeninhalt eines Dreiecks}{Aufgabenstellung}
+
+  Prüfen Sie die Seitenlängen eines Dreiecks und berechnen Sie anschließend den Flächeninhalt.
+
+  Ein Dreieck mit den Seiten $a$, $b$ und $c$ hat einen Flächeninhalt
+  \[
+    A = \sqrt{s \cdot (s - a) \cdot (s - b) \cdot (s - c)} \mbox{ mit } s = \frac{a + b + c}{2}
+  \]
+
+  Vor der Berechnung ist zu prüfen, ob das Dreieck überhaupt existiert.
+\end{frame}
+
+\begin{frame}{Flächeninhalt eines Dreiecks}{Algorithmus}
+  \begin{columns}
+    \begin{column}{.32\textwidth}
+      \includegraphics[height=.8\textheight]{fig/algorithmus_dreiecksflaeche.pdf}
+    \end{column}
+    \begin{column}{.68\textwidth}
+      \small
+      \only<2->{\inputminted{python}{src/algorithmus_dreiecksflaeche.py}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Lösung einer quadratischen Gleichung}{Aufgabenstellung}
+
+  Lösen Sie eine quadratische Gleichung
+  \[
+    ax^2 + bx + c = 0 \quad \text{mit } a \neq 0
+  \]
+  nach der Vorschrift
+  \[
+    x = \frac{-b \pm \sqrt{D}}{2a} \quad \text{mit } D = b^2 - 4ac
+  \]
+
+  Der Algorithmus muss verschiedene Fälle unterscheiden und die Berechnung selektiv unterschiedlich ausführen.
+
+  Die Ausgabe muss angepasst werden, je nachdem, ob es eine oder zwei Lösungen gibt.
+\end{frame}
+
+\begin{frame}{Lösung einer quadratischen Gleichung}{Algorithmus}
+\end{frame}
+
+\section{Beispiele}
 
 % End document
 \end{document}
