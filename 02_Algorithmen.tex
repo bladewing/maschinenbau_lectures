@@ -890,5 +890,276 @@
     }
   \end{columns}
 \end{frame}
+
+\begin{frame}{Türme von Hanoi}{Aufgabenstellung}
+  \vspace{-.5\baselineskip}
+  \begin{columns}[onlytextwidth]
+    \column{0.5\textwidth}
+    \begin{itemize}
+      \item Gegeben ist ein Turm auf einem Stock $A$ aus $n$ Scheiben, die übereinander liegen, wobei die Scheiben von oben nach unten immer größer werden.
+      \item Der Turm soll auf einen anderen Stock $C$ umgesetzt werden.
+      \item Es darf immer nur eine Scheibe bewegt werden.
+      \item Eine Scheibe darf nur auf einen leeren Stock oder auf eine größere Scheibe gelegt werden.
+      \item Es gibt einen dritten Stock $B$, der als Hilfsstock verwendet werden kann.
+    \end{itemize}
+    \column{0.5\textwidth}
+    \begin{center}
+      \includegraphics[width=\textwidth]{img/algorithmus_tower_of_hanoi.jpg}
+    \end{center}
+
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Türme von Hanoi}{Problemzerlegung}
+  Zerlegung in Teilprobleme
+  \begin{itemize}
+    \item Bewege $n-1$ Scheiben von $A$ nach $B$ unter Verwendung von $C$.
+    \item Bewege die größte Scheibe von $A$ nach $C$.
+    \item Bewege die $n-1$ Scheiben von $B$ nach $C$ unter Verwendung von $A$.
+  \end{itemize}
+
+\end{frame}
+
+\newcommand{\drawdisc}[3]{
+  \draw[fill=#3, rounded corners=3pt] (#1-#2/2,-#2*0.5+2.5) rectangle (#1+#2/2,-#2*0.5+3);
+  %\draw[fill=#3, rounded corners=3pt];
+}
+
+\begin{frame}{Türme von Hanoi}{Problemzerlegung -- Visualisierung}
+  \begin{tikzpicture}
+    % Basis zeichnen
+    \draw[fill=brown!70!black, rounded corners] (0,0) rectangle (12,0.5);
+
+    % Stäbe zeichnen
+    \foreach \x in {2,6,10} {
+        \draw[fill=brown!50!black, rounded corners=2pt] (\x-0.1,0.5) rectangle (\x+0.1,4.5);
+      }
+
+    % Namen der Stäbe
+    \node at (2,-0.5) {A};
+    \node at (6,-0.5) {B};
+    \node at (10,-0.5) {C};
+
+    % Startposition - alle Scheiben auf Stab A
+    \only<1>{
+      \drawdisc{2}{4}{red}
+      \drawdisc{2}{3}{orange}
+      \drawdisc{2}{2}{yellow}
+      \drawdisc{2}{1}{green}
+      \node[below] at (6,5.5) {Ausgangsposition, Turm soll auf C umgesetzt werden};
+    }
+
+    % Schritt 7: Bewege Scheibe 1 von A nach B
+    \only<2>{
+      \drawdisc{2}{4.0}{red}
+      \drawdisc{6}{3.0}{orange}
+      \drawdisc{6}{2.0}{yellow}
+      \drawdisc{6}{1.0}{green}
+      \node[below] at (6,5.5) {Turm mit $n-1$ Scheiben auf C umgesetzt};
+    }
+
+    % Schritt 8: Bewege Scheibe 4 (größte) von A nach C
+    \only<3>{
+      \drawdisc{10}{4.0}{red}
+      \drawdisc{6}{3.0}{orange}
+      \drawdisc{6}{2.0}{yellow}
+      \drawdisc{6}{1.0}{green}
+      \node[below] at (6,5.5) {Größte Scheibe von A nach C, jetzt \enquote{nur} Rest auf C umsetzen};
+    }
+
+    % Schritt 15: Bewege Scheibe 1 von B nach C - Zielposition
+    \only<4>{
+      \drawdisc{10}{4.0}{red}
+      \drawdisc{10}{3.0}{orange}
+      \drawdisc{10}{2.0}{yellow}
+      \drawdisc{10}{1.0}{green}
+      \node[below] at (6,5.5) {Zielzustand erreicht};
+    }
+  \end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Türme von Hanoi}{Algorithmus}
+  \inputminted[lastline=7]{python}{src/algorithmus_towers.py}
+
+  \begin{itemize}
+    \item Plätze mit A = 0, B = 1 und C = 2 nummeriert
+    \item Hilfsplatz wechselt von Ebene zu Ebene
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Türme von Hanoi}{Algorithmus -- Struktogramm (\texttt{umsetz(disks, start, target)})}
+  \begin{center}
+    \includegraphics[height=0.8\textheight]{fig/algorithmus_tower_struktogramm.pdf}
+  \end{center}
+\end{frame}
+
+
+
+
+\begin{frame}{Türme von Hanoi}{Animation der Lösung mit 4 Scheiben}
+  \centering
+  % Definition der Scheibengrößen und -farben
+
+  \begin{tikzpicture}
+    % Basis zeichnen
+    \draw[fill=brown!70!black, rounded corners] (0,0) rectangle (12,0.5);
+
+    % Stäbe zeichnen
+    \foreach \x in {2,6,10} {
+        \draw[fill=brown!50!black, rounded corners=2pt] (\x-0.1,0.5) rectangle (\x+0.1,4.5);
+      }
+
+    % Namen der Stäbe
+    \node at (2,-0.5) {A};
+    \node at (6,-0.5) {B};
+    \node at (10,-0.5) {C};
+
+    % Startposition - alle Scheiben auf Stab A
+    \only<1>{
+      \drawdisc{2}{4}{red}
+      \drawdisc{2}{3}{orange}
+      \drawdisc{2}{2}{yellow}
+      \drawdisc{2}{1}{green}
+      \node[below] at (6,5.5) {Ausgangsposition};
+    }
+
+    %% Schritt 1: Bewege Scheibe 1 (kleinste) von A nach B
+    \only<2>{
+      \drawdisc{2}{4.0}{red}
+      \drawdisc{2}{3.0}{orange}
+      \drawdisc{2}{2.0}{yellow}
+      \drawdisc{6}{1.0}{green}
+      \node[below] at (6,5.5) {Schritt 1: Kleinste Scheibe von A nach B};
+    }
+
+    % Schritt 2: Bewege Scheibe 2 von A nach C
+    \only<3>{
+      \drawdisc{2}{4.0}{red}
+      \drawdisc{2}{3.0}{orange}
+      \drawdisc{10}{2.0}{yellow}
+      \drawdisc{6}{1.0}{green}
+      \node[below] at (6,5.5) {Schritt 2: Scheibe 2 von A nach C};
+    }
+
+    % Schritt 3: Bewege Scheibe 1 von B nach C
+    \only<4>{
+      \drawdisc{2}{4.0}{red}
+      \drawdisc{2}{3.0}{orange}
+      \drawdisc{10}{2.0}{yellow}
+      \drawdisc{10}{1.0}{green}
+      \node[below] at (6,5.5) {Schritt 3: Kleinste Scheibe von B nach C};
+    }
+
+    % Schritt 4: Bewege Scheibe 3 von A nach B
+    \only<5>{
+      \drawdisc{2}{4.0}{red}
+      \drawdisc{6}{3.0}{orange}
+      \drawdisc{10}{2.0}{yellow}
+      \drawdisc{10}{1.0}{green}
+      \node[below] at (6,5.5) {Schritt 4: Scheibe 3 von A nach B};
+    }
+
+    % Schritt 5: Bewege Scheibe 1 von C nach A
+    \only<6>{
+      \drawdisc{2}{4.0}{red}
+      \drawdisc{6}{3.0}{orange}
+      \drawdisc{10}{2.0}{yellow}
+      \drawdisc{2}{1.0}{green}
+      \node[below] at (6,5.5) {Schritt 5: Kleinste Scheibe von C nach A};
+    }
+
+    % Schritt 6: Bewege Scheibe 2 von C nach B
+    \only<7>{
+      \drawdisc{2}{4.0}{red}
+      \drawdisc{6}{3.0}{orange}
+      \drawdisc{6}{2.0}{yellow}
+      \drawdisc{2}{1.0}{green}
+      \node[below] at (6,5.5) {Schritt 6: Scheibe 2 von C nach B};
+    }
+
+    % Schritt 7: Bewege Scheibe 1 von A nach B
+    \only<8>{
+      \drawdisc{2}{4.0}{red}
+      \drawdisc{6}{3.0}{orange}
+      \drawdisc{6}{2.0}{yellow}
+      \drawdisc{6}{1.0}{green}
+      \node[below] at (6,5.5) {Schritt 7: Kleinste Scheibe von A nach B};
+    }
+
+    % Schritt 8: Bewege Scheibe 4 (größte) von A nach C
+    \only<9>{
+      \drawdisc{10}{4.0}{red}
+      \drawdisc{6}{3.0}{orange}
+      \drawdisc{6}{2.0}{yellow}
+      \drawdisc{6}{1.0}{green}
+      \node[below] at (6,5.5) {Schritt 8: Größte Scheibe von A nach C};
+    }
+
+    % Schritte 9-15 fortsetzen...
+    % Schritt 9: Bewege Scheibe 1 von B nach C
+    \only<10>{
+      \drawdisc{10}{4.0}{red}
+      \drawdisc{6}{3.0}{orange}
+      \drawdisc{6}{2.0}{yellow}
+      \drawdisc{10}{1.0}{green}
+      \node[below] at (6,5.5) {Schritt 9: Kleinste Scheibe von B nach C};
+    }
+
+    % Schritt 10: Bewege Scheibe 2 von B nach A
+    \only<11>{
+      \drawdisc{10}{4.0}{red}
+      \drawdisc{6}{3.0}{orange}
+      \drawdisc{2}{2.0}{yellow}
+      \drawdisc{10}{1.0}{green}
+      \node[below] at (6,5.5) {Schritt 10: Scheibe 2 von B nach A};
+    }
+
+    % Schritt 11: Bewege Scheibe 1 von C nach A
+    \only<12>{
+      \drawdisc{10}{4.0}{red}
+      \drawdisc{6}{3.0}{orange}
+      \drawdisc{2}{2.0}{yellow}
+      \drawdisc{2}{1.0}{green}
+      \node[below] at (6,5.5) {Schritt 11: Kleinste Scheibe von C nach A};
+    }
+
+    % Schritt 12: Bewege Scheibe 3 von B nach C
+    \only<13>{
+      \drawdisc{10}{4.0}{red}
+      \drawdisc{10}{3.0}{orange}
+      \drawdisc{2}{2.0}{yellow}
+      \drawdisc{2}{1.0}{green}
+      \node[below] at (6,5.5) {Schritt 12: Scheibe 3 von B nach C};
+    }
+
+    % Schritt 13: Bewege Scheibe 1 von A nach B
+    \only<14>{
+      \drawdisc{10}{4.0}{red}
+      \drawdisc{10}{3.0}{orange}
+      \drawdisc{2}{2.0}{yellow}
+      \drawdisc{6}{1.0}{green}
+      \node[below] at (6,5.5) {Schritt 13: Kleinste Scheibe von A nach B};
+    }
+
+    % Schritt 14: Bewege Scheibe 2 von A nach C
+    \only<15>{
+      \drawdisc{10}{4.0}{red}
+      \drawdisc{10}{3.0}{orange}
+      \drawdisc{10}{2.0}{yellow}
+      \drawdisc{6}{1.0}{green}
+      \node[below] at (6,5.5) {Schritt 14: Scheibe 2 von A nach C};
+    }
+
+    % Schritt 15: Bewege Scheibe 1 von B nach C - Zielposition
+    \only<16>{
+      \drawdisc{10}{4.0}{red}
+      \drawdisc{10}{3.0}{orange}
+      \drawdisc{10}{2.0}{yellow}
+      \drawdisc{10}{1.0}{green}
+      \node[below] at (6,5.5) {Schritt 15: Kleinste Scheibe von B nach C};
+    }
+  \end{tikzpicture}
+\end{frame}
+
 % End document
 \end{document}
