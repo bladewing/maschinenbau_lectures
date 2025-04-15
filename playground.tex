@@ -1,0 +1,130 @@
+\documentclass[xelatex,aspectratio=169]{beamer}
+\input{preamble.tex}
+
+% Title
+\title{Algorithmen}
+\author{Prof. Dr. Lukas Iffländer}
+\institute{HTW Dresden}
+\date{}
+\usepackage{svg}
+
+% Begin document
+\begin{document}
+
+% Title slide
+\section{Rekursion}
+
+\begin{frame}{Rekursive Algorithmen}
+  In der Mathematik sind viele Funktionen rekursiv definiert.
+  \begin{block}{Rekursion}
+    Der Begriff der Rekursion beinhaltet, dass zur Definition einer Funktion diese selbst wieder mit benutzt wird, allerdings mit
+    anderen Argumentwerten. Eine rekursive Definition benötigt stets eine (nichtrekursive) Anfangs- bzw. Abbruchbedingung.
+  \end{block}
+  \begin{exampleblock}{Beispiel: Fakultät}
+    rekursive Definition: \(fak(n) = n \cdot fak(n-1)\)
+
+    Anfangsbedingung: \(fak(0) = 1\)
+
+    Hinweis: ist in Python als \texttt{math.factorial} bereits implementiert
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}{Rekursive Algorithmen}{Charakteristika}
+  \begin{itemize}
+    \item Rekursive Definitionen sind in der Regel kurz und übersichtlich.
+    \item Die Grundstruktur des Algorithmus ist sofort erkennbar.
+    \item Rekursive Definitionen lassen sich leicht mit rekursiven Prozeduren (Funktionen) implementieren.
+    \item Implementierte rekursive Algorithmen sind häufig ineffizient (hoher Ressourcenverbrauch: Speicher und Rechenzeit).
+    \item Bestimmte rekursive Algorithmen können in iterative Algorithmen umgeschrieben und effizienter implementiert werden.
+    \item Endständige Rekursion (z.B. Fakultätsberechnung: \(fak(0) = 1; \, fak(n) = n \cdot fak(n-1)\)) ist ein Beispiel dafür.
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Rekursive Algorithmen}{Charakteristika}
+  \begin{block}{Schrittweises Auflösen}
+    Auflösen des fak()-Ausdrucks rechtsseitig, solange Argument
+    größer als  Null
+    \begin{align*}
+      fak(0) & =1                                                             \\
+      fak(n) & = n \cdot fak(n-1)                                             \\
+      fak(n) & = n \cdot   (n-1) \cdot fak( (n-1) -1)                         \\
+      fak(n) & = n \cdot   (n-1) \cdot (n-2) \cdot fak( (n-2) -1)             \\
+      fak(n) & = n \cdot   (n-1) \cdot (n-2) \cdot (n-3) \cdot fak( (n-3) -1) \\
+      \ldots                                                                  \\
+      fak(n) & = n \cdot   (n-1) \cdot (n-2) \cdot (n-3) \cdot \ldots \cdot 1
+    \end{align*}
+    Im Ideal steht (wie hier) eine iterative Logik da. Dies ist aber nicht immer der Fall und zahlreiche rekursive Algorithmen sind nicht ohne weiteres iterativ umschreibbar.
+  \end{block}
+\end{frame}
+
+
+\begin{frame}{Rekursive Algorithmen}{Struktogramm}
+  \centering
+  \includegraphics[height=0.8\textheight]{fig/algorithmus_faculty_struktogram.pdf}
+\end{frame}
+
+\begin{frame}{Rekursive Algorithmen}{Fibonacci-Zahlen}
+  \begin{columns}[onlytextwidth]
+    \column{0.5\textwidth}
+    Rekursiv definierte Zahlenfolge:
+    \begin{align*}
+      fib(0) & = 0                   \\
+      fib(1) & = 1                   \\
+      fib(n) & = fib(n-1) + fib(n-2)
+    \end{align*}
+
+    \column{0.5\textwidth}
+    \includegraphics[width=\textwidth]{fig/algorithmus_fibonacci_struktogram.pdf}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Fibonacci Baum}
+  \centering
+  \begin{tikzpicture}[
+      level distance=1.5cm,
+      level 1/.style={sibling distance=6cm},
+      level 2/.style={sibling distance=3cm},
+      level 3/.style={sibling distance=1.5cm}
+    ]
+
+    \node {fib(6)}
+    child {node {fib(5)}
+        child {node {fib(4)}
+            child {node {fib(3)}
+                child {node {fib(2)}}
+                child {node {fib(1)}}
+              }
+            child {node {fib(2)}}
+          }
+        child {node {fib(3)}
+            child {node {fib(2)}}
+            child {node {fib(1)}}
+          }
+      }
+    child {node {fib(4)}
+        child {node {fib(3)}
+            child {node {fib(2)}}
+            child {node {fib(1)}}
+          }
+        child {node {fib(2)}}
+      };
+
+  \end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Fibonacci Zahlen}{Bedeutung}
+  \begin{columns}[t, onlytextwidth]
+    \column{0.5\textwidth}
+    \centering \textbf{Wachstumsprozesse}
+    \includegraphics[width=\textwidth]{img/fibonacci_rabbit.png}
+    \column{0.5\textwidth}
+    \only<2->{
+      \centering \textbf{Natürliche geometrische Formen}
+      \includegraphics[width=\textwidth]{img/fibonacci_spiral.png}
+    }
+  \end{columns}
+\end{frame}
+
+% End document
+\end{document}
