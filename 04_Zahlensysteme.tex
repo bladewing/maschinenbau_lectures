@@ -380,51 +380,301 @@
 \end{frame}
 
 \begin{frame}{Divisionsmethode}
-    \begin{block}{Grundidee}
-        \begin{itemize}
-            \item Eine Zahl $z$ aus einem Stellenwertsystem $Q$ mit der Basis $p$ wird durch fortgesetzte Division mit Rest mit $q$ in eine Zahl $z^{'}$ im Stellenwertsystem $Z$ mit der Basis $q$ konvertiert.
-            \item Die Rechnung (Division) findet im Quellsystem statt ($q$ ist somit auch im Quellsystem darzustellen)
-            \item Die Divisionsreste werden im Zielsystem dargestellt
-        \end{itemize}
-    \end{block}
-    \begin{block}{Algorithmus}
-        \begin{enumerate}
-            \item $x = \floor*{\frac{z}{q}}$, y = $z \mod q$, speichere $y$
-            \item $z = x$
-            \item Wiederhole 1. und 2. bis $x = 0$
-            \item Schreibe die gespeicherten Reste in umgekehrter Reihenfolge auf.
-        \end{enumerate}
+  \begin{block}{Grundidee}
+    \begin{itemize}
+      \item Eine Zahl $z$ aus einem Stellenwertsystem $Q$ mit der Basis $p$ wird durch fortgesetzte Division mit Rest mit $q$ in eine Zahl $z^{'}$ im Stellenwertsystem $Z$ mit der Basis $q$ konvertiert.
+      \item Die Rechnung (Division) findet im Quellsystem statt ($q$ ist somit auch im Quellsystem darzustellen)
+      \item Die Divisionsreste werden im Zielsystem dargestellt
+    \end{itemize}
+  \end{block}
+  \begin{block}{Algorithmus}
+    \begin{enumerate}
+      \item $x = \floor*{\frac{z}{q}}$, y = $z \mod q$, speichere $y$
+      \item $z = x$
+      \item Wiederhole 1. und 2. bis $x = 0$
+      \item Schreibe die gespeicherten Reste in umgekehrter Reihenfolge auf.
+    \end{enumerate}
 
-    \end{block}
+  \end{block}
 
 \end{frame}
 
 \begin{frame}{Divisionsmethode}{Beispiel: Dezimalzahl nach Dualzahl}
-    \begin{center}
-        \begin{tabular}{rcrcrcr}
-            \toprule
-            \textbf{Dezimalzahl $z$} & : & \textbf{2} & = & $x$  & Rest & $y$                        \\
-            \midrule
-            2020                     & : & 2          & = & 1010 & Rest & 0\tikzmark{division_first} \\
-            1010                     & : & 2          & = & 505  & Rest & 0                          \\
-            505                      & : & 2          & = & 252  & Rest & 1                          \\
-            252                      & : & 2          & = & 126  & Rest & 0                          \\
-            126                      & : & 2          & = & 63   & Rest & 0                          \\
-            63                       & : & 2          & = & 31   & Rest & 1                          \\
-            31                       & : & 2          & = & 15   & Rest & 1                          \\
-            15                       & : & 2          & = & 7    & Rest & 1                          \\
-            7                        & : & 2          & = & 3    & Rest & 1                          \\
-            3                        & : & 2          & = & 1    & Rest & 1                          \\
-            1                        & : & 2          & = & 0    & Rest & 1\tikzmark{division_last}  \\
-            \bottomrule
-        \end{tabular}
-    \end{center}
-    \begin{tikzpicture}[overlay, remember picture]
-        \draw[->, line width=1.5pt] ([yshift=0,xshift=1em] pic cs:division_last) -- ([yshift=.7\baselineskip,xshift=1em] pic cs:division_first);
-
-    \end{tikzpicture}
+  \begin{center}
+    \begin{tabular}{rcrcrcr}
+      \toprule
+      \textbf{Dezimalzahl $z$} & : & \textbf{2} & = & $x$  & Rest & $y$                             \\
+      \midrule
+      2020                     & : & 2          & = & 1010 & Rest & 0\tikzmark{division_dual_first} \\
+      1010                     & : & 2          & = & 505  & Rest & 0                               \\
+      505                      & : & 2          & = & 252  & Rest & 1                               \\
+      252                      & : & 2          & = & 126  & Rest & 0                               \\
+      126                      & : & 2          & = & 63   & Rest & 0                               \\
+      63                       & : & 2          & = & 31   & Rest & 1                               \\
+      31                       & : & 2          & = & 15   & Rest & 1                               \\
+      15                       & : & 2          & = & 7    & Rest & 1                               \\
+      7                        & : & 2          & = & 3    & Rest & 1                               \\
+      3                        & : & 2          & = & 1    & Rest & 1                               \\
+      1                        & : & 2          & = & 0    & Rest & 1\tikzmark{division_dual_last}  \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+  \begin{tikzpicture}[overlay, remember picture]
+    \draw[->, line width=1.5pt] ([yshift=0,xshift=1em] pic cs:division_dual_last) -- ([yshift=.7\baselineskip,xshift=1em] pic cs:division_dual_first);
+    \path (pic cs:division_dual_first) -- (pic cs:division_dual_last) coordinate[midway] (midpoint_dual);
+    \node[right=1em] at (midpoint_dual) {$111~1110~0100$};
+  \end{tikzpicture}
 
 \end{frame}
+
+\begin{frame}{Divisionsmethode}{Beispiel: Dezimalzahl nach Oktalzahl}
+  \begin{center}
+    \begin{tabular}{rcrcrcr}
+      \toprule
+      \textbf{Dezimalzahl $z$} & : & \textbf{8} & = & $x$ & Rest & $y$                              \\
+      \midrule
+      2020                     & : & 8          & = & 252 & Rest & 4\tikzmark{division_octal_first} \\
+      252                      & : & 8          & = & 31  & Rest & 4                                \\
+      31                       & : & 8          & = & 3   & Rest & 7                                \\
+      3                        & : & 8          & = & 0   & Rest & 3\tikzmark{division_octal_last}  \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+  \begin{tikzpicture}[overlay, remember picture]
+    \draw[->, line width=1.5pt] ([yshift=0,xshift=1em] pic cs:division_octal_last) -- ([yshift=.7\baselineskip,xshift=1em] pic cs:division_octal_first);
+    \path (pic cs:division_octal_first) -- (pic cs:division_octal_last) coordinate[midway] (midpoint_octal);
+    \node[right=1em] at (midpoint_octal) {$3744$};
+
+  \end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Divisionsmethode}{Beispiel: Dezimalzahl nach Hexadezimalzahl}
+  \begin{center}
+    \begin{tabular}{rcrcrcr}
+      \toprule
+      \textbf{Dezimalzahl $z$} & : & \textbf{16} & = & $x$ & Rest & $y$                            \\
+      \midrule
+      2020                     & : & 16          & = & 126 & Rest & 4\tikzmark{division_hex_first} \\
+      126                      & : & 16          & = & 7   & Rest & 14                             \\
+      7                        & : & 16          & = & 0   & Rest & 7\tikzmark{division_hex_last}  \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+  \begin{tikzpicture}[overlay, remember picture]
+    \draw[->, line width=1.5pt] ([yshift=0,xshift=1em] pic cs:division_hex_last) -- ([yshift=.7\baselineskip,xshift=1em] pic cs:division_hex_first);
+    \path (pic cs:division_hex_first) -- (pic cs:division_hex_last) coordinate[midway] (midpoint_hex);
+    \node[right=1em] at (midpoint_hex) {$7E4$};
+  \end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}{Divisionsmethode}{Beispiel: Dualzahl nach Dezimalzahl}
+  \begin{center}
+    \begin{tabular}{rcrcrcr}
+      \toprule
+      \textbf{Dualzahl $z$} & : & \textbf{10} & = & $x$  & Rest & $y$                            \\
+      \midrule
+      1000 0010             & : & 1010        & = & 1101 & Rest & 0\tikzmark{division_dez_first} \\
+      1101                  & : & 1010        & = & 1    & Rest & 3                              \\
+      1                     & : & 1010        & = & 0    & Rest & 1\tikzmark{division_dez_last}  \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+  \begin{tikzpicture}[overlay, remember picture]
+    \draw[->, line width=1.5pt] ([yshift=0,xshift=1em] pic cs:division_dez_last) -- ([yshift=.7\baselineskip,xshift=1em] pic cs:division_dez_first);
+    \path (pic cs:division_dez_first) -- (pic cs:division_dez_last) coordinate[midway] (midpoint_dez);
+    \node[right=1em] at (midpoint_dez) {$130$};
+  \end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Konvertierung Dualzahl nach Oktalzahl}
+  \begin{block}{Einfachere Regel}
+    Hier sparen wir uns die Divisionsmethode und machen uns die Eigenschaft $8_{10} = 1000_{2}$ zu Nutze.
+  \end{block}
+
+  \[ \tikzmarknode{DuToOctUngrouped}{110111001110010} \]
+  \vspace{10pt}
+
+  \[ \tikzmarknode{DuToOctGrouped}{\tikzmarknode{DuToOctGroup1}{110}~\tikzmarknode{DuToOctGroup2}{111}~\tikzmarknode{DuToOctGroup3}{001}~\tikzmarknode{DuToOctGroup4}{110}~\tikzmarknode{DuToOctGroup5}{010}} \]
+
+  \vspace{10pt}
+
+  \[ \tikzmarknode{DuToOctConvertedGroup1}{6}\qquad\tikzmarknode{DuToOctConvertedGroup2}{7}\qquad\tikzmarknode{DuToOctConvertedGroup3}{1}\qquad\tikzmarknode{DuToOctConvertedGroup4}{6}\qquad\tikzmarknode{DuToOctConvertedGroup5}{2} \]
+
+  \begin{tikzpicture}[overlay, remember picture]
+    \draw[->, line width=1.5pt] ([yshift=-.1\baselineskip] pic cs:DuToOctUngrouped) -- ([yshift=.7\baselineskip] pic cs:DuToOctGroup3);
+    \path (pic cs:DuToOctUngrouped) -- (pic cs:DuToOctGroup3) coordinate[midway] (DuToOctMidpoint);
+    \node[right=1em] at (DuToOctMidpoint) {Dreiergruppen bilden (von rechts beginnend)};
+    \draw[<->, line width=1.5pt] ([yshift=-.1\baselineskip] pic cs:DuToOctGroup1) -- ([yshift=.7\baselineskip] pic cs:DuToOctConvertedGroup1);
+    \draw[<->, line width=1.5pt] ([yshift=-.1\baselineskip] pic cs:DuToOctGroup2) -- ([yshift=.7\baselineskip] pic cs:DuToOctConvertedGroup2);
+    \draw[<->, line width=1.5pt] ([yshift=-.1\baselineskip] pic cs:DuToOctGroup3) -- ([yshift=.7\baselineskip] pic cs:DuToOctConvertedGroup3);
+    \draw[<->, line width=1.5pt] ([yshift=-.1\baselineskip] pic cs:DuToOctGroup4) -- ([yshift=.7\baselineskip] pic cs:DuToOctConvertedGroup4);
+    \draw[<->, line width=1.5pt] ([yshift=-.1\baselineskip] pic cs:DuToOctGroup5) -- ([yshift=.7\baselineskip] pic cs:DuToOctConvertedGroup5);
+    \path (pic cs:DuToOctGroup3) -- (pic cs:DuToOctConvertedGroup3) coordinate[midway] (DuToOctGroupConversionMidpoint);
+    \node[right=5em] at (DuToOctGroupConversionMidpoint) {Umwandlung für Dreiergruppe ermitteln};
+
+  \end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Konvertierung Dualzahl nach Hexadezimalzahl}
+  \begin{block}{Einfachere Regel}
+    Hier sparen wir uns die Divisionsmethode und machen uns die Eigenschaft $16_{10} = 1~1000_{2}$ zu Nutze.
+  \end{block}
+
+  \[ \tikzmarknode{DuToHexUngrouped}{110111001110010} \]
+  \vspace{10pt}
+
+  \[ \tikzmarknode{DuToHexGroup1}{0110}~\tikzmarknode{DuToHexGroup2}{1110}~\tikzmarknode{DuToHexGroup3}{0111}~\tikzmarknode{DuToHexGroup4}{0010} \]
+
+  \vspace{10pt}
+
+  \[ \tikzmarknode{DuToHexConvertedGroup1}{6}\qquad\tikzmarknode{DuToHexConvertedGroup2}{E}\qquad\tikzmarknode{DuToHexConvertedGroup3}{7}\qquad\tikzmarknode{DuToHexConvertedGroup4}{2} \]
+
+  \begin{tikzpicture}[overlay, remember picture]
+    \path (pic cs:DuToHexGroup2) -- (pic cs:DuToHexGroup3) coordinate[midway] (DuToHexGroup2_3);
+    \draw[->, line width=1.5pt] ([yshift=-.1\baselineskip] pic cs:DuToHexUngrouped) -- ([yshift=.7\baselineskip] DuToHexGroup2_3);
+    \path (pic cs:DuToHexUngrouped) -- (pic cs:DuToHexGroup3) coordinate[midway] (DuToHexMidpoint);
+    \node[right=1em] at (DuToHexMidpoint) {Vierergruppen bilden (von rechts beginnend)};
+    \draw[<->, line width=1.5pt] ([yshift=-.1\baselineskip] pic cs:DuToHexGroup1) -- ([yshift=.7\baselineskip] pic cs:DuToHexConvertedGroup1);
+    \draw[<->, line width=1.5pt] ([yshift=-.1\baselineskip] pic cs:DuToHexGroup2) -- ([yshift=.7\baselineskip] pic cs:DuToHexConvertedGroup2);
+    \draw[<->, line width=1.5pt] ([yshift=-.1\baselineskip] pic cs:DuToHexGroup3) -- ([yshift=.7\baselineskip] pic cs:DuToHexConvertedGroup3);
+    \draw[<->, line width=1.5pt] ([yshift=-.1\baselineskip] pic cs:DuToHexGroup4) -- ([yshift=.7\baselineskip] pic cs:DuToHexConvertedGroup4);
+    \path (pic cs:DuToHexGroup3) -- (pic cs:DuToHexConvertedGroup3) coordinate[midway] (DuToHexGroupConversionMidpoint);
+    \node[right=4em] at (DuToHexGroupConversionMidpoint) {Umwandlung für Vierergruppe ermitteln};
+
+  \end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Konvertierung Dualzahl nach Zahlensystem auf beliebiger 2er-Potenz}
+  \begin{block}{Merke:}
+    Ist das Dualsystem das Quellsystem und die Basis des Zielsystems eine Potenz von 2, so können wir die Konvertierung durch Bildung von Gruppen in Länger der Potenzhöhe durchführen.
+    \begin{itemize}
+      \item $2^1 = 2$ $\rightarrow$ Gruppenlänge 1
+      \item $2^2 = 4$ $\rightarrow$ Gruppenlänge 2
+      \item $2^3 = 8$ $\rightarrow$ Gruppenlänge 3
+      \item $2^4 = 16$ $\rightarrow$ Gruppenlänge 4
+      \item $2^5 = 32$ $\rightarrow$ Gruppenlänge 5
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\section{Horner-Schema}
+
+\begin{frame}{Konvertierung natürlicher Zahlen}{Horner-Schema}
+  \begin{block}{Motivation}
+    Zahlendarstellung bzw. Bestimmung des Zahlenwerts als Summe von Potenzen benötigt viele Multiplikationen.
+  \end{block}
+  \begin{block}{Idee}
+    \textbf{Reduktion des Rechenaufwands}: Durch \enquote{cleveres} wiederholtes Ausklammern der Basis lässt sich der Rechenaufwand zur Bestimmung des Dezimalwerts einer Zahl reduzieren.
+  \end{block}
+
+\end{frame}
+
+
+\begin{frame}{Konvertierung natürlicher Zahlen}{Horner-Schema}
+  \begin{block}{Bisher betrachtete Polynomdarstellung einer $N$-stelligen Zahl $z$}
+    \[ z = \sum_{i=0}^{N-1} z_i \cdot B^i \]
+  \end{block}
+  \begin{exampleblock}{Beispiel (6 Multiplikationen)}
+    \vspace{-\baselineskip}
+    \[1234_{10} = 1 \cdot 10^3 + 2 \cdot 10^2 + 3 \cdot 10^1 + 4 \cdot 10^0 = 1 \cdot 10 \cdot 10 \cdot 10 + 2 \cdot 10 \cdot 10 + 3 \cdot 10 + 4\]
+  \end{exampleblock}
+  \begin{block}{Horner-Schema}
+    \[ z = (\dots (z_{N-1} \cdot B + z_{N-2}) \cdot B + z_{N-3}) \cdot B  + \cdots + z_1) \cdot B + z_0 \]
+  \end{block}
+  \begin{exampleblock}{Beispiel (4 Multiplikationen)}
+    \vspace{-.1\baselineskip}
+    \[1234_{10} = ((1 * 10 + 2) * 10 + 3) * 10 + 4\]
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}{Konvertierung natürlicher Zahlen}{Horner-Schema}
+  \begin{block}{Effizienz}
+    \centering
+    \begin{tabular}{lcc}
+      \toprule
+      \textbf{Zahlendarstellung} & \textbf{Multiplikationen} & \textbf{Additionen} \\
+      \midrule
+      Polynomdarstellung         & $N \cdot \frac{n+1}{2}$   & $N$                 \\
+      Horner-Schema              & $N$                       & $N-1$               \\
+      \bottomrule
+    \end{tabular}
+
+  \end{block}
+\end{frame}
+
+\begin{frame}{Konvertierung natürlicher Zahlen}{Horner-Schema}
+  \begin{block}{Umwandlung in andere Zahlensysteme}
+    \begin{itemize}
+      \item der Zielwert einer Zahl lässt sich mit Hilfe des Horner-Schemas durch fotgesetzte Addition und Multiplikation mit der Basis leicht ermitteln.
+      \item Quell- und Zielsystem können beliebig sein.
+      \item Durchführung der Multiplikationen und Additionen im Zielsystem
+      \item Die Umwandlung einer Zahl von einem Quell in ein Zielsystem erfolgt also durch
+            \begin{itemize}
+              \item Horner-Darstellung
+              \item Darstellung der Faktoren und Summanden im Zielsystem
+            \end{itemize}
+    \end{itemize}
+
+  \end{block}
+\end{frame}
+
+\begin{frame}{Konvertierung natürlicher Zahlen}{Horner-Schema}
+  \begin{exampleblock}{Beispiel 1 (Dualzahl in Dezimalzahl)}
+    \begin{align*}
+      1101_2 & = ((1_2 \cdot 10_2 + 1_2) \cdot 10_2 + 0_2) \cdot 10_2 + 1_2                   \\
+             & = ((1_{10} \cdot 2_{10} + 1_{10}) \cdot 2_{10} + 0_{10}) \cdot 2_{10} + 1_{10} \\
+             & = ((1 \cdot 2 + 1) \cdot 2 + 0) \cdot 2 + 1                                    \\
+             & = (3 \cdot 2 + 0) \cdot 2 + 1                                                  \\
+             & = (6 + 0) \cdot 2 + 1                                                          \\
+             & = 6 \cdot 2 + 1                                                                \\
+             & = 12 + 1                                                                       \\
+             & = 13
+    \end{align*}
+
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}{Konvertierung natürlicher Zahlen}{Horner-Schema}
+  \begin{exampleblock}{Beispiel 2 (Oktalzahl in Dezimalzahl)}
+    \begin{align*}
+      121_8 & = ((1_8 \cdot 10_8 + 2_8) \cdot 10_8 + 1_8)              \\
+            & = ((1_{10} \cdot 8_{10} + 2_{10}) \cdot 8_{10} + 1_{10}) \\
+            & = ((1 \cdot 8 + 2) \cdot 8 + 1)                          \\
+            & = (10 \cdot 8 + 1)                                       \\
+            & = 80 + 1                                                 \\
+            & = 81
+    \end{align*}
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}{Konvertierung natürlicher Zahlen}{Horner-Schema}
+  \begin{exampleblock}{Beispiel 3 (Hexadezimalzahl in Dezimalzahl)}
+    \begin{align*}
+      ADA_{16} & = ((A_{16} \cdot 10_{16} + D_{16}) \cdot 10_{16} + A_{16})    \\
+               & = ((10_{10} \cdot 16_{10} + 13_{10}) \cdot 16_{10} + 10_{10}) \\
+               & = ((10 \cdot 16 + 13) \cdot 16 + 10)                          \\
+               & = (160 + 13) \cdot 16 + 10                                    \\
+               & = (173) \cdot 16 + 10                                         \\
+               & = 2768 + 10                                                   \\
+               & = 2778
+    \end{align*}
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}{Konvertierung natürlicher Zahlen}{Horner-Schema}
+  \begin{exampleblock}{Beispiel 4 (Dezimalzahl in Dualzahl)}
+    \begin{align*}
+      164_{10} & = ((1_{10} \cdot 10_{10} + 6_{10}) \cdot 10_{10} + 4_{10})    \\
+               & = ((1_{2} \cdot 1010_{2} + 110_{2}) \cdot 1010_{2} + 100_{2}) \\
+               & = ((1010_{2} + 110_{2}) \cdot 1010_{2} + 100_{2})             \\
+               & = 1~0000_{2} \cdot 1010_{2} + 0100_{2}                        \\
+               & = 1010~0000_{2} + 0100_{2}                                    \\
+               & = 1010~0100_{2}                                               \\
+    \end{align*}
+  \end{exampleblock}
+\end{frame}
+
 
 % End document
 \end{document}
