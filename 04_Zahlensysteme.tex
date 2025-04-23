@@ -295,29 +295,89 @@
 \end{frame}
 
 \begin{frame}{Stellenwertsysteme}{Darstellung von Wertebereichen}
-
   \begin{columns}
-    \begin{column}{0.5\textwidth}
-      \resizebox{!}{.7\textheight}{
-        \begin{tikzpicture}[rotate=90]
+    \begin{column}{0.3\textwidth}
+      \begin{block}{Zahlenkreis (endlich)}
+        \centering
+        \resizebox{\textwidth}{!}{
+          \begin{tikzpicture}[rotate=90]
 
-          \draw[thick] (0:3cm) arc (0:-360:3cm);
-          \foreach \i in {-2,...,3}
-            {
-              \draw(-\i * 20:3cm) -- (-\i * 20:3.5cm) node[above] {\i};
-            }
-          \foreach \i in {4,...,18}
-            {
-              \draw(-\i * 20:3cm) -- (-\i * 20:3.5cm) node[right] {};
-            }
-        \end{tikzpicture}
-      }
+            \draw[thick] (0:3cm) arc (0:-360:3cm);
+            \foreach \i in {0,...,3}
+              {
+                \draw(-\i * 20:3cm) -- (-\i * 20:3.5cm) node[above] {\i};
+              }
+            \foreach \i in {4,...,18}
+              {
+                \draw(-\i * 20:3cm) -- (-\i * 20:3.5cm) node[right] {};
+              }
+            \draw(1 * 20:3cm) -- (1 * 20:3.5cm) node[above] {$B^n -1$};
+            \draw(2 * 20:3cm) -- (2 * 20:3.5cm) node[above] {$B^n -2$};
+          \end{tikzpicture}
+        }
+      \end{block}
     \end{column}
-    \begin{column}{0.5\textwidth}
+    \begin{column}{0.7\textwidth}
+      \begin{alertblock}{Problem}
+        Während die natürlichen Zahlen unendlich sind, können wir in technischen Systemen nur mit endlichen Zahlen arbeiten.
+      \end{alertblock}
+      \begin{block}{Eigenschaft}
+        Die Repräsentation von Zahlen in einem Computer ist immer auf eine gewisse Anzahl von Bits (Stellen im Binärsystem) beschränkt.
+      \end{block}
+      \begin{exampleblock}{Beispiele}
+        \centering
+        \begin{tabular}{cccc}
+          \toprule
+          \textbf{Basis} & \textbf{Stellen} & \textbf{Zahlen} & \textbf{Werte}                   \\
+          \midrule
+          10             & 3                & $10^3$ = 1000   & {000, 001, 002, \ldots~998, 999} \\
+          2              & 3                & $2^3$ = 8       & {000, 001, 010, \ldots~110, 111} \\
+          \bottomrule
+        \end{tabular}
+      \end{exampleblock}
+
     \end{column}
+
   \end{columns}
+
 \end{frame}
 
+\begin{frame}{Binärzahl und Dualzahl}
+  \begin{alertblock}{Besonderheit der Deutschensprache}
+    \begin{center}
+      Binärzahl $\not\equiv$ Dualzahl
+    \end{center}
+
+    Die Begriffe Dual- und Binärzahl werden oft synonym verwendet. In der deutschen Sprache  sind die Begriffe jedoch voneinander abzugrenzen (im Gegensatz zur englischen Sprache \enquote{dual number} und \enquote{binary number} werden synonym verwendet).
+  \end{alertblock}
+  \begin{columns}[onlytextwidth]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Binärzahl}
+        Zur Darstellung werden zwei beliebige Zeichen verwenden. (z. B. 0 und 1 oder + und -)
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Dualzahl}
+        Zahl in einem Stellenwertsystem zur Basis 2. (Ziffern 0 und 1).
+      \end{block}
+    \end{column}
+  \end{columns}
+  \begin{block}{Regel}
+    \begin{center}
+      Dualzahl $\rightarrow$ Binärzahl
+    \end{center}
+  \end{block}
+\end{frame}
+
+\section{Konvertierung natürlicher Zahlen}
+
+\begin{frame}{Konvertierung natürlicher Zahlen}{Wege}
+  \includegraphics[width=\textwidth]{fig/zahlensysteme_umwandlung.pdf}
+\end{frame}
+
+\begin{frame}{Konvertierung natürlicher Zahlen}{Wege (Wertebeispiel)}
+  \includegraphics[width=\textwidth]{fig/zahlensysteme_umwandlung_werte.pdf}
+\end{frame}
 
 % End document
 \end{document}
