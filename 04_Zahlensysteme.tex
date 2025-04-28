@@ -343,12 +343,12 @@
 \end{frame}
 
 \begin{frame}{Binärzahl und Dualzahl}
-  \begin{alertblock}{Besonderheit der Deutschensprache}
+  \begin{alertblock}{Besonderheit der deutschen Sprache}
     \begin{center}
       Binärzahl $\not\equiv$ Dualzahl
     \end{center}
 
-    Die Begriffe Dual- und Binärzahl werden oft synonym verwendet. In der deutschen Sprache  sind die Begriffe jedoch voneinander abzugrenzen (im Gegensatz zur englischen Sprache \enquote{dual number} und \enquote{binary number} werden synonym verwendet).
+    Die Begriffe Dual- und Binärzahl werden oft synonym verwendet. In der deutschen Sprache sind die Begriffe jedoch voneinander abzugrenzen (im Gegensatz zur englischen Sprache \enquote{dual number} und \enquote{binary number} werden synonym verwendet).
   \end{alertblock}
   \begin{columns}[onlytextwidth]
     \begin{column}{0.48\textwidth}
@@ -547,7 +547,7 @@
 
 \begin{frame}{Konvertierung Dualzahl nach Zahlensystem auf beliebiger 2er-Potenz}
   \begin{block}{Merke:}
-    Ist das Dualsystem das Quellsystem und die Basis des Zielsystems eine Potenz von 2, so können wir die Konvertierung durch Bildung von Gruppen in Länger der Potenzhöhe durchführen.
+    Ist das Dualsystem das Quellsystem und die Basis des Zielsystems eine Potenz von 2, so können wir die Konvertierung durch Bildung von Gruppen in Länge der Potenzhöhe durchführen.
     \begin{itemize}
       \item $2^1 = 2$ $\rightarrow$ Gruppenlänge 1
       \item $2^2 = 4$ $\rightarrow$ Gruppenlänge 2
@@ -606,7 +606,7 @@
 \begin{frame}{Konvertierung natürlicher Zahlen}{Horner-Schema}
   \begin{block}{Umwandlung in andere Zahlensysteme}
     \begin{itemize}
-      \item der Zielwert einer Zahl lässt sich mit Hilfe des Horner-Schemas durch fotgesetzte Addition und Multiplikation mit der Basis leicht ermitteln.
+      \item der Zielwert einer Zahl lässt sich mit Hilfe des Horner-Schemas durch fortgesetzte Addition und Multiplikation mit der Basis leicht ermitteln.
       \item Quell- und Zielsystem können beliebig sein.
       \item Durchführung der Multiplikationen und Additionen im Zielsystem
       \item Die Umwandlung einer Zahl von einem Quell in ein Zielsystem erfolgt also durch
@@ -673,6 +673,457 @@
                & = 1010~0100_{2}                                               \\
     \end{align*}
   \end{exampleblock}
+\end{frame}
+
+
+\section{Arithmetik}
+
+\begin{frame}{Schriftliche Subtraktion}{Dezimal- und Dualsystem}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{block}{Subtraktion im Dezimalsystem}
+        \centering
+        \begin{tabular}{lccc}
+          \toprule
+            & \textbf{H}           & \textbf{Z}           & \textbf{E}   \\
+            & hunderter            & zehner               & einer        \\
+          \midrule
+            & 7                    & 4                    & 1            \\
+          - & 2                    & 5                    & 8            \\
+            & \only<3->{${}_{-1}$} & \only<2->{${}_{-1}$} &              \\
+          \midrule
+            & \only<4->4           & \only<3->{8}         & \only<2->{3} \\
+          \bottomrule
+        \end{tabular}
+      \end{block}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \only<5->{
+        \begin{block}{Subtraktion im Dualsystem}
+          \centering
+          \begin{tabular}{lcccc}
+            \toprule
+              & \textbf{8}er         & \textbf{4}er         & \textbf{2}er         & \textbf{1}er \\
+            \\
+            \midrule
+              & 1                    & 0                    & 0                    & 0            \\
+            - & 0                    & 0                    & 0                    & 1            \\
+              & \only<8->{${}_{-1}$} & \only<7->{${}_{-1}$} & \only<6->{${}_{-1}$} &              \\
+            \midrule
+              & \only<9->{0}         & \only<8->1           & \only<7->{1}         & \only<6->{1} \\
+            \bottomrule
+          \end{tabular}
+        \end{block}
+      }
+
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Schriftliche Subtarktion}{Dualsystem -- Mehr Beispiele}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{exampleblock}{Beispiel 2}
+        \centering
+        \begin{tabular}{lcccc}
+          \toprule
+            & \textbf{8}er & \textbf{4}er & \textbf{2}er & \textbf{1}er \\
+          \\
+          \midrule
+            & 1            & 1            & 1            & 1            \\
+          - & 1            & 0            & 1            & 0            \\
+          \\
+          \midrule
+            & \only<5->0   & \only<4->1   & \only<3->0   & \only<2->1   \\
+          \bottomrule
+        \end{tabular}
+
+      \end{exampleblock}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \only<6->{
+        \begin{exampleblock}{Beispiel 3}
+          \centering
+          \begin{tabular}{lcccc}
+            \toprule
+              & \textbf{8}er & \textbf{4}er         & \textbf{2}er         & \textbf{1}er \\
+            \\
+            \midrule
+              & 1            & 1                    & 0                    & 0            \\
+            - & 1            & 0                    & 1                    & 1            \\
+              &              & \only<2->{${}_{-1}$} & \only<1->{${}_{-1}$} &              \\
+            \midrule
+              & \only<10->0  & \only<9->1           & \only<8->0           & \only<7->1   \\
+            \bottomrule
+          \end{tabular}
+
+        \end{exampleblock}
+      }
+    \end{column}
+  \end{columns}
+
+\end{frame}
+
+\begin{frame}[t]{Schriftliche Multiplikation}{Dezimalsystem}
+  \begin{columns}
+    \begin{column}{0.33\textwidth}
+      \begin{block}{Hauptrechnung}
+        \[
+          \begin{matrix}
+            1 & 6 & \cdot               & 2                     & 4                     \\
+            \hline
+              &   & \textcolor{blue}{3} & \textcolor{blue}{2}   &                       \\
+              &   &                     & \textcolor{orange}{6} & \textcolor{orange}{4} \\
+            \hline
+              &   & 3                   & 8                     & 4                     \\
+          \end{matrix}
+        \]
+
+      \end{block}
+    \end{column}
+    \begin{column}{0.67\textwidth}
+      \begin{block}{Hilfsrechnung}
+        \[
+          \begin{matrix}
+            2 & \cdot & 1 & 6                                         \\
+            \hline
+              &       &   & 2                   &                     \\
+              &       &   & 1                   & 2                   \\
+            \hline
+              &       &   & \textcolor{blue}{3} & \textcolor{blue}{2} \\
+          \end{matrix} \qquad\qquad \begin{matrix}
+            4 & \cdot & 1 & 6                                             \\
+            \hline
+              &       &   & 4                     &                       \\
+              &       &   & 2                     & 4                     \\
+            \hline
+              &       &   & \textcolor{orange}{6} & \textcolor{orange}{4} \\
+          \end{matrix}
+        \]
+      \end{block}
+    \end{column}
+  \end{columns}
+  \only<2->{
+    \begin{columns}
+      \begin{column}{0.33\textwidth}
+        \begin{block}{Hauptrechnung}
+          \[
+            \begin{matrix}
+              1 & 3 & 6                   & \cdot                 & 2                     & 3                     \\
+              \hline
+                &   & \textcolor{blue}{2} & \textcolor{blue}{7}   & \textcolor{blue}{2}   &                       \\
+                &   &                     & \textcolor{orange}{4} & \textcolor{orange}{0} & \textcolor{orange}{8} \\
+              \hline
+                &   & 3                   & 1                     & 2                     & 8                     \\
+              \\
+            \end{matrix}
+          \]
+
+        \end{block}
+      \end{column}
+      \begin{column}{0.67\textwidth}
+        \begin{block}{Hilfsrechnung}
+          \[
+            \begin{matrix}
+              2 & \cdot & 1                   & 3                   & 6                     \\
+              \hline
+                &       & 2                   &                     &                     & \\
+                &       &                     & 6                   &                       \\
+                &       &                     & 1                   & 2                     \\
+              \hline
+                &       & \textcolor{blue}{2} & \textcolor{blue}{7} & \textcolor{blue}{2}   \\
+            \end{matrix} \qquad\qquad \begin{matrix}
+              3 & \cdot & 1                     & 3                     & 6                       \\
+              \hline
+                &       & 3                     &                       &                       & \\
+                &       &                       & 9                     &                         \\
+                &       &                       & 1                     & 8                       \\
+              \hline
+                &       & \textcolor{orange}{4} & \textcolor{orange}{0} & \textcolor{orange}{8}   \\
+            \end{matrix}
+          \]
+        \end{block}
+      \end{column}
+    \end{columns}
+  }
+\end{frame}
+
+\begin{frame}{Schriftliche Multiplikation}{Dualsystem}
+  \begin{block}{Berechnung}
+    \[
+      \begin{matrix}
+        1 & 1 & \cdot & 1 & 0 & 1 & 0 \\
+        \hline
+          &   & 1     & 1 &   &   &   \\
+          &   &       &   & 0 &   &   \\
+          &   &       &   & 1 & 1 &   \\
+          &   &       &   &   &   & 0 \\
+        \hline
+          &   & 1     & 1 & 1 & 1 & 0 \\
+      \end{matrix}
+    \]
+  \end{block}
+  \begin{block}{Keine Hilfsrechnung notwendig}
+    \begin{itemize}
+      \item Multiplikation mit 0 ergibt 0 und  mit 1 ergibt die Zahl selbst
+      \item Die Zahl muss nur genügend oft um eine Stelle nach links verschoben werden
+      \item Anschließend werden die Ergebnisse addiert
+    \end{itemize}
+
+  \end{block}
+\end{frame}
+
+\begin{frame}{Schriftliche Multiplikation}{Dualsystem -- Zweierpotenzen}
+  \begin{block}{Berechnung}
+    \[
+      \begin{matrix}
+        1 & 1 & \cdot & 1 & 0 & 0 & 0 \\
+        \hline
+          &   & 1     & 1 &   &   &   \\
+        \hline
+          &   & 1     & 1 & 0 & 0 & 0 \\
+      \end{matrix}
+    \]
+  \end{block}
+
+  \begin{block}{Regel}
+    \begin{itemize}
+      \item Multiplikation mit $2^n$ ergibt die Zahl selbst um $n$ Stellen nach links verschoben
+    \end{itemize}
+  \end{block}
+
+  \begin{exampleblock}{In Python}
+    Verschieben von \mintinline{python}|z| um $n$ Stellen nach links: \mintinline{python}|z << n|
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}[t]{Schriftliche Division}{Dezimalsystem}
+  \vspace{-\baselineskip}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{block}{Ohne Rest}
+        \[
+          \begin{matrix}
+            8 & 4 & : & 4 & = & 2 & 1 \\
+            8 &   &   &   &   &   &   \\
+            \cline{1-2}
+            0 & 4 &   &   &   &   &   \\
+              & 4 &   &   &   &   &   \\
+            \cline{2-2}
+              & 0 &   &   &   &   &   \\
+          \end{matrix}
+        \]
+
+      \end{block}
+      \only<2->{
+        \begin{block}{Mit Rest}
+          \[
+            \begin{matrix}
+              8 & 5 & : & 4 & = & 2 & 1 & \mbox{ REST } & 1 \\
+              8 &   &   &   &   &   &                       \\
+              \cline{1-2}
+              0 & 5 &   &   &   &   &                       \\
+                & 4 &   &   &   &   &                       \\
+              \cline{2-2}
+                & 1 &   &   &   &   &                       \\
+            \end{matrix}
+          \]
+
+        \end{block}
+      }
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \only<3->{
+        \begin{block}{Mit Komma}
+          \[
+            \begin{matrix}
+              8 & 5 & : & 4 & = & 2 & 1 & . & 2 & 5 \\
+              8 &   &   &   &   &   &               \\
+              \cline{1-2}
+              0 & 5 &   &   &   &   &               \\
+                & 4 &   &   &   &   &               \\
+              \cline{2-2}
+                & 1 & 0 &   &   &   &               \\
+                &   & 8 &   &   &   &               \\
+              \cline{2-3}
+                &   & 2 & 0 &   &   &               \\
+                &   & 2 & 0 &   &   &               \\
+              \cline{3-4}
+                &   &   & 0 &   &   &               \\
+            \end{matrix}
+          \]
+
+        \end{block}
+      }
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Schriftliche Division}{Im Dualsystem}
+  \vspace{-\baselineskip}
+  \begin{block}{\only<1>{Ohne Rest}\only<2>{Mit Rest}}
+    \small
+    \[
+      \begin{array}{ccccccccccccccccccc}
+        1 & 0 & 1 & 0 & 1 & 0 & \only<1>{0}\only<2>{1} & : & 1 & 0 & 0 & = & 1 & 0 & 1 & 0 & 1 & \only<2>{\mbox{ REST }} & \only<2>{1} \\
+        1 & 0 & 0 &   &   &   &                                                                                                        \\
+        \cline{1-3}
+          &   & 1 & 0 & 1                                                                                                              \\
+          &   & 1 & 0 & 0                                                                                                              \\
+        \cline{3-5}
+          &   &   &   & 1 & 0 & \only<1>{0}\only<2>{1}                                                                                 \\
+          &   &   &   & 1 & 0 & 0                                                                                                      \\
+        \cline{5-7}
+          &   &   &   &   &   & \only<1>{0}\only<2>{1}                                                                                 \\
+      \end{array}
+    \]
+  \end{block}
+
+
+\end{frame}
+
+\begin{frame}{Schriftliche Multiplikation}{Dualsystem -- Zweierpotenzen}
+  \begin{block}{Berechnung}
+    \[
+      \begin{array}{ccccccccccccccccccc}
+        1 & 1 & 0 & 0 & \cdot & 1 & 0 & 0 & = & 1 & 1 \\
+        1 & 0 & 0 &   &       &   &   &               \\
+        \cline{1-3}
+          & 1 & 0 & 0 &       &   &   &               \\
+          & 1 & 0 & 0 &       &   &   &               \\
+        \cline{2-4}
+          &   &   & 0 &       &   &   &               \\
+      \end{array}
+    \]
+  \end{block}
+
+  \begin{block}{Regel}
+    \begin{itemize}
+      \item Multiplikation mit $2^n$ ergibt die Zahl selbst um $n$ Stellen nach rechts verschoben
+    \end{itemize}
+  \end{block}
+
+  \begin{exampleblock}{In Python}
+    Verschieben von \mintinline{python}|z| um $n$ Stellen nach links: \mintinline{python}|z >> n|
+  \end{exampleblock}
+\end{frame}
+
+\section[Fließkommazahlen]{Fließkommazahlen mit IEEE 754}
+
+\begin{frame}{Darstellung rationaler/gebrochener Zahlen}{Brüche und Bruchzahlen}
+  \begin{block}{Definition: Bruch}
+    Sein $a,b \in \mathbb{Z}$ und $b \neq 0$. Dann ist das geordnete Paar $(a,b)$ ein Bruch. Wir schreiben dafür auch $a/b$ oder $\frac{a}{b}$.
+  \end{block}
+  \begin{columns}[onlytextwidth]
+    \begin{column}{0.39\textwidth}
+      \begin{block}{Definiton: Bruchzahl}
+        Eine Bruchzahl $\frac{a}{b}$ ist die Menge aller zu einem Bruch äquivalenten Brüche.
+        \[
+          \frac{a}{b} := \left\{ \left. \frac{c}{d} \right\rvert \frac{c}{d} \sim \frac{a}{b} \right\}
+        \]
+
+      \end{block}
+    \end{column}
+    \begin{column}{0.58\textwidth}
+      \begin{exampleblock}{Beispiel: Bruchzahl}
+        ~\\~
+        \[
+          \frac{3}{4} := \left\{ (3,4), (6,8), (9,12), \ldots \right\} = \left\{ \frac{3}{4}, \frac{6}{8}, \frac{9}{12}, \ldots \right\}
+        \]
+
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
+  \begin{itemize}
+    \item Eine Bruchzahl wird auch rationale Zahl genannt.
+    \item Die Menge aller rationalen Zahlen wird mit $\mathbb{Q}$ bezeichnet.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Darstellung rationaler/gebrochener Zahlen}{Arten von Brüchen}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{block}{Definition: Echte Brüche}
+        Ein Bruch $\frac{a}{b}$ ist ein echter Bruch, wenn $|a| < |b|$.\\~
+      \end{block}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{exampleblock}{Beispiel: Echte Brüche}
+        \[
+          \frac{1}{2}, \frac{3}{4}, -\frac{5}{6}, \frac{0}{1}
+        \]
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{block}{Definition: Unechte Brüche}
+        Ein Bruch $\frac{a}{b}$ ist ein unechter Bruch, wenn $|a| \geq |b|$.
+      \end{block}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{exampleblock}{Beispiel: Unechte Brüche}
+        \[
+          \frac{5}{4}, -\frac{3}{2}, \frac{7}{7}, \frac{0}{0}
+        \]
+
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{block}{Definition: Dezimalbrüche}
+        Ein Bruch $\frac{a}{b}$ ist ein Dezimalbruch, wenn $b$ eine Potenz von 10 ist.
+      \end{block}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{exampleblock}{Beispiel: Dezimalbrüche}
+        \[
+          \frac{1}{10}, \frac{3}{100}, \frac{5}{1000}, \frac{7}{10000}
+        \]
+
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Darstellung rationaler/gebrochener Zahlen}{Brüche in Dezimalzahlen umwandeln}
+  \begin{itemize}
+    \item Zur Umwandlung von Brüchen in Dezimalzahlen verwenden wir die schriftliche Division.
+    \item Anstelle beim erreichen eines Restes kleiner des Divisors zu stoppen, führen wir die Division so lange fort, bis der Rest Null ist.
+    \item Dazu erweitern wir den Dividenden mit Nullen.\\
+  \end{itemize}
+
+  \[
+    \begin{array}{cccccccc}
+      1            & :                   & 4            & = & \only<2->{0} & \only<3->{.} & \only<4->{2} & \only<7->{5} \\
+      \only<2->{1} & \only<3->{0}                                                                                       \\
+                   & \only<4->{8                                                                                        \\
+        \cline{1-2}}
+                   & \only<5->{2} \pause & \only<6->{0}                                                                 \\
+                   & \only<7->{2}        & \only<7->{0                                                                  \\
+        \cline{2-3}}
+                   &                     & \only<8->{0}
+    \end{array}
+  \]
+\end{frame}
+
+\begin{frame}{Darstellung rationaler/gebrochener Zahlen}{Konvertierung ins Dezimalsystem}
+
+  \begin{block}{Summendarstellung}
+    Jede rationale Zahl $x$ kann als Summe von Potenzen der Basis $B$ dargestellt werden. Der Nachkommaanteil wird dabei durch negative Exponenten repräsentiert.
+
+    \begin{equation*}
+      z = \sum_{i=-M}^{N-1} z_i \cdot B^i
+    \end{equation*}
+    Mit
+    \begin{itemize}
+      \item $B$ als Basis (z.~B. 2 für Dualsystem, 10 für Dezimalsystem)
+      \item $z_i$ als Ziffern der Zahl
+      \item $N$ als Anzahl der Ziffern vor dem Komma
+      \item $M$ als Anzahl der Ziffern nach dem Komma
+    \end{itemize}
+  \end{block}
 \end{frame}
 
 

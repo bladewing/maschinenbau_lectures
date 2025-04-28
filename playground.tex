@@ -11,51 +11,25 @@
 % Begin document
 \begin{document}
 
-\begin{frame}{Divisionsmethode}
-    \begin{block}{Grundidee}
-        \begin{itemize}
-            \item Eine Zahl $z$ aus einem Stellenwertsystem $Q$ mit der Basis $p$ wird durch fortgesetzte Division mit Rest mit $q$ in eine Zahl $z^{'}$ im Stellenwertsystem $Z$ mit der Basis $q$ konvertiert.
-            \item Die Rechnung (Division) findet im Quellsystem statt ($q$ ist somit auch im Quellsystem darzustellen)
-            \item Die Divisionsreste werden im Zielsystem dargestellt
-        \end{itemize}
-    \end{block}
-    \begin{block}{Algorithmus}
-        \begin{enumerate}
-            \item $x = \floor*{\frac{z}{q}}$, y = $z \mod q$, speichere $y$
-            \item $z = x$
-            \item Wiederhole 1. und 2. bis $x = 0$
-            \item Schreibe die gespeicherten Reste in umgekehrter Reihenfolge auf.
-        \end{enumerate}
 
-    \end{block}
+\begin{frame}{Darstellung rationaler/gebrochener Zahlen}{Konvertierung ins Dezimalsystem}
 
+  \begin{block}{Summendarstellung}
+    Jede rationale Zahl $x$ kann als Summe von Potenzen der Basis $B$ dargestellt werden. Der Nachkommaanteil wird dabei durch negative Exponenten repräsentiert.
+
+    \begin{equation*}
+      z = \sum_{i=-M}^{N-1} z_i \cdot B^i
+    \end{equation*}
+    Mit
+    \begin{itemize}
+      \item $B$ als Basis (z.~B. 2 für Dualsystem, 10 für Dezimalsystem)
+      \item $z_i$ als Ziffern der Zahl
+      \item $N$ als Anzahl der Ziffern vor dem Komma
+      \item $M$ als Anzahl der Ziffern nach dem Komma
+    \end{itemize}
+  \end{block}
 \end{frame}
 
-\begin{frame}{Divisionsmethode}{Beispiel: Dezimalzahl nach Dualzahl}
-    \begin{center}
-        \begin{tabular}{rcrcrcr}
-            \toprule
-            \textbf{Dezimalzahl $z$} & : & \textbf{2} & = & $x$  & Rest & $y$                        \\
-            \midrule
-            2020                     & : & 2          & = & 1010 & Rest & 0\tikzmark{division_first} \\
-            1010                     & : & 2          & = & 505  & Rest & 0                          \\
-            505                      & : & 2          & = & 252  & Rest & 1                          \\
-            252                      & : & 2          & = & 126  & Rest & 0                          \\
-            126                      & : & 2          & = & 63   & Rest & 0                          \\
-            63                       & : & 2          & = & 31   & Rest & 1                          \\
-            31                       & : & 2          & = & 15   & Rest & 1                          \\
-            15                       & : & 2          & = & 7    & Rest & 1                          \\
-            7                        & : & 2          & = & 3    & Rest & 1                          \\
-            3                        & : & 2          & = & 1    & Rest & 1                          \\
-            1                        & : & 2          & = & 0    & Rest & 1\tikzmark{division_last}  \\
-            \bottomrule
-        \end{tabular}
-    \end{center}
-    \begin{tikzpicture}[overlay, remember picture]
-        \draw[->, line width=1.5pt] ([yshift=0,xshift=1em] pic cs:division_last) -- ([yshift=.7\baselineskip,xshift=1em] pic cs:division_first);
 
-    \end{tikzpicture}
-
-\end{frame}
 % End document
 \end{document}
