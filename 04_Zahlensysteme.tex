@@ -1126,6 +1126,70 @@
   \end{block}
 \end{frame}
 
+\begin{frame}{Konvertierung in das und aus dem Dezimalsystem}{Echte Brüche}
+  \centering
+  \includegraphics[height=.8\textheight]{fig/zahlensysteme_konvertierung_rational_echt.pdf}
+\end{frame}
+
+\begin{frame}{Konvertierung in das und aus dem Dezimalsystem}{Unechte Brüche}
+  \centering
+  \includegraphics[height=.8\textheight]{fig/zahlensysteme_konvertierung_rational_unecht.pdf}
+\end{frame}
+
+\begin{frame}{Konvertierung in das und aus dem Dezimalsystem}{Beispiel I: Dezimalsystem \textrightarrow Dezimalsystem}
+  \begin{align*}
+    1021,65_{10} & = z_{-2} \cdot 10^{-2} + z_{-1} \cdot 10^{-1} + z_0 \cdot 10^0 + z_1 \cdot 10^1 + z_2 \cdot 10^2 + z_3 \cdot 10^3 \\
+                 & = 5 \cdot 10^{-2} + 6 \cdot 10^{-1} + 1 \cdot 10^0 + 2 \cdot 10^1 + 0 \cdot 10^2 + 1 \cdot 10^3                   \\
+                 & = 5 \cdot \frac{1}{100} + 6 \cdot \frac{1}{10} + 1 \cdot 1 + 2 \cdot 10 + 0 \cdot 100 + 1 \cdot 1000              \\
+                 & = 5 \cdot 0,01 + 6 \cdot 0,1 + 1 \cdot 1 + 2 \cdot 10 + 0 \cdot 100 + 1 \cdot 1000                                \\
+                 & = 0,05 + 0,6 + 1 + 20 + 0 + 1000                                                                                  \\
+                 & = 1021,65_{10}
+  \end{align*}
+\end{frame}
+
+\begin{frame}{Konvertierung in das und aus dem Dezimalsystem}{Beispiel II: Dualsystem \textrightarrow Dezimalsystem}
+  \begin{align*}
+    110,101_{2} & = z_{-3} \cdot 2^{-3} + z_{-2} \cdot 2^{-2} + z_{-1} \cdot 2^{-1} + z_0 \cdot 2^0 + z_1 \cdot 2^1 + z_2 \cdot 2^2 \\
+                & = 1 \cdot 2^{-3} + 0 \cdot 2^{-2} + 1 \cdot 2^{-1} + 0 \cdot 2^0 + 1 \cdot 2^1 + 1 \cdot 2^2                      \\
+                & = 1 \cdot \frac{1}{8} + 0 \cdot \frac{1}{4} + 1 \cdot \frac{1}{2} + 0 \cdot 1 + 1 \cdot 2 + 1 \cdot 4             \\
+                & = 1 \cdot 0,125 + 0 \cdot 0,25 + 1 \cdot 0,5 + 0 \cdot 1 + 1 \cdot 2 + 1 \cdot 4                                  \\
+                & = 0,125 + 0 + 0,5 + 0 + 2 + 4                                                                                     \\
+                & = 6,625_{10}                                                                                                      \\
+  \end{align*}
+\end{frame}
+
+\begin{frame}{Konvertierung in das und aus dem Dezimalsystem}{Beispiel III: Oktalsystem \textrightarrow Dezimalsystem}
+  \begin{align*}
+    0,64_{8} & = z_{-2} \cdot 8^{-2} + z_{-1} \cdot 8^{-1} + z_0 \cdot 8^0 \\
+             & = 4 \cdot 8^{-2} + 6 \cdot 8^{-1} + 0 \cdot 8^0             \\
+             & = 4 \cdot \frac{1}{64} + 6 \cdot \frac{1}{8} + 0 \cdot 1    \\
+             & = 4 \cdot 0,015625 + 6 \cdot 0,125 + 0                      \\
+             & = 0,0625 + 0,75 + 0                                         \\
+             & = 0,8125_{10}
+  \end{align*}
+\end{frame}
+
+\begin{frame}[t]{Konvertierung in das und aus dem Dezimalsystem}{Horner-Schema}
+  Eine echt gebrochene Zahl $z$ im Basis-$B$-System lässt sich wie folgt mittels des Horner-Schemas darstellen:
+  \[ z = \left( \left. \left. \ldots \left( z_{-M} \cdot \frac{1}{B} + z_{-M+1} \right) \cdot \frac{1}{B} + z_{-M+2} \right) \cdot \frac{1}{B} + \ldots + z_{-2} \right) \cdot \frac{1}{B} + z_{-1} \right) \cdot \frac{1}{B} \]
+  Mit
+  \begin{itemize}
+    \item Basis $B$,
+    \item $M$ Nachkommastellen,
+    \item $z_i$ Ziffern $\left(0 \leq z_i < B\right)$,
+  \end{itemize}
+  \only<2>{
+    \begin{exampleblock}{Beispiel 1: Oktalsystem \textrightarrow Dezimalsystem}
+      \[ 0,64_{8} = \left( 4 \cdot \frac{1}{8} + 6 \right) \cdot \frac{1}{8} = \left( \frac{4}{8} + 6 \right) \cdot \frac{1}{8} = \left( \frac{4}{8} + \frac{48}{8} \right) \cdot \frac{1}{8} = \frac{52}{8} \cdot \frac{1}{8} = \frac{52}{64} = 0,8125_{10} \]
+    \end{exampleblock}
+  }
+  \only<3>{
+    \begin{exampleblock}{Beispiel 2: Dualsystem \textrightarrow Dezimalsystem}
+      \[ 0,1011_{2} = \left( \left( \left( 1 \cdot \frac{1}{2} + 1 \right) \cdot \frac{1}{2} \right) \cdot \frac{1}{2} + 1 \right) \cdot \frac{1}{2} = \frac{11}{16} = 0,6875_{10} \]
+    \end{exampleblock}
+  }
+
+\end{frame}
 
 % End document
 \end{document}
