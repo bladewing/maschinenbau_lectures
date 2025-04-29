@@ -16,7 +16,7 @@
   \titlepage
 \end{frame}
 
-\section{Probleme durch Computerarithmetik}
+\section{Probleme}
 
 \begin{frame}{Probleme durch Computerarithmetik}{Beispiele}
   \begin{columns}
@@ -369,7 +369,7 @@
   \end{block}
 \end{frame}
 
-\section{Konvertierung natürlicher Zahlen}
+\section{Konvertierung}
 
 \begin{frame}{Konvertierung natürlicher Zahlen}{Wege}
   \includegraphics[width=\textwidth]{fig/zahlensysteme_umwandlung.pdf}
@@ -1008,7 +1008,178 @@
   \end{exampleblock}
 \end{frame}
 
-\section[Fließkommazahlen]{Fließkommazahlen mit IEEE 754}
+\section{Negative Zahlen}
+
+\begin{frame}{Darstellung negativer Zahlen durch eine Bitfolge}
+  \begin{block}{Ganze Zahlen}
+    Die Zahlenmengene der ganzen Zahlen $\mathbb{Z}$ entsteht durch Vereinigung der natürlichen Zahlen (mit Null) $\mathbb{N}$ und der negativen Zahlen.
+
+    Eine ganze Zahl besteht aus
+    \begin{itemize}
+      \item Zahlenwert/Betrag
+      \item Vorzeichen
+    \end{itemize}
+  \end{block}
+
+  \begin{block}{Darstellungsformen}
+    \begin{itemize}
+      \item Vorzeichen-Betrag-Darstellung
+      \item Komplementdarstellung
+            \begin{itemize}
+              \item B-Komplement und (B-1)-Komplement
+            \end{itemize}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Darstellung mittels Vorzeichen und Betrag}
+  \begin{block}{Idee}
+    Zahl wird durch N-Bits repräsentiert
+    \begin{itemize}
+      \item 1 Vorzeichenbit
+      \item Betrag (N-1 Bits)
+    \end{itemize}
+  \end{block}
+  \centering
+  \begin{tabular}{rcrrcr}
+    \toprule
+    \multicolumn{3}{c}{positiv} & \multicolumn{3}{c}{negativ}                                            \\
+    \cmidrule(lr){1-3} \cmidrule(lr){4-6}
+    $0000_{2}$                  & $=$                         & $+0_{10}$ & $1000_{2}$ & $=$ & $-0_{10}$ \\
+    $0001_{2}$                  & $=$                         & $+1_{10}$ & $1001_{2}$ & $=$ & $-1_{10}$ \\
+    $0010_{2}$                  & $=$                         & $+2_{10}$ & $1010_{2}$ & $=$ & $-2_{10}$ \\
+    $0011_{2}$                  & $=$                         & $+3_{10}$ & $1011_{2}$ & $=$ & $-3_{10}$ \\
+    $0100_{2}$                  & $=$                         & $+4_{10}$ & $1100_{2}$ & $=$ & $-4_{10}$ \\
+    $0101_{2}$                  & $=$                         & $+5_{10}$ & $1101_{2}$ & $=$ & $-5_{10}$ \\
+    $0110_{2}$                  & $=$                         & $+6_{10}$ & $1110_{2}$ & $=$ & $-6_{10}$ \\
+    $0111_{2}$                  & $=$                         & $+7_{10}$ & $1111_{2}$ & $=$ & $-7_{10}$ \\
+    \bottomrule
+  \end{tabular}
+\end{frame}
+
+\begin{frame}{Darstellung mittels Vorzeichen und Betrag}{Zahlenkreis}
+  \begin{columns}
+    \begin{column}{0.33\textwidth}
+      \centering
+      \textbf{Zahlendarstellung mit 5-Bit}
+      \resizebox{\textwidth}{!}{
+        \begin{tikzpicture}[rotate=90]
+          \def\numsegments{32}
+
+          \draw[thick] (0:4cm) arc (0:-360:4cm);
+          \foreach \i in {0,...,\numexpr\numsegments-1\relax}
+            {
+              \pgfmathsetmacro{\angle}{-\i * 360/\numsegments}
+
+              % Convert to binary (5-bit representation for numbers 0-31)
+              \pgfmathsetmacro{\bitfour}{int(Mod(\i/16, 2))}
+              \pgfmathsetmacro{\bitthree}{int(Mod(\i/8, 2))}
+              \pgfmathsetmacro{\bittwo}{int(Mod(\i/4, 2))}
+              \pgfmathsetmacro{\bitone}{int(Mod(\i/2, 2))}
+              \pgfmathsetmacro{\bitzero}{int(Mod(\i/1, 2))}
+
+              \draw(\angle:4cm) -- (\angle:4.5cm);
+              \path(\angle:4cm) -- (\angle:4.5cm) node[pos=1, anchor=\angle - 90] {\small\bitfour\bitthree\bittwo\bitone\bitzero};
+              \pgfmathsetmacro{\ineg}{int((\i-16))}
+              \if \bitfour 1
+                \draw(\angle:4cm) node[circle, fill=white, color=red, inner sep=0pt, minimum size=20pt] {\textcolor{white}{-\ineg}};
+              \else
+                \draw(\angle:4cm) node[circle, fill=white, color=olive, inner sep=0pt, minimum size=20pt] {\textcolor{white}{\i}};
+              \fi
+            }
+        \end{tikzpicture}
+      }
+    \end{column}
+    \begin{column}{0.33\textwidth}
+      \centering
+      \textbf{Zahlendarstellung mit 4-Bit}
+      \resizebox{\textwidth}{!}{
+        \begin{tikzpicture}[rotate=90]
+          \def\numsegments{16}
+
+          \draw[thick] (0:3cm) arc (0:-360:3cm);
+          \foreach \i in {0,...,\numexpr\numsegments-1\relax}
+            {
+              \pgfmathsetmacro{\angle}{-\i * 360/\numsegments}
+
+              % Convert to binary (5-bit representation for numbers 0-31)
+              %\pgfmathsetmacro{\bitfour}{int(Mod(\i/16, 2))}
+              \pgfmathsetmacro{\bitthree}{int(Mod(\i/8, 2))}
+              \pgfmathsetmacro{\bittwo}{int(Mod(\i/4, 2))}
+              \pgfmathsetmacro{\bitone}{int(Mod(\i/2, 2))}
+              \pgfmathsetmacro{\bitzero}{int(Mod(\i/1, 2))}
+
+              \draw(\angle:3cm) -- (\angle:3.5cm);
+              \path(\angle:3cm) -- (\angle:3.5cm) node[pos=1, anchor=\angle - 90] {\small\bitthree\bittwo\bitone\bitzero};
+              \pgfmathsetmacro{\ineg}{int((\i-8))}
+              \if \bitthree 1
+                \draw(\angle:3cm) node[circle, fill=white, color=red, inner sep=0pt, minimum size=20pt] {\textcolor{white}{-\ineg}};
+              \else
+                \draw(\angle:3cm) node[circle, fill=white, color=olive, inner sep=0pt, minimum size=20pt] {\textcolor{white}{\i}};
+              \fi
+            }
+        \end{tikzpicture}
+      }
+    \end{column}
+    \begin{column}{0.33\textwidth}
+      \centering
+      \textbf{Zahlendarstellung mit 3-Bit}
+      \resizebox{\textwidth}{!}{
+        \begin{tikzpicture}[rotate=90]
+          \def\numsegments{8}
+
+          \draw[thick] (0:2cm) arc (0:-360:2cm);
+          \foreach \i in {0,...,\numexpr\numsegments-1\relax}
+            {
+              \pgfmathsetmacro{\angle}{-\i * 360/\numsegments}
+
+              % Convert to binary (5-bit representation for numbers 0-31)
+              %\pgfmathsetmacro{\bitfour}{int(Mod(\i/16, 2))}
+              %\pgfmathsetmacro{\bitthree}{int(Mod(\i/8, 2))}
+              \pgfmathsetmacro{\bittwo}{int(Mod(\i/4, 2))}
+              \pgfmathsetmacro{\bitone}{int(Mod(\i/2, 2))}
+              \pgfmathsetmacro{\bitzero}{int(Mod(\i/1, 2))}
+
+              \draw(\angle:2cm) -- (\angle:2.5cm);
+              \path(\angle:2cm) -- (\angle:2.5cm) node[pos=1, anchor=\angle - 90] {\small\bittwo\bitone\bitzero};
+              \pgfmathsetmacro{\ineg}{int((\i-4))}
+              \if \bittwo 1
+                \draw(\angle:2cm) node[circle, fill=white, color=red, inner sep=0pt, minimum size=20pt] {\textcolor{white}{-\ineg}};
+              \else
+                \draw(\angle:2cm) node[circle, fill=white, color=olive, inner sep=0pt, minimum size=20pt] {\textcolor{white}{\i}};
+              \fi
+            }
+        \end{tikzpicture}
+      }
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Darstellung mittels Vorzeichen und Betrag}{Probleme}
+  \begin{alertblock}{Zwei Nullen}
+    \begin{itemize}
+      \item Für die Darstellung der Zahl $0$ gibt es zwei Darstellungen: (0\ldots0) und (1\ldots 0).
+      \item Bei Vergleichen gilt $-0 \neq 0$.
+    \end{itemize}
+  \end{alertblock}
+  \begin{alertblock}{Rechenoperationen}
+    \begin{itemize}
+      \item Addition und Subtraktion sind kompliziert.
+      \item Fallunterscheidungen notwendig für Vorzeichen (+/+, +/-, -/+, -/-).
+    \end{itemize}
+    Beispiel $-2 - 2$:
+    \[
+      \begin{matrix}
+          & 1 & 0 & 1 & 0 & \rightarrow & -2_{10}                                         \\
+        - & 0 & 0 & 1 & 0 & \rightarrow & 2_{10}                                          \\
+        \hline
+          & 1 & 0 & 0 & 0 & \rightarrow & \textcolor{red}{-0_{10} \text{ statt } -4_{10}} \\
+      \end{matrix}
+    \]
+  \end{alertblock}
+\end{frame}
+
+\section{Rationale und reelle Zahlen}
 
 \begin{frame}{Darstellung rationaler/gebrochener Zahlen}{Brüche und Bruchzahlen}
   \begin{block}{Definition: Bruch}
@@ -1363,6 +1534,333 @@
     \end{columns}
   \end{exampleblock}
 
+\end{frame}
+
+\begin{frame}{Darstellung reeller Zahlen}
+  \begin{alertblock}{Problem}
+    \centering
+    Wo ist das Komma?
+    \[ 010101011110011011110101 \]
+  \end{alertblock}
+  \begin{block}{Systeme}
+    \begin{itemize}
+      \item Darstellung als Bruch zweier Ganzzahlen (nur für rationale Zahlen)
+      \item Darstellung mit fixem Komma (Festkomma)
+      \item Darstellung mit variablen Komma (Gleitkomma)
+    \end{itemize}
+  \end{block}
+
+\end{frame}
+
+\begin{frame}[t]{Fixkomma/Festkomma (fixed-point Numbers)}{Methode}
+
+  \begin{block}{Idee}
+    \begin{itemize}
+      \item Komma an fester Stelle und wie mit ganzen Zahlen rechnen
+      \item Bei Multiplikation und Division muss das Ergebnis skaliert werden (Komma verschieben)
+    \end{itemize}
+  \end{block}
+
+  \only<2>{
+    \begin{exampleblock}{Beispiele Addition}
+      \begin{columns}[T] % Added T option for top alignment and center alignment
+        \begin{column}{0.25\textwidth}
+          \[
+            \begin{array}{lccc}
+                & 1 & 2      & 5 \\
+              + & 2 & 0      & 5 \\
+                &   & {}_{1} &   \\
+              \hline
+                & 3 & 3      & 0
+            \end{array}
+          \]
+        \end{column}
+        \begin{column}{0.25\textwidth}
+          \[
+            \begin{array}{lcccc}
+                & 1 & , & 2      & 5 \\
+              + & 2 & , & 0      & 5 \\
+                &   &   & {}_{1} &   \\
+              \hline
+                & 3 & , & 3      & 0
+            \end{array}
+          \]
+        \end{column}
+        \begin{column}{0.5\textwidth}
+          \vspace{\baselineskip}
+          \[
+            \begin{array}{lcccccccc}
+                & 0 & 1 & , & 0 & 1 & 0 & 0 & 0 \\
+              + & 1 & 0 & , & 1 & 0 & 1 & 0 & 0 \\
+                &   &   &   &   &   &   &   &   \\
+              \hline
+                & 1 & 1 & , & 1 & 1 & 1 & 0 & 0
+            \end{array}
+          \]
+        \end{column}
+      \end{columns}
+    \end{exampleblock}
+  }
+  \only<3>{
+    \begin{exampleblock}{Beispiel Multiplikation}
+      \begin{columns}
+        \begin{column}{0.5\textwidth}
+          \[
+            \begin{array}{lcccc}
+              1 & 6 & $\cdot$ & 2 & 4 \\
+                &   & 3       & 2 &   \\
+                &   &         & 6 & 4 \\
+              \hline
+                &   & 3       & 8 & 4
+            \end{array}
+          \]
+        \end{column}
+        \begin{column}{0.5\textwidth}
+          \[
+            \begin{array}{lccccccc}
+              1 & , & 6 & $\cdot$ & 2 & , & 4     \\
+                &   &   &         & 3 & , & 2 &   \\
+                &   &   &         & 0 & , & 6 & 4 \\
+              \hline
+                &   &   &         & 3 & , & 8 & 4
+            \end{array}
+          \]
+        \end{column}
+      \end{columns}
+    \end{exampleblock}
+  }
+
+\end{frame}
+
+
+\begin{frame}[t]{Fixkomma/Festkomma (fixed-point Numbers)}{Technische Umsetzung}
+  16-Bit-Zahl mit 8 Bit vor und 8 Bit nach dem Komma:
+  \small
+  \[
+    \begin{array}{lccccccccccccccccc}
+      Zahl   & 0   & 1   & 0   & 0   & 0   & 1   & 1   & 0   & , & 1           & 0           & 1           & 1            & 0            & 1            & 1             & 1             \\
+      \hline
+      Bit    & 0   & 1   & 2   & 3   & 4   & 5   & 6   & 7   & , & 8           & 9           & 10          & 11           & 12           & 13           & 14            & 15            \\
+      \hline
+      Ziffer & z_7 & z_6 & z_5 & z_4 & z_3 & z_2 & z_1 & z_0 & , & z_{-1}      & z_{-2}      & z_{-3}      & z_{-4}       & z_{-5}       & z_{-6}       & z_{-7}        & z_{-8}        \\
+      Wert   & 128 & 64  & 32  & 16  & 8   & 4   & 2   & 1   & , & \frac{1}{2} & \frac{1}{4} & \frac{1}{8} & \frac{1}{16} & \frac{1}{32} & \frac{1}{64} & \frac{1}{128} & \frac{1}{256}
+    \end{array}
+  \]
+  \only<1>{
+    \begin{block}{Konventionen}
+      \begin{itemize}
+        \item Zahl $z$ hat $N$ Stellen ($0$ bis $N-1$) vor und $M$ Stellen ($-1$ bis $-M$) nach dem Komma
+        \item der Dezimalpunkt (das Komma) steht implizit immer an einer bestimmten festgelgten Stelle und wird nicht mitgespeichert
+      \end{itemize}
+    \end{block}
+  }
+  \only<2>{
+    \begin{block}{UMrechnung Bitmuster in Zahl}
+      \begin{enumerate}
+        \item Bitmuster als ganze Zahl interpretieren
+
+              \[0100011010110111_{2} = 18 103_{10}\]
+        \item Division durch den Wert $2^{M}$, wobei $M$ die Anzahl der Bits nach dem Komma ist
+              \[
+                \frac{18 103}{2^{8}} = \frac{18 103}{256} = 70,71484735
+              \]
+      \end{enumerate}
+
+
+    \end{block}
+  }
+\end{frame}
+
+
+\begin{frame}[t]{Fixkomma/Festkomma (fixed-point Numbers)}{Vor- und Nachteile}
+  \begin{block}{Vorteile}
+    \begin{itemize}
+      \item Einfache und schnelle Rechenoperationen
+      \item Geringer Speicherbedarf
+    \end{itemize}
+  \end{block}
+
+  \begin{block}{Nachteile}
+    \begin{itemize}
+      \item Eingeschränkter Wertebereich
+      \item Fehlende Flexibilität (z.~B. gleichzeitige Speicherung sowohl sehr großer als auch sehr kleiner Zahlen)
+      \item Überlaufgefahr bei Multiplikation und Division
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Fließkommazahlen}
+  \begin{columns}[T]
+    \begin{column}{0.5\textwidth}
+      \begin{block}{Idee}
+        \begin{itemize}
+          \item Bewegliches/gleitendes Komma
+          \item Jede reelle Zahl kann als Gleitkommazahl dargestellt werden
+                \[ z = a \cdot B ^ e \mbox{ mit } 1 \leq a \leq B \]
+                \begin{itemize}
+                  \item \(a\) ist die Mantisse
+                  \item \(B\) ist die Basis
+                  \item \(e\) ist der Exponent
+                \end{itemize}
+          \item funktioniert für jede Basis \(B\geq 2\)
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{block}{Wissenschaftliche Schreibweise}
+        \begin{itemize}
+          \item Normalisierte Exponentialschreibweise
+          \item Multiplikation: Multipliktion der Basen und Addition der Exponenten
+          \item Division: Division der Basen und Subtraktion der Exponenten
+        \end{itemize}
+      \end{block}
+      \begin{exampleblock}{Normalisierung}
+        \begin{itemize}
+          \item \(0.123\) ist nicht normalisiert
+          \item \(1.23 \cdot 10^{-1}\) ist normalisiert
+          \item \(123 \) ist nicht normalisiert
+          \item \(1.23 \cdot 10^2\) ist normalisiert
+        \end{itemize}
+
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
+
+\end{frame}
+
+\begin{frame}{Fließkommazahlen}{IEEE Standard 754}
+  \begin{block}{Standard zur Gleitkommadarstellung (1985)}
+    \textbf{I}nstitute of \textbf{E}lectrical and \textbf{E}lectronics \textbf{E}ngineers Standard 754
+  \end{block}
+  \begin{alertblock}{Vorsicht}
+    \centering
+    Oder: Warum \( 0,1 + 0,1 + 0,1 \neq 0,3 \)?
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{Fließkommazahlen}{IEEE Standard 754 -- Darstellung}
+  \setlength{\tabcolsep}{0.2em}
+  \[ z = a \cdot 2^{x} \]
+  \begin{tabular}{c|cccccccc|ccccccccccccccccccccccc}
+    \toprule
+    0                               & 1                                      & 2                                      & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 & 16 & 17 & 18 & 19 & 20 & 21 & 22 & 23 & 24 & 25 & 26 & 27 & 28 & 29 & 30 & 31 \\
+    \multicolumn{1}{c|}{\textbf{S}} & \multicolumn{8}{c|}{\textbf{Exponent}} & \multicolumn{23}{c}{\textbf{Mantisse}}                                                                                                                                           \\
+    \midrule
+  \end{tabular}
+
+  \begin{itemize}
+    \item Vorzeichenbit
+          \begin{itemize}
+            \item 0 = positiv
+            \item 1 = negativ
+          \end{itemize}
+    \item Mantisse
+
+          Zahl wird normalisiert abgespeichert. D.h. es steht eine 1 vor dem Komma. Diese 1 wird nicht gespeichert.
+    \item Exponent
+          \begin{itemize}
+            \item \(2 ^ {8} = 256 darstellbare Werte\)
+            \item Exponenten \( 0000 0000 \) und \( 1111 1111 \) sind reserviert
+            \item Exponent hat den Wertebereich \([-126, 127]\), wird als \(x - 127\) gespeichert (Bias)
+          \end{itemize}
+  \end{itemize}
+
+
+\end{frame}
+
+\begin{frame}{Fließkommazahlen}{IEEE Standard 754 -- Vergleichbarkeit}
+
+  \begin{block}{Warum der Bias?}
+    Der Bias macht den Größenvergleich von Gleitkommazahlen einfacher.
+
+    \begin{itemize}
+      \item Bitweiser Vergleich zweier Gleitkommazahlen $a$ und $b$ von links nach rechts.
+      \item Die Zahl die am weitesten links eine 1 hat (ausgenommen Vorzeichenbit) ist die größere Zahl.
+    \end{itemize}
+  \end{block}
+
+  \setlength{\tabcolsep}{0.2em}
+  \begin{tabular}{c|cccccccc|ccccccccccccccccccccccc}
+    \toprule
+    0 & 1                            & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9                           & 10 & 11 & 12 & 13 & 14 & 15 & 16 & 17 & 18 & 19 & 20 & 21 & 22 & 23 & 24 & 25 & 26 & 27 & 28 & 29 & 30 & 31 \\
+    \midrule
+    0 & \tikzmarknode{ffcomp_top}{1} & 0 & 0 & 0 & 0 & 0 & 1 & 0 & \multicolumn{23}{c}{23 Bit}                                                                                                               \\
+    0 & \tikzmarknode{ffcomp_bot}{0} & 1 & 0 & 0 & 0 & 0 & 1 & 0 & \multicolumn{23}{c}{23 Bit}                                                                                                               \\
+    \bottomrule
+  \end{tabular}
+
+  \begin{tikzpicture}[remember picture, overlay]
+    \draw[red, thick] ([shift={(-0.02,0.15)}]ffcomp_top.north west) rectangle ([shift={(0.02,-0.15)}]ffcomp_bot.south east);
+  \end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}{Fließkommazahlen}{IEEE Standard 754 -- Beispiel}
+  \[ +100_{10} = 0110 0100_{2} = + 1.\tikzmarknode{b1mant}{1001} \cdot 2^{\tikzmarknode{b1exp}{6}} \]
+
+  Exponent:
+  \[ x = 127_{10} + 6_{10} = 133_{10} = 1000 0101_{2} \]
+
+  \begin{tikzpicture}[remember picture, overlay]
+    \draw[blue, thick] ([shift={(-0.05,0.1)}]b1mant.north west) rectangle ([shift={(0.05,-0.1)}]b1mant.south east);
+    \draw[red, thick] ([shift={(-0.05,0.1)}]b1exp.north west) rectangle ([shift={(0.05,-0.1)}]b1exp.south east);
+  \end{tikzpicture}
+
+  \setlength{\tabcolsep}{0.2em}
+  \begin{tabular}{c|cccccccc|ccccccccccccccccccccccc}
+    \toprule
+    0                               & 1                                      & 2                                      & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 & 16 & 17 & 18 & 19 & 20 & 21 & 22 & 23 & 24 & 25 & 26 & 27 & 28 & 29 & 30 & 31 \\
+    \multicolumn{1}{c|}{\textbf{S}} & \multicolumn{8}{c|}{\textbf{Exponent}} & \multicolumn{23}{c}{\textbf{Mantisse}}                                                                                                                                           \\
+    \midrule
+    0                               & 1                                      & 0                                      & 0 & 0 & 0 & 1 & 0 & 1 & 1 & 0  & 0  & 1  & 0  & 0  & 0  & 0  & 0  & 0  & 0  & 0  & 0  & 0  & 0  & 0  & 0  & 0  & 0  & 0  & 0  & 0  & 0  \\
+    \bottomrule
+  \end{tabular}
+\end{frame}
+
+\begin{frame}{Fließkommazahlen}{IEEE Standard 754 -- Obergrenze}
+  Größte darstellbare positive Zahl:
+  \[1.11 \ldots 1 \cdot 2^{254-127} = 1.11 \ldots 1 \cdot 2^{127} = (2 - 2^{-23}) \cdot 2^{127} = 2^{127} - 2^{104}
+    \approx 1.701 \cdot 10^{38}\]
+
+  \setlength{\tabcolsep}{0.2em}
+  \begin{tabular}{c|cccccccc|ccccccccccccccccccccccc}
+    \toprule
+    0                               & 1                                      & 2                                      & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 & 16 & 17 & 18 & 19 & 20 & 21 & 22 & 23 & 24 & 25 & 26 & 27 & 28 & 29 & 30 & 31 \\
+    \multicolumn{1}{c|}{\textbf{S}} & \multicolumn{8}{c|}{\textbf{Exponent}} & \multicolumn{23}{c}{\textbf{Mantisse}}                                                                                                                                           \\
+    \midrule
+    0                               & 1                                      & 1                                      & 1 & 1 & 1 & 1 & 1 & 0 & 1 & 1  & 1  & 1  & 1  & 1  & 1  & 1  & 1  & 1  & 1  & 1  & 1  & 1  & 1  & 1  & 1  & 1  & 1  & 1  & 1  & 1  & 1  \\
+    \bottomrule
+  \end{tabular}
+
+\end{frame}
+
+\begin{frame}{Fließkommazahlen}{IEEE Standard 754 -- Untergrenze}
+  Kleinste darstellbare positive Zahl:
+  \[1.00 \ldots0 \cdot 2^{1-127} = 1.00 \ldots0 \cdot 2^{-126} = 2^{-126} = 1.401 \cdot 10^{-45}\]
+
+  \setlength{\tabcolsep}{0.2em}
+  \begin{tabular}{c|cccccccc|ccccccccccccccccccccccc}
+    \toprule
+    0                               & 1                                      & 2                                      & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 & 16 & 17 & 18 & 19 & 20 & 21 & 22 & 23 & 24 & 25 & 26 & 27 & 28 & 29 & 30 & 31 \\
+    \multicolumn{1}{c|}{\textbf{S}} & \multicolumn{8}{c|}{\textbf{Exponent}} & \multicolumn{23}{c}{\textbf{Mantisse}}                                                                                                                                           \\
+    \midrule
+    0                               & 0                                      & 0                                      & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0  & 0  & 0  & 0  & 0  & 0  & 0  & 0  & 0  & 0  & 0  & 0  & 0  & 0  & 0  & 0  & 0  & 0  & 0  & 0  & 0  & 0  \\
+    \bottomrule
+  \end{tabular}
+\end{frame}
+
+
+\begin{frame}{Fließkommazahlen}{IEEE Standard 754 -- Reservierte Werte}
+  \centering
+  \begin{tabular}{lccl}
+    \toprule{Spezielle Werte} & \textbf{Exponent} & \textbf{Mantisse} & \textbf{Bedeutung} \\
+    \midrule
+    \textbf{Null}             & 0000 0000         & 0                 & \(+0\)             \\
+    \textbf{Unendlichkeit}    & 1111 1111         & 0                 & \(+\infty\)        \\
+    \textbf{NaN}              & 1111 1111         & $\neq 0$          & Not a Number       \\
+    \textbf{Denormalized}     & 0000 0000         & $\neq 0$          & führende 0 statt 1 \\
+    \bottomrule
+  \end{tabular}
 \end{frame}
 
 % End document

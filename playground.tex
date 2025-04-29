@@ -11,121 +11,90 @@
 % Begin document
 \begin{document}
 
-\begin{frame}{Darstellung reeller Zahlen}
-  \begin{alertblock}{Problem}
-    \centering
-    Wo ist das Komma?
-    \[ 010101011110011011110101 \]
-  \end{alertblock}
-  \begin{block}{Systeme}
-    \begin{itemize}
-      \item Darstellung als Bruch zweier Ganzzahlen (nur für rationale Zahlen)
-      \item Darstellung mit fixem Komma (Festkomma)
-      \item Darstellung mit variablen Komma (Gleitkomma)
-    \end{itemize}
-  \end{block}
-
-\end{frame}
-
-\begin{frame}[t]{Fixkomma/Festkomma (fixed-point Numbers)}{Methode}
-
+\begin{frame}{Komplementdarstellung}
   \begin{block}{Idee}
     \begin{itemize}
-      \item Komma an fester Stelle und wie mit ganzen Zahlen rechnen
-      \item Bei Multiplikation und Division muss das Ergebnis skaliert werden (Komma verschieben)
+      \item Eine n-stellige positive Zahl $z$ wird durch ihre b-adische Darstellung (durch Ziffern im Stellenwertsystem zur Basis $b$) dargestellt.
+      \item Eine n-stellige negative Zahl $-z$ wird in Komplementdarstellung dargestellt.
     \end{itemize}
   \end{block}
 
-  \only<2>{
-    \begin{exampleblock}{Beispiele Addition}
-      \begin{columns}[T] % Added T option for top alignment and center alignment
-        \begin{column}{0.25\textwidth}
-          \[
-            \begin{array}{lccc}
-                & 1 & 2      & 5 \\
-              + & 2 & 0      & 5 \\
-                &   & {}_{1} &   \\
-              \hline
-                & 3 & 3      & 0
-            \end{array}
-          \]
-        \end{column}
-        \begin{column}{0.25\textwidth}
-          \[
-            \begin{array}{lcccc}
-                & 1 & , & 2      & 5 \\
-              + & 2 & , & 0      & 5 \\
-                &   &   & {}_{1} &   \\
-              \hline
-                & 3 & , & 3      & 0
-            \end{array}
-          \]
-        \end{column}
-        \begin{column}{0.5\textwidth}
-          \vspace{\baselineskip}
-          \[
-            \begin{array}{lcccccccc}
-                & 0 & 1 & , & 0 & 1 & 0 & 0 & 0 \\
-              + & 1 & 0 & , & 1 & 0 & 1 & 0 & 0 \\
-                &   &   &   &   &   &   &   &   \\
-              \hline
-                & 1 & 1 & , & 1 & 1 & 1 & 0 & 0
-            \end{array}
-          \]
-        \end{column}
-      \end{columns}
-    \end{exampleblock}
-  }
-  \only<3>{
-    \begin{exampleblock}{Beispiel Multiplikation}
-      \begin{columns}
-        \begin{column}{0.5\textwidth}
-          \[
-            \begin{array}{lcccc}
-              1 & 6 & $\cdot$ & 2 & 4 \\
-                &   & 3       & 2 &   \\
-                &   &         & 6 & 4 \\
-              \hline
-                &   & 3       & 8 & 4
-            \end{array}
-          \]
-        \end{column}
-        \begin{column}{0.5\textwidth}
-          \[
-            \begin{array}{lccccccc}
-              1 & , & 6 & $\cdot$ & 2 & , & 4     \\
-                &   &   &         & 3 & , & 2 &   \\
-                &   &   &         & 0 & , & 6 & 4 \\
-              \hline
-                &   &   &         & 3 & , & 8 & 4
-            \end{array}
-          \]
-        \end{column}
-      \end{columns}
-    \end{exampleblock}
-  }
-
 \end{frame}
 
-
-\begin{frame}[t]{Fixkomma/Festkomma (fixed-point Numbers)}{Technische Umsetzung}
-  16-Bit-Zahl mit 8 Bit vor und 8 Bit nach dem Komma:
-  \[
-    \small
-    \begin{array}{lccccccccccccccccc}
-      Bit    & 0   & 1   & 2   & 3   & 4   & 5   & 6   & 7   & , & 8           & 9           & 10          & 11           & 12           & 13           & 14            & 15            \\
-      \hline
-      Ziffer & z_7 & z_6 & z_5 & z_4 & z_3 & z_2 & z_1 & z_0 & , & z_{-1}      & z_{-2}      & z_{-3}      & z_{-4}       & z_{-5}       & z_{-6}       & z_{-7}        & z_{-8}        \\
-      Wert   & 128 & 64  & 32  & 16  & 8   & 4   & 2   & 1   & , & \frac{1}{2} & \frac{1}{4} & \frac{1}{8} & \frac{1}{16} & \frac{1}{32} & \frac{1}{64} & \frac{1}{128} & \frac{1}{256}
-    \end{array}
-  \]
-  \begin{block}{Konventionen}
-    \begin{itemize}
-      \item Zahl $z$ hat $N$ Stellen ($0$ bis $N-1$) vor und $M$ Stellen ($-1$ bis $-M$) nach dem Komma
-      \item der Dezimalpunkt (das Komma) steht implizit immer an einer bestimmten festgelgten Stelle und wird nicht mitgespeichert
-    \end{itemize}
+\begin{frame}{Komplementdarstellung für negative Zahlen}{Idee}
+  \begin{block}{Idee}
+    Subtraktion auf Addition zurückführen
+  \end{block}
+  \begin{block}{Prinzip}
+    \begin{align*}
+      6 - 4 & = 6 + (-4) \\
+      a - b & = a + (-b)
+    \end{align*}
 
   \end{block}
+  \begin{block}{Frage}
+    Wie kann eine negative Zahl $-b$ als positive Zahl $b_k$ dargestellt werden, so dass gilt:
+    \[
+      a - b = a+(-b) = a + b_k
+    \]
+  \end{block}
 \end{frame}
+
+\begin{frame}{Komplentdarstellung}{Beispiel für Addition}
+  \begin{columns}[T]
+    \begin{column}{0.33\textwidth}
+      \centering
+      \[
+        \begin{matrix}
+            & 6 & 3 & 2 & 4 \\
+          - & 2 & 5 & 9 & 6 \\
+          \hline
+            & 3 & 7 & 2 & 8 \\
+        \end{matrix}
+      \]
+    \end{column}
+    \begin{column}{0.33\textwidth}
+      \centering
+      \[
+        \begin{matrix}
+            & 6 & 3 & 2 & 4 \\
+          + & 7 & 4 & 0 & 4 \\
+          \hline
+          1 & 3 & 7 & 2 & 8 \\
+        \end{matrix}
+      \]
+      Liefert die Zahl $1$ als Übertrag aber die restlichen Ziffern stimmen
+    \end{column}
+    \begin{column}{0.33\textwidth}
+      \centering
+      \[
+        \begin{matrix}
+                & 6 & 3 & 2 & 4 \\
+          +     & 7 & 4 & 0 & 4 \\
+          \hline
+          \not1 & 3 & 7 & 2 & 8 \\
+        \end{matrix}
+      \]
+      Also ignorieren wir den Übertrag.
+    \end{column}
+  \end{columns}
+  \vspace{\baselineskip}
+  Somit gilt (am Beispiel Dezimal mit vier Stellen):
+  \[ x - y = x + (9999 - y) - 10000 + 1 = x + (10000 - y) - 10000\]
+
+\end{frame}
+
+\begin{frame}{Komplentdarstellung}{Berechnung}
+  \begin{block}{B-Komplementdarstellung}
+    \[b_k = B^n  - b\]
+  \end{block}
+  \begin{block}{(B-1)-Komplementdarstellung}
+    \[b_k = B^n -1 - b\]
+
+    Hier wird der Übertrag nicht mehr ignoriert sondern auf der letzten Stelle aufaddiert.
+  \end{block}
+\end{frame}
+
+
 % End document
 \end{document}
