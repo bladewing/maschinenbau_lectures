@@ -1191,5 +1191,179 @@
 
 \end{frame}
 
+\begin{frame}[t]{Konvertierung echt gebrochener Zahlen aus dem Dezimalsystem}{Multiplikationsmethode}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{block}{Verfahren}
+        \begin{enumerate}
+          \item Bilde $a \cdot B = y \mbox{ Überlauf } z$
+                \begin{itemize}
+                  \item[$y$] echt gebrochener Anteil
+                  \item[$z$] ganzzahliger Anteil
+                \end{itemize}
+          \item Prüfe $y \neq 0$
+                \begin{itemize}
+                  \item Wenn $y \neq 0$
+                        \begin{itemize}
+                          \item Mache $y$ zum neuen $a$ und setze mit Schritt 1 fort
+                        \end{itemize}
+                  \item Wenn $y = 0$
+                        \begin{itemize}
+                          \item Beende die Berechnung
+                          \item Die ermittelten Überlaufe $z$ sind die Ziffern des Ergebnisses in der Reihenfolge in der sie ermittelt wurden.
+                        \end{itemize}
+                \end{itemize}
+        \end{enumerate}
+      \end{block}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+
+      \only<2>{
+        \begin{exampleblock}{Beispiel 1}
+          \centering
+
+          \begin{tabular}{rcccrrr}
+            \toprule
+            $a$                                   & $\cdot$ & $B$ & $=$ & $Ergebnis$ & $z$                             & $y$                                 \\
+            \midrule
+            0,125                                 & $\cdot$ & 2   & $=$ & 0.25       & \tikzmarknode{mult_line_1_z}{0} & \tikzmarknode{mult_line1_end}{0,25} \\
+            \\
+            \tikzmarknode{mult_line2_begin}{0,25} & $\cdot$ & 2   & $=$ & 0,5        & \tikzmarknode{mult_line_2_z}{0} & \tikzmarknode{mult_line2_end}{0,5}  \\
+            \\
+            \tikzmarknode{mult_line3_begin}{0,5}  & $\cdot$ & 2   & $=$ & 1.0        & \tikzmarknode{mult_line_3_z}{1} & 0,0                                 \\
+            \bottomrule
+          \end{tabular}
+          \begin{tikzpicture}[remember picture, overlay]
+            \draw[<-, thick] (mult_line2_begin.west) -| ++ (-.3,.8\baselineskip) -| ([xshift=-5]mult_line1_end.south east);
+            \draw[<-, thick] (mult_line3_begin.west) -| ++ (-.48,.8\baselineskip) -| ([xshift=-5]mult_line2_end.south east);
+            \draw[->, line width=2pt, color=red] ([xshift=3]mult_line_1_z.north east) -- ([xshift=3]mult_line_3_z.south east);
+          \end{tikzpicture}
+          \[ 0,125_{10} = 0,001_{2} \]
+        \end{exampleblock}
+      }
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[t]{Konvertierung echt gebrochener Zahlen aus dem Dezimalsystem}{Multiplikationsmethode -- Beispiele}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{exampleblock}{Beispiel 2}
+        \centering
+        \begin{tabular}{rcccrrr}
+          \toprule
+          $a$    & $\cdot$ & $B$ & $=$ & $Ergebnis$ & $z$ & $y$   \\
+          \midrule
+          0,6875 & $\cdot$ & 2   & $=$ & 1,375      & 1   & 0,375 \\
+          0,375  & $\cdot$ & 2   & $=$ & 0,75       & 0   & 0,75  \\
+          0,75   & $\cdot$ & 2   & $=$ & 1,5        & 1   & 0,5   \\
+          0,5    & $\cdot$ & 2   & $=$ & 1,0        & 1   & 0,0   \\
+          \bottomrule
+        \end{tabular}
+        \[ 0,6875_{10} = 0,1011_{2} \]
+      \end{exampleblock}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{exampleblock}{Beispiel 3}
+        \centering
+        \begin{tabular}{rcccrrr}
+          \toprule
+          $a$  & $\cdot$ & $B$ & $=$ & $Ergebnis$ & $z$ & $y$ \\
+          \midrule
+          0,25 & $\cdot$ & 2   & $=$ & 0,5        & 0   & 0,5 \\
+          0,5  & $\cdot$ & 2   & $=$ & 1,0        & 1   & 0,0 \\
+          \bottomrule                                         \\
+          \\
+        \end{tabular}
+        \[ 0,25_{10} = 0,01_{2} \]
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Konvertierung echt gebrochener Zahlen aus dem Dezimalsystem}{Multiplikationsmethode -- Periodische Zahlen}
+  \begin{exampleblock}{Beispiel einer periodischen Zahl}
+    \begin{columns}
+      \begin{column}{0.7\textwidth}
+        \centering
+        \begin{tabular}{rcccrrr}
+          \toprule
+          $a$ & $\cdot$ & $B$ & $=$ & $Ergebnis$ & $z$        & $y$                           \\
+          \midrule
+          0,1 & $\cdot$ & 2   & $=$ & 0,2        & 0          & 0,2                           \\
+          0,2 & $\cdot$ & 2   & $=$ & 0,4        & \textbf{0} & \textbf{\textcolor{red}{0,4}} \\
+          0,4 & $\cdot$ & 2   & $=$ & 0,8        & \textbf{0} & 0,8                           \\
+          0,8 & $\cdot$ & 2   & $=$ & 1,6        & \textbf{1} & 0,6                           \\
+          0,6 & $\cdot$ & 2   & $=$ & 1,2        & \textbf{1} & 0,2                           \\
+          0,2 & $\cdot$ & 2   & $=$ & 0,4        & 0          & \textbf{\textcolor{red}{0,4}} \\
+          \bottomrule
+        \end{tabular}
+      \end{column}
+      \begin{column}{0.3\textwidth}
+        \[ 0,1_{10} = 0,0\overline{0011}_{2} \]
+      \end{column}
+    \end{columns}
+  \end{exampleblock}
+  \begin{alertblock}{Unterschiedliche Periodeneigenschaft}
+    Manche Zahlen, die in einem System eine endliche Darstellung haben, haben in einem anderen System eine periodische Darstellung.
+
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{Konvertierung unecht gebrochener Zahlen aus dem Dezimalsystem}{Kombination aus Divisionsmethode und Multiplikationsmethode}
+
+  \vspace{-.3\baselineskip}
+  \begin{block}{Verfahren}
+    Bei der Konvertierung unecht gebrochener Zahlen wird die Zahl in den ganzzahligen und den echt gebrochenen Anteil zerlegt.
+    \begin{itemize}
+      \item Der ganzzahlige Anteil wird mit der Divisionsmethode konvertiert.
+      \item Der echt gebrochene Anteil wird mit der Multiplikationsmethode konvertiert.
+    \end{itemize}
+
+  \end{block}
+  \vspace{-.1\baselineskip}
+  \begin{exampleblock}{Beispiel}
+    \begin{columns}
+      \begin{column}{0.12\textwidth}
+        \[ 12,25_{10} \]
+        \[ =  \]
+        \[ 1100,01_{2} \]
+      \end{column}
+      \begin{column}{0.4\textwidth}
+        \centering
+        Ganzzahliger Anteil
+        \begin{tabular}{rcrcrcr}
+          \toprule
+          $a$ & $\div$ & $B$ & $=$ & $x$ & Rest & y                                          \\
+          \midrule
+          12  & $\div$ & 2   & $=$ & 6   & Rest & \tikzmarknode{combined_division_top}{0}    \\
+          6   & $\div$ & 2   & $=$ & 3   & Rest & 0                                          \\
+          3   & $\div$ & 2   & $=$ & 1   & Rest & 1                                          \\
+          1   & $\div$ & 2   & $=$ & 0   & Rest & \tikzmarknode{combined_division_bottom}{1} \\
+          \bottomrule
+        \end{tabular}
+
+      \end{column}
+      \begin{column}{0.42\textwidth}
+        \centering
+        Echt gebrochener Anteil
+        \begin{tabular}{rcccrrr}
+          \toprule
+          $a$  & $\cdot$ & $B$ & $=$ &     & $z$                                    & $y$ \\
+          \midrule
+          0,25 & $\cdot$ & 2   & $=$ & 0,5 & \tikzmarknode{combined_mult_top}{0}    & 0,5 \\
+          0,5  & $\cdot$ & 2   & $=$ & 1,0 & \tikzmarknode{combined_mult_bottom}{1} & 0,0 \\
+          \bottomrule
+        \end{tabular}
+      \end{column}
+      \begin{tikzpicture}[remember picture, overlay]
+        \draw[<-, thick] ([xshift=3pt]combined_division_top.north east) --([xshift=3pt]combined_division_bottom.south east);
+        \draw[->, thick] ([xshift=3pt]combined_mult_top.north east) --([xshift=3pt]combined_mult_bottom.south east);
+      \end{tikzpicture}
+    \end{columns}
+  \end{exampleblock}
+
+\end{frame}
+
 % End document
 \end{document}
