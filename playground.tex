@@ -11,90 +11,34 @@
 % Begin document
 \begin{document}
 
-\begin{frame}{Komplementdarstellung}
-  \begin{block}{Idee}
-    \begin{itemize}
-      \item Eine n-stellige positive Zahl $z$ wird durch ihre b-adische Darstellung (durch Ziffern im Stellenwertsystem zur Basis $b$) dargestellt.
-      \item Eine n-stellige negative Zahl $-z$ wird in Komplementdarstellung dargestellt.
-    \end{itemize}
-  \end{block}
+\begin{frame}{Wertebreiche von Datentypen in Python}
+    \centering
+    \begin{tabular}{crr}
+        \toprule
+        \textbf{Datentyp} & \textbf{Untergrenze}                  & \textbf{Obergrenze}                  \\
+        \midrule
+        \texttt{int}*     & $-2^{63}$                             & $2^{63}-1$                           \\
+        \texttt{float}    & $-1.7976931348623157 \times 10^{308}$ & $1.7976931348623157 \times 10^{308}$ \\
+        \texttt{bool}     & 0                                     & 1                                    \\
+        \bottomrule
+    \end{tabular}
 
+    *\texttt{int} ist in Python 3 unbeschränkt, verliert aber an Performance oder Genauigkeit ab den angegebenen Grenzen
+
+    \begin{alertblock}{Vorsicht in anderen Programmiersprachen}
+        Andere Programmiersprachen haben unterschiedliche Wertebereiche für unterschiedliche
+        \begin{itemize}
+            \item Ganzzahlen (z.B. \texttt{short}, \texttt{int}, \texttt{long})
+            \item Gleitkommazahlen (z.B. \texttt{float}, \texttt{double})
+        \end{itemize}
+        Zudem wird oft zwischen \texttt{signed} und \texttt{unsigned} unterschieden.
+        \begin{itemize}
+            \item \texttt{signed} erlaubt negative Werte
+            \item \texttt{unsigned} erlaubt nur positive Werte
+        \end{itemize}
+
+    \end{alertblock}
 \end{frame}
-
-\begin{frame}{Komplementdarstellung für negative Zahlen}{Idee}
-  \begin{block}{Idee}
-    Subtraktion auf Addition zurückführen
-  \end{block}
-  \begin{block}{Prinzip}
-    \begin{align*}
-      6 - 4 & = 6 + (-4) \\
-      a - b & = a + (-b)
-    \end{align*}
-
-  \end{block}
-  \begin{block}{Frage}
-    Wie kann eine negative Zahl $-b$ als positive Zahl $b_k$ dargestellt werden, so dass gilt:
-    \[
-      a - b = a+(-b) = a + b_k
-    \]
-  \end{block}
-\end{frame}
-
-\begin{frame}{Komplentdarstellung}{Beispiel für Addition}
-  \begin{columns}[T]
-    \begin{column}{0.33\textwidth}
-      \centering
-      \[
-        \begin{matrix}
-            & 6 & 3 & 2 & 4 \\
-          - & 2 & 5 & 9 & 6 \\
-          \hline
-            & 3 & 7 & 2 & 8 \\
-        \end{matrix}
-      \]
-    \end{column}
-    \begin{column}{0.33\textwidth}
-      \centering
-      \[
-        \begin{matrix}
-            & 6 & 3 & 2 & 4 \\
-          + & 7 & 4 & 0 & 4 \\
-          \hline
-          1 & 3 & 7 & 2 & 8 \\
-        \end{matrix}
-      \]
-      Liefert die Zahl $1$ als Übertrag aber die restlichen Ziffern stimmen
-    \end{column}
-    \begin{column}{0.33\textwidth}
-      \centering
-      \[
-        \begin{matrix}
-                & 6 & 3 & 2 & 4 \\
-          +     & 7 & 4 & 0 & 4 \\
-          \hline
-          \not1 & 3 & 7 & 2 & 8 \\
-        \end{matrix}
-      \]
-      Also ignorieren wir den Übertrag.
-    \end{column}
-  \end{columns}
-  \vspace{\baselineskip}
-  Somit gilt (am Beispiel Dezimal mit vier Stellen):
-  \[ x - y = x + (9999 - y) - 10000 + 1 = x + (10000 - y) - 10000\]
-
-\end{frame}
-
-\begin{frame}{Komplentdarstellung}{Berechnung}
-  \begin{block}{B-Komplementdarstellung}
-    \[b_k = B^n  - b\]
-  \end{block}
-  \begin{block}{(B-1)-Komplementdarstellung}
-    \[b_k = B^n -1 - b\]
-
-    Hier wird der Übertrag nicht mehr ignoriert sondern auf der letzten Stelle aufaddiert.
-  \end{block}
-\end{frame}
-
 
 % End document
 \end{document}
