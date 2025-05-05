@@ -751,7 +751,7 @@
             \midrule
               & 1            & 1                    & 0                    & 0            \\
             - & 1            & 0                    & 1                    & 1            \\
-              &              & \only<2->{${}_{-1}$} & \only<1->{${}_{-1}$} &              \\
+              &              & \only<8->{${}_{-1}$} & \only<7->{${}_{-1}$} &              \\
             \midrule
               & \only<10->0  & \only<9->1           & \only<8->0           & \only<7->1   \\
             \bottomrule
@@ -785,19 +785,19 @@
       \begin{block}{Hilfsrechnung}
         \[
           \begin{matrix}
-            2 & \cdot & 1 & 6                                         \\
+            2 & \cdot & 1                   & 6                   \\
             \hline
-              &       &   & 2                   &                     \\
-              &       &   & 1                   & 2                   \\
+              &       & 2                   &                     \\
+              &       & 1                   & 2                   \\
             \hline
-              &       &   & \textcolor{blue}{3} & \textcolor{blue}{2} \\
+              &       & \textcolor{blue}{3} & \textcolor{blue}{2} \\
           \end{matrix} \qquad\qquad \begin{matrix}
-            4 & \cdot & 1 & 6                                             \\
+            4 & \cdot & 1                     & 6                     \\
             \hline
-              &       &   & 4                     &                       \\
-              &       &   & 2                     & 4                     \\
+              &       & 4                     &                       \\
+              &       & 2                     & 4                     \\
             \hline
-              &       &   & \textcolor{orange}{6} & \textcolor{orange}{4} \\
+              &       & \textcolor{orange}{6} & \textcolor{orange}{4} \\
           \end{matrix}
         \]
       \end{block}
@@ -825,13 +825,13 @@
         \begin{block}{Hilfsrechnung}
           \[
             \begin{matrix}
-              2 & \cdot & 1                   & 3                   & 6                     \\
+              2 & \cdot & 1                   & 3                   & 6                   \\
               \hline
-                &       & 2                   &                     &                     & \\
-                &       &                     & 6                   &                       \\
-                &       &                     & 1                   & 2                     \\
+                & 2     &                     &                     &                     \\
+                &       & 6                   &                                           \\
+                &       & 1                   & 2                                         \\
               \hline
-                &       & \textcolor{blue}{2} & \textcolor{blue}{7} & \textcolor{blue}{2}   \\
+                &       & \textcolor{blue}{2} & \textcolor{blue}{7} & \textcolor{blue}{2} \\
             \end{matrix} \qquad\qquad \begin{matrix}
               3 & \cdot & 1                     & 3                     & 6                       \\
               \hline
@@ -1579,9 +1579,9 @@
     \textcolor{olive}{5} - \textcolor{blue}{3}       & = \textcolor{olive}{5} + (-\textcolor{blue}{3}) = 2                     \\
     \textcolor{olive}{0101} - \textcolor{blue}{0011} & = \textcolor{olive}{0101} + \textcolor{blue}{1101} = \not{1}0010 = 0010 \\
   \end{align*}
-  \begin{tikzpicture}[remember picture, overlay]
-    \draw[->, red] (1erOver) -- ++(0,-0.5) -| (1erTarget);
-  \end{tikzpicture}
+  %\begin{tikzpicture}[remember picture, overlay]
+  %  \draw[->, red] (1erOver) -- ++(0,-0.5) -| (1erTarget);
+  %\end{tikzpicture}
 \end{frame}
 
 \begin{frame}{Überlauf}
