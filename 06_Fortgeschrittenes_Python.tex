@@ -1,0 +1,186 @@
+\documentclass[xelatex,aspectratio=169]{beamer}
+\input{preamble.tex}
+
+% Title
+\title{Fortgeschrittenes Python}
+\author{Prof. Dr. Lukas Iffländer}
+\institute{HTW Dresden}
+\date{}
+\usepackage{svg}
+
+% Begin document
+\begin{document}
+
+% Title slide
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\begin{frame}{Datentypen von Anordnungen}
+    Python bietet eine Vielzahl von Datentypen, um Anordnungen von Daten zu speichern. Die wichtigsten sind:
+    \begin{description}
+        \item[Listen] lineare Anordnungen von Elementen, die veränderbar sind
+        \item[Tupel] lineare Anordnungen von Elementen, die unveränderbar sind
+        \item[Sets] ungeordnete Sammlungen von einzigartigen Elementen
+        \item[Dictionaries] ungeordnete Sammlungen von Schlüssel-Wert-Paaren
+    \end{description}
+\end{frame}
+
+\section{Listen}
+
+\begin{frame}{Listen}
+    \begin{block}{Definition}
+        Listen sind geordnete Sammlungen von Elementen, die veränderbar sind. Sie können verschiedene Datentypen enthalten und bieten eine Vielzahl von Methoden zur Manipulation der Daten.lineare Anordnung von Elementen, die oftmals gleichen Typ besitzen, aber auch unterschiedliche Typen aufweisen dürfen.
+        Auf Listen kann indiziert zugegriffen werden.
+    \end{block}
+\end{frame}
+
+\begin{frame}{Listen}{Beispiel}
+    \inputminted{python}{src/listen_overview.py}
+\end{frame}
+
+\begin{frame}{Listen}{Funktionen}
+    Für Listen gibt es in python eingebaute Funktionen, die eine Vielzahl von Operationen ermöglichen. Hier sind einige der wichtigsten:
+    \inputminted{python}{src/listen_funktionen.py}
+\end{frame}
+
+\begin{frame}{Listen}{Methoden}
+    \begin{tabularx}{\textwidth}{lX}
+        \toprule
+        \textbf{Methode} & \textbf{Beschreibung}                                              \\
+        \midrule
+        append()         & Fügt ein Element am Ende der Liste hinzu.                          \\
+        extend()         & Fügt mehrere Elemente am Ende der Liste hinzu.                     \\
+        insert()         & Fügt ein Element an einer bestimmten Position in der Liste ein.    \\
+        remove()         & Entfernt das erste Vorkommen eines Elements aus der Liste.         \\
+        pop()            & Entfernt und gibt das Element an einer bestimmten Position zurück. \\
+        clear()          & Entfernt alle Elemente aus der Liste.                              \\
+        index()          & Gibt den Index des ersten Vorkommens eines Elements zurück.        \\
+        count()          & Gibt die Anzahl der Vorkommen eines Elements in der Liste zurück.  \\
+        sort()           & Sortiert die Elemente in aufsteigender Reihenfolge.                \\
+        reverse()        & Kehrt die Reihenfolge der Elemente in der Liste um.                \\
+        copy()           & Gibt eine flache Kopie der Liste zurück.                           \\
+        \bottomrule
+    \end{tabularx}
+
+\end{frame}
+
+\begin{frame}{Listen}{Mehrdimensionale Listen}
+    Matrizen und höherdimensionale Anordnungen können durch verschachtelte Listen erzeugt werden.
+    \inputminted[lastline=2]{python}{src/listen_mehrdimensional.py}
+
+    Zeilenauswahl durch Zugriff auf entsprechende Unterliste
+    \inputminted[firstline=4,lastline=4]{python}{src/listen_mehrdimensional.py}
+
+    Elementauswahl durch Indizierung mit Zeilenindex, Spaltenindex
+    \inputminted[firstline=6,lastline=6]{python}{src/listen_mehrdimensional.py}
+
+    Eine Spaltenauswahl ist  etwas umständlichler, hier Spalte mit index 2:
+    \inputminted[firstline=8,lastline=8]{python}{src/listen_mehrdimensional.py}
+\end{frame}
+
+\begin{frame}{Listen}{List Comprehensions}
+    List Comprehensions sind eine elegante Möglichkeit, Listen zu erstellen und zu manipulieren. Sie ermöglichen es, eine neue Liste aus einer bestehenden Liste zu generieren, indem man eine Ausdrucksform verwendet, die die Elemente der bestehenden Liste durchläuft und sie in eine neue Liste umwandelt.
+
+    \begin{itemize}
+        \item \texttt{list()} erstellt eine Liste aus einem Ausdruck
+    \end{itemize}
+
+
+    \inputminted[lastline=8]{python}{src/listen_comprehensions.py}
+\end{frame}
+
+\section{Tupel}
+
+\begin{frame}{Tupel}
+    \begin{block}{Definition}
+        Tupel sind unveränderbare Anordnungen von Elementen mit Reihung.
+    \end{block}
+
+    \inputminted[lastline=4]{python}{src/tupel_overview.py}
+
+    Zugriff auf Element mit numerischem Index (wie bei Listen)
+
+    \inputminted[firstline=6]{python}{src/tupel_overview.py}
+
+    \begin{block}{Eigenschaften}
+        \begin{itemize}
+            \item feste Länge
+            \item Elemente sind unveränderbar
+            \item Tupel muss bei Änderungen neu zugewiesen werden
+        \end{itemize}
+
+    \end{block}
+
+\end{frame}
+
+\begin{frame}{Tupel}{Verschachtelung}
+    \begin{block}{Verschachtelte Tupel}
+        \small
+        \inputminted[lastline=5]{python}{src/tupel_nested.py}
+    \end{block}
+    \vspace{-5pt}
+    \begin{alertblock}{Tupel sind nicht änderbar}
+        \small
+        Eine nachträgliche Änderung der Werte in einem Tupel ist nicht möglich.
+        \vspace{-5pt}
+        \inputminted[firstline=7]{python}{src/tupel_nested.py}
+
+    \end{alertblock}
+
+\end{frame}
+
+\begin{frame}{Tupel}{Tupel und Listen}
+    \begin{block}{Tupel of Lists}
+        Tupel können Listen enthalten (die dann veränderbar sind):
+        \inputminted[lastline=1]{python}{src/tupel_und_listen.py}
+    \end{block}
+    \begin{block}{List of Tuples}
+        Listen können Tupel enthalten:
+        \inputminted[firstline=4,lastline=4]{python}{src/tupel_und_listen.py}
+    \end{block}
+    \begin{block}{Zip-Funktion}
+        Die \texttt{zip()}-Funktion kann zwei Listen zu einer Liste von Tupeln kombinieren:
+        \inputminted[firstline=7,lastline=7]{python}{src/tupel_und_listen.py}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Sets}
+    \begin{block}{Definition}
+        Sets bilden ungeordnete Mengen ab.
+        \begin{itemize}
+            \item Jedes Element kann nur einmmal im Set vorkommen.
+            \item Die Reihenfolge der Elemente ist nicht festgelegt, ein Zugriff über den Index ist nicht möglich.
+        \end{itemize}
+
+    \end{block}
+    \begin{exampleblock}{Beispiel}
+        \inputminted{python}{src/sets_overview.py}
+    \end{exampleblock}
+
+    Basisoperationen sind:
+    \begin{itemize}
+        \item \texttt{add()} - fügt ein Element hinzu
+        \item \texttt{remove()} - entfernt ein Element
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Sets}{Beispiel}
+    \inputminted{python}{src/sets_example.py}
+\end{frame}
+
+\begin{frame}{Sets}{Mengenoperationen}
+    Mengen können mit mengenalgebraischen Operationen verknüpft werden:
+    \begin{itemize}
+        \item [\texttt{|}] Vereinigung
+        \item [\texttt{\&}] Schnittmenge
+        \item [\texttt{-}] Differenz
+        \item [\texttt{\^}] Unterschiedliche Elemente, die nur in einer Mengen vorkommen
+    \end{itemize}
+
+    \inputminted[lastline=7]{python}{src/sets_operations.py}
+
+\end{frame}
+
+\end{document}
