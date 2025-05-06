@@ -1,0 +1,1 @@
+meinString = "Hallo HTW!"

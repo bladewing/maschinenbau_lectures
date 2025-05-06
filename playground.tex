@@ -11,101 +11,116 @@
 % Begin document
 \begin{document}
 
-\begin{frame}{Unicode}{Motivation}
-    \centering
-    \includegraphics[height=.8\textheight]{img/codierung_scheisse.png}
-\end{frame}
-
-\begin{frame}{Unicode}{Entwicklung}
+\begin{frame}{Strings in Python}{Grundlagen}
+    \inputminted{python}{src/strings_hello.py}
     \begin{itemize}
-        \item Entwicklung durch das Unicode Konsortium
-        \item (Codierter) Zeichensatz mit erweiterbarem Zeichenvorrat
-              \begin{itemize}
-                  \item Unicode 1.0 (1991): ~7000 Zeichen
-                  \item Unicode 6.0 (2010): ~109.000 Zeichen
-                  \item Unicode 12.0 (2019): ~137.000 Zeichen
-                  \item Unicode 15.0 (2022): ~149.000 Zeichen
-              \end{itemize}
+        \item Bei einer solchen Zuweisung wird der Datentyp \texttt{str} (kurz für String) verwendet.
+        \item Python verwendet derzeit UTF-16 intern (eine Migration auf UTF-8 in \enquote{einer zukünftigen Version} ist geplant).
+        \item Einzelnes Zeichen: \mintinline{python}|z = 'x'|
+        \item Zeichenkette: \mintinline{python}|s = 'Achtung!'|
+        \item Mehrzeilige Strings
+              \inputminted{python}{src/strings_multiline.py}
     \end{itemize}
-    \begin{block}{Motto}
-        Unicode provides a unique number for every character, \\
-        no matter what the platform, \\
-        no matter what the program, \\
-        no matter what the language.
-    \end{block}
 \end{frame}
 
-\begin{frame}{Unicode}{Anteil der Zeichenkodierungen für Webseiten}
-    \begin{tabular}{lcccccccccc}
-        \toprule
-        in Prozent          & 2010 & 2011 & 2012 & 2013 & 2014 & 2015 & 2016 & 2017 & 2018 & 2019 \\
-        \midrule
-        \textbf{UTF-8}      & 50.6 & 59.8 & 68.0 & 74.7 & 78.7 & 82.3 & 86.0 & 88.2 & 90.5 & 92.8 \\
-        \textbf{ISO-8859-1} & 28.6 & 22.0 & 17.2 & 13.5 & 10.8 & 9.3  & 6.9  & 5.5  & 4.3  & 3.6  \\
-        \textbf{US-ASCII}   & 0.2  & 0.1  & 0.1  & 0.1  & 0.1  & 0.1  & <0.1 & <0.1 & <0.1 & <0.1 \\
-        \bottomrule
-    \end{tabular}
+\begin{frame}{Strings in Python}{Umrechnen in ASCII}
+    Funktionen für einzelne Zeichen (Strings der Länge 1):
+    \inputminted{python}{src/strings_conversion.py}
+
 \end{frame}
 
+\begin{frame}{Strings in Python}{Ausgewählte Funktionen und Methoden}
+    \inputminted{python}{src/strings_functions.py}
+\end{frame}
 
-\begin{frame}{Unicode}{Verfahren -- Planes I}
+\begin{frame}{Strings in Python}{Vergleichen}
+    \inputminted{python}{src/strings_comparison.py}
     \begin{itemize}
-        \item Code Space wird 17 gleich große Ebenen (Planes) unterteilt
-        \item Jede Plane hat 65.536 Codepunkte ($2^{16}$)
-        \item Mit einer vierstelligen Hexadezimalzahl können alle code points innerhalb einer Plane adressiert werden
+        \item Strings können mit den Operatoren \texttt{==}, \texttt{!=}, \texttt{<}, \texttt{<=}, \texttt{>} und \texttt{>=} verglichen werden.
+        \item Dabei wird lexikographisch verglichen (wie im Wörterbuch).
+        \item Die Vergleiche sind case-sensitive.
     \end{itemize}
-    \centering
-    \begin{tabular}{lcl}
-        \toprule
-        Plane & Name                                      & Code Range           \\
-        \midrule
-        0     & Basic Multilingual Plane (BMP)            & U+0000 -- U+FFFF     \\
-        1     & Supplementary Multilingual Plane (SMP)    & U+10000 -- U+1FFFF   \\
-        2     & Supplementary Ideographic Plane (SIP)     & U+20000 -- U+2FFFF   \\
-        3     & Tertiary Ideographic Plane (TIP)          & U+30000 -- U+3FFFF   \\
-        5-13  & Unassigned                                & --                   \\
-        14    & Supplementary Special-purpose Plane (SSP) & U+E0000 -- U+EFFFF   \\
-        15    & Supplementary Private Use Area-A (PUA-A)  & U+F0000 -- U+FFFFF   \\
-        16    & Supplementary Private Use Area-B (PUA-B)  & U+100000 -- U+10FFFF \\
-        \bottomrule
-    \end{tabular}
-\end{frame}
-\begin{frame}{Unicode}{Verfahren -- Planes II}
-    \includegraphics[height=.8\textheight]{img/codierung_planes.png}
 \end{frame}
 
-\begin{frame}{Basic Multilingual Plane (BMP)}
-    \centering
-    \setlength{\tabcolsep}{1em}
-    \begin{tabular}{lcccccccccccccccc}
-        \toprule
-                        & \textbf{0}                                            & \textbf{1}                         & \textbf{2}                    & \textbf{3}                               & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} & \textbf{A} & \textbf{B} & \textbf{C} & \textbf{D} & \textbf{E} & \textbf{F} \\
-        \midrule
-        \textbf{00}     & \multicolumn{2}{|c}{C0}                               & \multicolumn{6}{|c}{Basic Latin}   & \multicolumn{2}{|c}{C1}       & \multicolumn{6}{|c|}{Latin 1 Supplement}                                                                                                                                                             \\
-        \textbf{01}     &                                                                                                                                                                                                                                                                                                                                   \\
-        \textbf{\ldots} &                                                                                                                                                                                                                                                                                                                                   \\
-        \textbf{20}     & \multicolumn{7}{|c}{General Punctation}               & \multicolumn{3}{|c}{Subs./Supers.} & \multicolumn{3}{|c}{Currency} & \multicolumn{3}{|c|}{Diac. Symbs.}                                                                                                                                                                   \\
-        \textbf{\ldots} &                                                                                                                                                                                                                                                                                                                                   \\
-        \textbf{FF}     & \multicolumn{16}{|c| }{Halfwidth and Fullwidth Forms}                                                                                                                                                                                                                                                                             \\
-        \bottomrule
-    \end{tabular}
+\begin{frame}{Strings in Python}{Teilzeichenketten (Substrings) zählen}
+    \inputminted{python}{src/strings_substring_count.py}
+    \begin{itemize}
+        \item Die Methode \texttt{count()} zählt, wie oft ein Teilstring in einem String vorkommt.
+        \item Die Methode ist case-sensitive.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Strings in Python}{Teilzeichenketten (Substrings) finden}
+    \inputminted{python}{src/strings_substring_find.py}
+    \begin{itemize}
+        \item Die Methode \texttt{find()} gibt den Index des ersten Vorkommens eines Teilstrings zurück.
+        \item Wenn der Teilstring nicht gefunden wird, gibt die Methode \texttt{-1} zurück.
+        \item Die Methode ist case-sensitive.
+        \item Die Methode \texttt{rfind()} gibt den Index des letzten Vorkommens eines Teilstrings zurück.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Strings in Python}{Indizierung}
+    \inputminted[lastline=3]{python}{src/strings_index.py}
+    \begin{itemize}
+        \item Strings sind indizierbar und können über Indizes angesprochen werden.
+        \item Der Index ist 0-basiert, d.h. der erste Buchstabe hat den Index 0.
+        \item Negative Indizes zählen von hinten, d.h. der letzte Buchstabe hat den Index -1.
+    \end{itemize}
+    \inputminted[firstline=5]{python}{src/strings_index.py}
+    \begin{itemize}
+        \item Durch die Indizierung mit \texttt{[start:end]} kann ein Teilstring erstellt werden.
+        \item Der \texttt{start}-Index ist inklusiv, der \texttt{end}-Index exklusiv (wie bei \texttt{range()}).
+        \item Der \texttt{end}-Index kann weggelassen werden, dann wird bis zum Ende des Strings geschnitten.
+        \item Der \texttt{start}-Index kann weggelassen werden, dann wird vom Anfang des Strings geschnitten.
+    \end{itemize}
 
 \end{frame}
 
-\begin{frame}{Unicode}{Unicode Character Encoding}
-    \begin{alertblock}{Frage}
-        Wie stellen wir das jetzt im Dualsystem dar?
-    \end{alertblock}
-    \begin{block}{Begrenzungen}
-        \begin{itemize}
-            \item Mindestens 17 Planes
-            \item Jede Plane hat 65.536 Codepunkte ($2^{16}$)
-            \item Wir brauchen also mindestens 17*65.536 = 1.048.576 Codepunkte
-            \item Das sind 20 Bit
-        \end{itemize}
-    \end{block}
+\begin{frame}{Strings in Python}{Indizierung -- Beispiele}
+    \inputminted{python}{src/strings_index_examples.py}
+\end{frame}
+
+\begin{frame}{Strings in Python}{Zusammensetzung}
+    \inputminted{python}{src/strings_concat.py}
+    \begin{itemize}
+        \item Strings können durch den Operator \texttt{+} zusammengefügt werden.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Strings in Python}{Zusammensetzung löngerer Strings -- Alte Methode}
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \begin{itemize}
+                \item Programme erfordern das Zusammensetzen von Ausgaben aus numerischen Werten und Strings.
+                \item Numerische Werte werden mit \texttt{str()} in Strings umgewandelt und mit \texttt{+} zusammengefügt.
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \inputminted{python}{src/strings_concat_long_old.py}
+        \end{column}
+    \end{columns}
 
 \end{frame}
+
+\begin{frame}{Strings in Python}{Zusammensetzung löngerer Strings -- Neue Methode}
+    \inputminted{python}{src/strings_concat_long_new.py}
+    \begin{itemize}
+        \item Die neue Methode verwendet f-Strings (ab Python 3.6).
+        \item Variablen werden in geschweifte Klammern gesetzt.
+        \item Der String wird mit einem \texttt{f} vorangestellt.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Strings in Python}{Ausgabeformatierung mit f-Strings}
+    \inputminted{python}{src/strings_concat_long_new_float.py}
+    \begin{itemize}
+        \item Mit f-Strings können auch Formatierungen vorgenommen werden.
+        \item Die Formatierung erfolgt in geschweiften Klammern.
+    \end{itemize}
+\end{frame}
+
+
 
 % End document
 \end{document}

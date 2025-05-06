@@ -14,6 +14,9 @@
 \usepackage{polyglossia}
 \setmainlanguage{german}
 \setotherlanguage{english}
+\usepackage{newunicodechar}
+\newfontfamily\symbolfont{Noto Color Emoji}
+\usepackage{diagbox}
 
 \usepackage[bigfiles]{pdfbase}
 \ExplSyntaxOn
@@ -21,28 +24,28 @@
 \group_begin:
 \leavevmode
 \tl_if_exist:cTF{file_\file_mdfive_hash:n{#3}}{
-  \tl_set_eq:Nc\video{file_\file_mdfive_hash:n{#3}}
+    \tl_set_eq:Nc\video{file_\file_mdfive_hash:n{#3}}
 }{
-  \IfFileExists{#3}{}{\GenericError{}{File~`#3'~not~found}{}{}}
-  \pbs_pdfobj:nnn{}{fstream}{{}{#3}}
-  \pbs_pdfobj:nnn{}{dict}{
-    /Type/Filespec/F~(#3)/UF~(#3)
-    /EF~<</F~\pbs_pdflastobj:>>
-  }
-  \tl_set:Nx\video{\pbs_pdflastobj:}
-  \tl_gset_eq:cN{file_\file_mdfive_hash:n{#3}}\video
+    \IfFileExists{#3}{}{\GenericError{}{File~`#3'~not~found}{}{}}
+    \pbs_pdfobj:nnn{}{fstream}{{}{#3}}
+    \pbs_pdfobj:nnn{}{dict}{
+        /Type/Filespec/F~(#3)/UF~(#3)
+        /EF~<</F~\pbs_pdflastobj:>>
+    }
+    \tl_set:Nx\video{\pbs_pdflastobj:}
+    \tl_gset_eq:cN{file_\file_mdfive_hash:n{#3}}\video
 }
 %
 \pbs_pdfobj:nnn{}{dict}{
-  /Type/RichMediaInstance/Subtype/Video
-  /Asset~\video
-  /Params~<</FlashVars (
-  source=#3&
-  skin=SkinOverAllNoFullNoCaption.swf&
-  skinAutoHide=true&
-  skinBackgroundColor=0x5F5F5F&
-  skinBackgroundAlpha=0.75
-  )>>
+    /Type/RichMediaInstance/Subtype/Video
+    /Asset~\video
+    /Params~<</FlashVars (
+    source=#3&
+    skin=SkinOverAllNoFullNoCaption.swf&
+    skinAutoHide=true&
+    skinBackgroundColor=0x5F5F5F&
+    skinBackgroundAlpha=0.75
+    )>>
 }
 %
 \pbs_pdfobj:nnn{}{dict}{
@@ -60,11 +63,11 @@
 \tl_set:Nx\rmcontent{\pbs_pdflastobj:}
 %
 \pbs_pdfobj:nnn{}{dict}{
-  /Activation~<<
-  /Condition/\IfBooleanTF{#1}{PV}{XA}
-  /Presentation~<</Style/Embedded>>
-  >>
-  /Deactivation~<</Condition/PI>>
+    /Activation~<<
+    /Condition/\IfBooleanTF{#1}{PV}{XA}
+    /Presentation~<</Style/Embedded>>
+    >>
+    /Deactivation~<</Condition/PI>>
 }
 %
 \hbox_set:Nn\l_tmpa_box{#2}
@@ -74,13 +77,13 @@
 \pbs_pdfxform:nnnnn{1}{1}{}{}{\l_tmpa_box}
 %
 \pbs_pdfannot:nnnn{\l_box_wd_tl}{\l_box_ht_tl}{\l_box_dp_tl}{
-  /Subtype/RichMedia
-  /BS~<</W~0/S/S>>
-  /Contents~(embedded~video~file:#3)
-  /NM~(rma:#3)
-  /AP~<</N~\pbs_pdflastxform:>>
-  /RichMediaSettings~\pbs_pdflastobj:
-  /RichMediaContent~\rmcontent
+    /Subtype/RichMedia
+    /BS~<</W~0/S/S>>
+    /Contents~(embedded~video~file:#3)
+    /NM~(rma:#3)
+    /AP~<</N~\pbs_pdflastxform:>>
+    /RichMediaSettings~\pbs_pdflastobj:
+    /RichMediaContent~\rmcontent
 }
 \phantom{#2}
 \group_end:
@@ -137,11 +140,11 @@
 \usepackage{pgfmath-xfp}
 \tikzset{>=latex}
 \tikzset{
-  invisible/.style={opacity=0},
-  visible on/.style={alt={#1{}{invisible}}},
-  alt/.code args={<#1>#2#3}{%
-      \alt<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}} % \pgfkeysalso doesn't change the path
-    },
+    invisible/.style={opacity=0},
+    visible on/.style={alt={#1{}{invisible}}},
+    alt/.code args={<#1>#2#3}{%
+            \alt<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}} % \pgfkeysalso doesn't change the path
+        },
 }
 
 \usepackage{paralist}
@@ -155,28 +158,28 @@
 
 \makeatletter
 \renewcommand{\itemize}[1][]{%
-  \beamer@ifempty{#1}{}{\def\beamer@defaultospec{#1}}%
-  \ifnum \@itemdepth >2\relax\@toodeep\else
-    \advance\@itemdepth\@ne
-    \beamer@computepref\@itemdepth% sets \beameritemnestingprefix
-    \usebeamerfont{itemize/enumerate \beameritemnestingprefix body}%
-    \usebeamercolor[fg]{itemize/enumerate \beameritemnestingprefix body}%
-    \usebeamertemplate{itemize/enumerate \beameritemnestingprefix body begin}%
-    \list
-    {\usebeamertemplate{itemize \beameritemnestingprefix item}}
-    {\def\makelabel##1{%
-        {%
-            \hss\llap{{%
-                  \usebeamerfont*{itemize \beameritemnestingprefix item}%
-                  \usebeamercolor[fg]{itemize \beameritemnestingprefix item}##1}}%
-          }%
-      }%
-    }
-  \fi%
-  \beamer@cramped%
-  \justifying% NEW
-  %\raggedright% ORIGINAL
-  \beamer@firstlineitemizeunskip%
+    \beamer@ifempty{#1}{}{\def\beamer@defaultospec{#1}}%
+    \ifnum \@itemdepth >2\relax\@toodeep\else
+        \advance\@itemdepth\@ne
+        \beamer@computepref\@itemdepth% sets \beameritemnestingprefix
+        \usebeamerfont{itemize/enumerate \beameritemnestingprefix body}%
+        \usebeamercolor[fg]{itemize/enumerate \beameritemnestingprefix body}%
+        \usebeamertemplate{itemize/enumerate \beameritemnestingprefix body begin}%
+        \list
+        {\usebeamertemplate{itemize \beameritemnestingprefix item}}
+        {\def\makelabel##1{%
+                {%
+                        \hss\llap{{%
+                                    \usebeamerfont*{itemize \beameritemnestingprefix item}%
+                                    \usebeamercolor[fg]{itemize \beameritemnestingprefix item}##1}}%
+                    }%
+            }%
+        }
+    \fi%
+    \beamer@cramped%
+    \justifying% NEW
+    %\raggedright% ORIGINAL
+    \beamer@firstlineitemizeunskip%
 }
 \makeatother
 
@@ -187,11 +190,11 @@
 \usepackage{newpxtext}
 
 \setsansfont{opensans}[
-  Scale=MatchLowercase,
-  UprightFont=*-regular,
-  BoldFont=*-bold,
-  ItalicFont=*-italic,
-  BoldItalicFont=*-bolditalic,
+    Scale=MatchLowercase,
+    UprightFont=*-regular,
+    BoldFont=*-bold,
+    ItalicFont=*-italic,
+    BoldItalicFont=*-bolditalic,
 ]
 
 % Title
@@ -213,8 +216,8 @@
 
 \makeatletter
 \newenvironment{noheadline}{
-  \setbeamertemplate{headline}{}
-  \addtobeamertemplate{frametitle}{\vspace*{-0.9\baselineskip}}{}
+    \setbeamertemplate{headline}{}
+    \addtobeamertemplate{frametitle}{\vspace*{-0.9\baselineskip}}{}
 }{}
 \makeatother
 
@@ -228,10 +231,10 @@
 \captionsetup[listing]{position=top}
 \definecolor{mintedbg}{HTML}{282828}
 \setminted{
-  breaklines=true,
-  bgcolor=mintedbg,
-  style=monokai,
-  formatcom=\color{white}
+    breaklines=true,
+    bgcolor=mintedbg,
+    style=monokai,
+    formatcom=\color{white}
 }
 \usepackage{etoolbox}
 \makeatletter
@@ -247,15 +250,15 @@
 \newcommand{\xmark}{\ding{55}}%
 
 \newenvironment{changemargin}[2]{%
-  \begin{list}{}{%
-      \setlength{\topsep}{0pt}%
-      \setlength{\leftmargin}{#1}%
-      \setlength{\rightmargin}{#2}%
-      \setlength{\listparindent}{\parindent}%
-      \setlength{\itemindent}{\parindent}%
-      \setlength{\parsep}{\parskip}%
-    }%
-    \item[]}{\end{list}}
+    \begin{list}{}{%
+            \setlength{\topsep}{0pt}%
+            \setlength{\leftmargin}{#1}%
+            \setlength{\rightmargin}{#2}%
+            \setlength{\listparindent}{\parindent}%
+            \setlength{\itemindent}{\parindent}%
+            \setlength{\parsep}{\parskip}%
+        }%
+        \item[]}{\end{list}}
 
 
 \usepackage{csquotes}
