@@ -183,4 +183,104 @@
 
 \end{frame}
 
+\section{Dictionaries}
+
+\begin{frame}{Dictionaries}
+    \begin{block}{Definition}
+        Dictionaries sind ungeordnete Sammlungen von Schlüssel-Wert-Paaren. Sie sind veränderbar und ermöglichen den schnellen Zugriff auf Werte über ihre Schlüssel.
+    \end{block}
+
+    \begin{block}{Definition}
+        Schlüssel sind eindeutige Merkmale, über die Elemente gefunden werden können. Beispiele sind Matrikelnummern oder ISBN-Nummern von Büchern.
+    \end{block}
+
+    \begin{exampleblock}{Beispiel}
+        \inputminted[lastline=6]{python}{src/dictionaries_overview.py}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}{Dictionaries}{Zugriff}
+    Das Prüfen, ob ein Element enthalten ist, wird über den Schlüssel durchgeführt:
+
+    \mintinline{python}|key in dictionary| $\rightarrow$ \mintinline{python}|True| oder \mintinline{python}|False|.\\
+
+    \begin{exampleblock}{Beispiel}
+        \inputminted[firstline=8,lastline=9]{python}{src/dictionaries_overview.py}
+    \end{exampleblock}
+
+    Durchlaufen aller Elementer erfolgt mit dem Befehl \mintinline{python}|for key in dictionary|.
+
+    \begin{exampleblock}{Beispiel}
+        \inputminted[firstline=11,lastline=12]{python}{src/dictionaries_overview.py}
+    \end{exampleblock}
+
+\end{frame}
+
+\begin{frame}{Dictionaries}{Operationen I}
+    Löschen eines Elements erfolgt über den Befehl \mintinline{python}|del dictionary[key]|.
+    \begin{exampleblock}{Beispiel}
+        \inputminted[firstline=14,lastline=14]{python}{src/dictionaries_overview.py}
+    \end{exampleblock}
+
+    Einfügen eines neuen Elements und ändern eines bestehenden Elements erfolgt über den Befehl \mintinline{python}|dictionary[key] = value|.
+
+    \begin{exampleblock}{Beispiel}
+        \inputminted[firstline=16,lastline=17]{python}{src/dictionaries_overview.py}
+    \end{exampleblock}
+
+\end{frame}
+\begin{frame}{Dictionaries}{Operationen II}
+    \begin{itemize}
+        \item \mintinline{python}|len(dictionary)| gibt die Anzahl der Elemente zurück.
+        \item \mintinline{python}|dictionary.clear()| entfernt alle Elemente.
+        \item \mintinline{python}|variable = dictionary.get(key)| gibt den Wert des Schlüssels zurück. Im Gegensatz zu \mintinline{python}|dictionary[key]| wird kein Fehler geworfen, wenn der Schlüssel nicht existiert, sondern \mintinline{python}|None| zurückgegeben.
+        \item \mintinline{python}|dictionary.keys()| gibt eine Liste der Schlüssel im Dictionary zurück.
+        \item \mintinline{python}|dictionary.values()| gibt eine Liste der Werte im Dictionary zurück.
+        \item \mintinline{python}|dictionary.items()| gibt eine Liste der Schlüssel-Wert-Paare im Dictionary zurück.
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Dictionaries}{Beispiel I}
+    \begin{exampleblock}{Beispiel}
+        \inputminted[firstline=1,lastline=11]{python}{src/dictionaries_example.py}
+    \end{exampleblock}
+\end{frame}
+\begin{frame}{Dictionaries}{Beispiel II}
+    \begin{exampleblock}{Beispiel}
+        \inputminted[firstline=13,lastline=18]{python}{src/dictionaries_example.py}
+    \end{exampleblock}
+\end{frame}
+\begin{frame}{Dictionaries}{Beispiel III}
+    \vspace{-.2cm}
+    \begin{exampleblock}{Beispiel}
+        \inputminted[firstline=21,lastline=33]{python}{src/dictionaries_example.py}
+    \end{exampleblock}
+\end{frame}
+\begin{frame}{Dictionaries}{Beispiel IV}
+    \begin{exampleblock}{Beispiel}
+        \inputminted[firstline=36,lastline=39]{python}{src/dictionaries_example.py}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}{Wann welche Datenstruktur?}
+
+    \begin{block}{Tupel}
+        Inhaltlich verbundene Datenelement (z. B. Datensatz), Anordnung ändert sich nicht während der Verarbeitung
+    \end{block}
+
+    \begin{block}{Set}
+        Anordnung von Elementen ohne Doppelungen, ohne Bezug auf die Reihenfolge
+    \end{block}
+
+    \begin{block}{Liste}
+        Wertereihen, die in einer bestimmten Reihenfolge angeordnet sind und verändert werden können
+    \end{block}
+
+    \begin{block}{Dictionary}
+        Strukturierte Wertereihen, bei denen die Werte eindeutig mit Schlüsseln verknüpft sind
+    \end{block}
+
+\end{frame}
+
 \end{document}
