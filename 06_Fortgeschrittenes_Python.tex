@@ -263,6 +263,8 @@
     \end{exampleblock}
 \end{frame}
 
+\section{Entscheidungshilfe}
+
 \begin{frame}{Wann welche Datenstruktur?}
 
     \begin{block}{Tupel}
@@ -281,6 +283,228 @@
         Strukturierte Wertereihen, bei denen die Werte eindeutig mit Schlüsseln verknüpft sind
     \end{block}
 
+\end{frame}
+
+\section{Funktionen}
+
+\begin{frame}{Funktionen}{Rückggabetyp \texttt{none}}
+    \begin{itemize}
+        \item Rückgabetyp \texttt{none} bedeutet, dass die Funktion keinen Wert zurückgibt.
+        \item Dies kann sowohl explizit als auch implizit geschehen.
+        \item Beispiel:
+              \inputminted{python}{src/functions_return_none.py}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Funktionen}{Mehrfachzuweisung}
+    \begin{block}{Mehrfachzuweisung}
+        \begin{itemize}
+            \item In einer Zeile können mehrere Variablen gleichzeitig zugewiesen werden.
+            \item Ein besonders nützlicher Sonderfall ist die Vertauschung von Variablen.
+        \end{itemize}
+    \end{block}
+    \begin{exampleblock}
+        {Beispiel}
+        \inputminted[firstline=6]{python}{src/functions_multi_asign.py}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}{Funktionen}{Rückggabe mehrerer Werte}
+    \vspace{-.3cm}
+    \begin{block}{Rückgabe mehrerer Werte}
+        \begin{itemize}
+            \item Eine Funktion kann mehrere Werte zurückgeben.
+            \item Diese werden in einer Liste oder einem Tupel zusammengefasst.
+        \end{itemize}
+    \end{block}
+    \begin{exampleblock}
+        {Beispiel}
+        \inputminted[firstline=4, lastline=12]{python}{src/functions_multi_return.py}
+    \end{exampleblock}
+
+\end{frame}
+
+\begin{frame}{Funktionen}{Funktionen als Argumente}
+    \begin{block}{Funktionen als Argumente}
+        \begin{itemize}
+            \item Funktionen können als Argumente an andere Funktionen übergeben werden.
+            \item Dies ermöglicht eine hohe Flexibilität und Wiederverwendbarkeit von Code.
+        \end{itemize}
+    \end{block}
+    \begin{exampleblock}{Beispiel}
+        \begin{columns}[onlytextwidth]
+            \begin{column}{0.55\textwidth}
+                \inputminted[firstline=1,lastline=7]{python}{src/functions_as_argument.py}
+            \end{column}
+            \begin{column}{0.42\textwidth}
+                \begin{center}
+                    Aufruf
+                \end{center}
+                \inputminted[firstline=10]{python}{src/functions_as_argument.py}
+            \end{column}
+        \end{columns}
+    \end{exampleblock}
+
+\end{frame}
+
+\begin{frame}{Funktionen}{Funktionen als Argument}
+    \begin{exampleblock}{Beispiel}
+        \begin{columns}[onlytextwidth,T]
+            \begin{column}{0.4\textwidth}
+                \inputminted[firstline=1,lastline=10]{python}{src/functions_as_arguments_listmap.py}
+            \end{column}
+            \begin{column}{0.55\textwidth}
+                \inputminted[firstline=13,lastline=22]{python}{src/functions_as_arguments_listmap.py}
+            \end{column}
+        \end{columns}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]{Funktionen}{Funktionen als Argument}
+    \begin{exampleblock}{Beispiel}
+        \vspace{-.5\baselineskip}
+        \begin{columns}[onlytextwidth]
+            \begin{column}{0.42\textwidth}
+                \begin{itemize}
+                    \item Nullstellensuche für wählbare Funktionen
+                          \begin{itemize}
+                              \item Funktion, deren Nullstelle gesucht werden soll ist Argument
+                              \item Intervallgrenzen sind ebenfalls Argumente
+                          \end{itemize}
+                \end{itemize}
+                \smaller
+                \inputminted[firstline=4, lastline=8]{python}{src/functions_nullstellen.py}
+            \end{column}
+            \begin{column}{0.55\textwidth}
+                \smaller
+                \inputminted[firstline=11,lastline=25]{python}{src/functions_nullstellen.py}
+            \end{column}
+        \end{columns}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}{Funktionen}{Lambda-Funktionen}
+    \begin{block}{Idee}
+        Wenn eine Funktion nur einmal benötigt wird, kann man diese auch als unbenannten (auch anonymen) Funktionsausdruck angeben. Das wird als lambda-Funktion bezeichnet.
+    \end{block}
+    \begin{exampleblock}{Beispiel}
+        \inputminted[firstline=28,lastline=28]{python}{src/functions_nullstellen.py}
+        Äquivalente Definition:
+        \inputminted[firstline=31]{python}{src/functions_nullstellen.py}
+    \end{exampleblock}
+
+\end{frame}
+
+\begin{frame}{Funktionen}{Lambda-Funktionen}
+    \begin{block}{Syntax}
+        \texttt{lambda <argumente>: <Funktionsausdruck>}
+    \end{block}
+    \begin{exampleblock}{Beispiel}
+        \mintinline{python}|myfun = lambda x, y: x/2 * y ** 2|
+
+        \texttt{myfun} kann als Funktionsargument übergeben werden oder direkt als \mintinline{python}|myfun(m,V)| aufgerufen werden.
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}{Funktionen}{Lambda-Funktionen--beispiel}
+    \begin{exampleblock}{Beispiel}
+        \inputminted{python}{src/functions_lambda_example.py}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}[t]{Veränderbare und unveränderbare Objekte}{Funktionsargumente}
+    \begin{alertblock}{Frage:}
+        Was passiert, wenn ich eine übergebene Variable verändere?
+    \end{alertblock}
+
+    \begin{exampleblock}{Beispiel}
+        \inputminted{python}{src/functions_mutable_example.py}
+        \only<2->{\textbf{Antwort:} Die Variable wird verändert.}
+    \end{exampleblock}
+
+\end{frame}
+
+
+\begin{frame}[t]{Veränderbare und unveränderbare Objekte}{Kopierte Objekte}
+    \begin{alertblock}{Frage:}
+        Was passiert, wenn ich eine übergebene Variable verändere?
+    \end{alertblock}
+
+    \begin{exampleblock}{Beispiel}
+        \inputminted{python}{src/functions_copy_example.py}
+        \only<2->{\textbf{Antwort:} Die Variable wird verändert.}
+    \end{exampleblock}
+
+\end{frame}
+
+\begin{frame}{Veränderbare und unveränderbare Objekte}{Immutable}
+    \begin{itemize}
+        \item alle Basistypen (int, float, bool, str) und Tupel
+        \item Übergaben als Argument an Funktionen sind immer kopien. Funktionen überschreiben die Variablen nicht.
+        \item Bei der Zuweisung wird eine neue Variable erstellt und der Wert kopiert.
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Veränderbare und unveränderbare Objekte}{Mutable}
+    \begin{itemize}
+        \item Andornungstypen (Listen, Dictionaries, Sets) und benutzerdefinierte Objekte
+        \item Übergaben als Argument erfolgen als Referenz zum Orginal. Funktionen überschreiben die Variablen.
+        \item Bei Zuweisung wird die Referenz kopiert. Die Variable zeigt auf das selbe Objekt.
+    \end{itemize}
+\end{frame}
+
+\section{Listen und Funktionen}
+
+\begin{frame}{Listen und Funktionen}
+    \begin{block}{Konzept}
+        Für Listen können Funktionen bzw. Lambdas übergeben werden,
+        \begin{itemize}
+            \item um Funktionsausführungen auf die Listenelemente elementweise zu mappen (\texttt{map()}),
+            \item um Filterfunktionen zu definieren und elementweise auszuführen (\texttt{filter()}),
+            \item um Reduktionsoperationen zu definieren und auszführen (\texttt{reduce()}).
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Listen und Funktionen}{Typen}
+    \begin{description}
+        \item[list()]
+              \begin{itemize}
+                  \item Erzeugt eine Liste aus den Argumenten
+                  \item Beispiel: \mintinline{python}|list(1, 2, 3)|
+              \end{itemize}
+        \item[map()]
+              \begin{itemize}
+                  \item Wendet eine Funktion auf alle Elemente einer Liste an
+                  \item Beispiel: \mintinline{python}|map(lambda x: x + 1, list(1, 2, 3))|
+              \end{itemize}
+        \item[filter()]
+              \begin{itemize}
+                  \item Filtert eine Liste basierend auf einer Bedingung
+                  \item Beispiel: \mintinline{python}|filter(lambda x: x > 1, list(1, 2, 3))|
+              \end{itemize}
+        \item[reduce()]
+              \begin{itemize}
+                  \item Reduziert eine Liste auf einen einzelnen Wert
+                  \item Beispiel: \mintinline{python}|reduce(lambda x, y: x + y, list(1, 2, 3))|
+              \end{itemize}
+    \end{description}
+\end{frame}
+
+\begin{frame}{Listen und Funktionen}{\texttt{map()}}
+    \small
+    \inputminted{python}{src/functions_map.py}
+\end{frame}
+
+\begin{frame}{Listen und Funktionen}{\texttt{filter()}}
+    \small
+    \inputminted{python}{src/functions_filter.py}
+\end{frame}
+
+\begin{frame}{Listen und Funktionen}{\texttt{reduce()}}
+    \small
+    \inputminted{python}{src/functions_reduce.py}
 \end{frame}
 
 \end{document}
