@@ -11,39 +11,4 @@
 % Begin document
 \begin{document}
 
-\begin{frame}{Objektorientierung}
-    \begin{block}{Definition}
-        Eine \textbf{Klasse} ist ein Typ, der eine Anordnung von Datenelementen beschreibt und Methoden (vgl. Funktionen) mit Bezug auf diese Datenelemente bereitstellt.
-    \end{block}
-    \begin{block}{Definition}
-        Objekte sind Variablen und Instanzen einer Klasse. Jedes Objekt hat seine eigenen Daten, die in der Klasse definiert sind.
-    \end{block}
-    \begin{block}{Definition}
-        \textbf{Methoden} sind Funktionen
-        \begin{itemize}
-            \item die an eine Klasse (Objekt-Typ) gebunden sind
-            \item die ausgehend von einem Objekt aufgerufen werden
-            \item die Operationen auf den Daten des Objekts durchführen
-            \item die Datenelemente des Objekts manipulieren können
-        \end{itemize}
-    \end{block}
-
-\end{frame}
-
-\begin{frame}{Objektorientierung}{Beispielsklasse}
-    \smaller
-    \inputminted[escapeinside=$$]{python}{src/class_bike_annotated.py}
-
-    \begin{tikzpicture}[overlay, remember picture]
-        \draw let \p1=(brand.north east), \p2=(electric.south east), \n1={max(\x1,\x2)+5pt} in
-            [decorate, decoration={brace, amplitude=5pt}, thick, white]
-        (\n1, \y1) -- (\n1, \y2) node[midway, right=10pt, text=white] {\textbf{Instanzvariablen}};
-        \draw let \p3=(electrify.north east), \p4=(info), \n3={max(\p3,\p4)+15pt} in
-            [decorate, decoration={brace, amplitude=5pt}, thick, white]
-        (\n3, \y3) -- (\n3, \y4) node[midway, right=10pt, text=white] {\textbf{Methoden}};
-
-    \end{tikzpicture}
-
-\end{frame}
-
 \end{document}

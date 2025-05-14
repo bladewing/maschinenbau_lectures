@@ -83,7 +83,7 @@
     List Comprehensions sind eine elegante Möglichkeit, Listen zu erstellen und zu manipulieren. Sie ermöglichen es, eine neue Liste aus einer bestehenden Liste zu generieren, indem man eine Ausdrucksform verwendet, die die Elemente der bestehenden Liste durchläuft und sie in eine neue Liste umwandelt.
 
     \begin{itemize}
-        \item \texttt{list()} erstellt eine Liste aus einem Ausdruck
+        \item \texttt{list()} erzeugt eine Liste aus einem Ausdruck
     \end{itemize}
 
 
@@ -287,7 +287,7 @@
 
 \section{Funktionen}
 
-\begin{frame}{Funktionen}{Rückggabetyp \texttt{none}}
+\begin{frame}{Funktionen}{Rückgabetyp \texttt{none}}
     \begin{itemize}
         \item Rückgabetyp \texttt{none} bedeutet, dass die Funktion keinen Wert zurückgibt.
         \item Dies kann sowohl explizit als auch implizit geschehen.
@@ -309,7 +309,7 @@
     \end{exampleblock}
 \end{frame}
 
-\begin{frame}{Funktionen}{Rückggabe mehrerer Werte}
+\begin{frame}{Funktionen}{Rückgabe mehrerer Werte}
     \vspace{-.3cm}
     \begin{block}{Rückgabe mehrerer Werte}
         \begin{itemize}
@@ -440,7 +440,7 @@
 \begin{frame}{Veränderbare und unveränderbare Objekte}{Immutable}
     \begin{itemize}
         \item alle Basistypen (int, float, bool, str) und Tupel
-        \item Übergaben als Argument an Funktionen sind immer kopien. Funktionen überschreiben die Variablen nicht.
+        \item Übergaben als Argument an Funktionen sind immer Kopien. Funktionen überschreiben die Variablen nicht.
         \item Bei der Zuweisung wird eine neue Variable erstellt und der Wert kopiert.
     \end{itemize}
 
@@ -448,8 +448,8 @@
 
 \begin{frame}{Veränderbare und unveränderbare Objekte}{Mutable}
     \begin{itemize}
-        \item Andornungstypen (Listen, Dictionaries, Sets) und benutzerdefinierte Objekte
-        \item Übergaben als Argument erfolgen als Referenz zum Orginal. Funktionen überschreiben die Variablen.
+        \item Anordnungstypen (Listen, Dictionaries, Sets) und benutzerdefinierte Objekte
+        \item Übergaben als Argument erfolgen als Referenz zum Original. Funktionen überschreiben die Variablen.
         \item Bei Zuweisung wird die Referenz kopiert. Die Variable zeigt auf das selbe Objekt.
     \end{itemize}
 \end{frame}
@@ -505,6 +505,111 @@
 \begin{frame}{Listen und Funktionen}{\texttt{reduce()}}
     \small
     \inputminted{python}{src/functions_reduce.py}
+\end{frame}
+
+\section{Objektorientierung}
+
+\begin{frame}{Objektorientierung}
+    \begin{block}{Definition}
+        Eine \textbf{Klasse} ist ein Typ, der eine Anordnung von Datenelementen beschreibt und Methoden (vgl. Funktionen) mit Bezug auf diese Datenelemente bereitstellt.
+    \end{block}
+    \begin{block}{Definition}
+        Objekte sind Variablen und Instanzen einer Klasse. Jedes Objekt hat seine eigenen Daten, die in der Klasse definiert sind.
+    \end{block}
+    \begin{block}{Definition}
+        \textbf{Methoden} sind Funktionen
+        \begin{itemize}
+            \item die an eine Klasse (Objekt-Typ) gebunden sind
+            \item die ausgehend von einem Objekt aufgerufen werden
+            \item die Operationen auf den Daten des Objekts durchführen
+            \item die Datenelemente des Objekts manipulieren können
+        \end{itemize}
+    \end{block}
+
+\end{frame}
+
+\begin{frame}{Objektorientierung}{Beispielsklasse}
+    \smaller
+    \inputminted[escapeinside=$$]{python}{src/class_bike_annotated.py}
+
+    \begin{tikzpicture}[overlay, remember picture]
+        \draw let \p1=(brand.north east), \p2=(electric.south east), \n1={max(\x1,\x2)+5pt} in
+            [decorate, decoration={brace, amplitude=5pt}, thick, white]
+        (\n1, \y1) -- (\n1, \y2) node[midway, right=10pt, text=white] {\textbf{Instanzvariablen}};
+        \draw let \p3=(electrify.north east), \p4=(info), \n3={max(\p3,\p4)+15pt} in
+            [decorate, decoration={brace, amplitude=5pt}, thick, white]
+        (\n3, \y3) -- (\n3, \y4) node[midway, right=10pt, text=white] {\textbf{Methoden}};
+
+    \end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}{Objektorientierung}{Ausführliche Beispielsklasse -- Klassendefinition I}
+    \inputminted[lastline=14,linenos]{python}{src/class_countdown.py}
+\end{frame}
+
+\begin{frame}{Objektorientierung}{Ausführliche Beispielsklasse -- Klassendefinition I}
+    \inputminted[firstline=16, lastline=28, linenos]{python}{src/class_countdown.py}
+\end{frame}
+
+\begin{frame}{Objektorientierung}{Ausführliche Beispielsklasse -- Klassenaufruf}
+    \inputminted[firstline=31, linenos]{python}{src/class_countdown.py}
+\end{frame}
+
+\begin{frame}{Objektorientierung}{Ausführliche Beispielsklasse -- Erläuterung}
+    \begin{itemize}
+        \item Instanzvariablen (programmierte Eigenschaften eines Objekts)
+              \begin{description}
+                  \item[remaining] Anzahl der verbleibenden Ticks
+                  \item[name] Bezeichnung, um verschiedene Countdown-Objekte zu unterscheiden
+                  \item[state] Zustand des Countdowns (running, stopped)
+              \end{description}
+        \item Methoden (Funktionen eines Objekts)
+              \begin{description}
+                  \item[\texttt{\_\_init\_\_()}] Initialisierung des Objekts
+                  \item[\texttt{start()}] Startet den Countdown
+                  \item[\texttt{stop()}] Stoppt den Countdown
+                  \item[\texttt{tick()}] Verringert den Countdown um 1
+                  \item[\texttt{restart(wert)}] Setzt den Countdown auf einen neuen Wert
+              \end{description}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Objektorientierung}{Ziele}
+    \begin{block}{Datenabstraktion}
+        Definition und Verwendung anwendungs-bezogener Datentypen und der auf ihnen möglichen Operationen (Methoden).
+    \end{block}
+    \begin{block}{Datenkapselung}
+        Vereinbarung von Daten  und zugeordneten Methoden, die diese Daten verwalten, in einer Programmeinheit.
+        Zugriffe auf Daten und die Benutzung der Methoden können über Zugriffseinschränkungen kontrolliert werden.
+    \end{block}
+\end{frame}
+
+\begin{frame}{Objektorientierung}{Trennung von Implementierung und Schnittstelle}
+    \begin{itemize}
+        \item Durch die Datenkapselung wird es möglich, dass der Programmierer Freiheiten bei der internen Realisierung der Klassen hat.
+        \item Er ist nur an die Schnittstelle und die äußere Wirkung der Methoden gebunden. Der Anwender der Klasse benötigt in seinem Programm ausschließlich die Schnittstelle, die durch die Methoden bestimmt wird.
+        \item Damit ist ein Anwendungsprogramm unabhängig von konkreten internen Realisierungen der Klassen.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Objektorientierung}{Vererbung}
+    \begin{block}{Spezialisierung und Generalisierung}
+        \begin{itemize}
+            \item Eine Klasse kann von einer anderen Klasse abgeleitet werden.
+            \item Die abgeleitete Klasse erbt alle Eigenschaften (Instanzvariablen) und Methoden der Basisklasse.
+            \item Die abgeleitete Klasse kann zusätzliche Instanzvariablen und Methoden definieren.
+            \item Die abgeleitete Klasse kann die Methoden der Basisklasse überschreiben.
+        \end{itemize}
+    \end{block}
+
+    \begin{block}{Polymorphismus}
+        Dieselbe Methode für Objekte unterschiedlicher Typen kann unterschiedliche Aktionen auslösen. Werden Variablen (bzw. Listen, Arrays) zur Laufzeit des Programms mit Objekten gefüllt, ergibt sich das Verhalten entsprechend der genutzen Objekttypen.
+    \end{block}
+\end{frame}
+
+\begin{frame}{Objektorientierung}{Vererbung -- Beispiel}
+    \inputminted[firstline=1, lastline=11, linenos]{python}{src/class_inheritance.py}
 \end{frame}
 
 \end{document}
