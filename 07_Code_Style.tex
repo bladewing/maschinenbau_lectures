@@ -1,0 +1,117 @@
+\documentclass[xelatex,aspectratio=169]{beamer}
+\input{preamble.tex}
+
+% Title
+\title{Code Style}
+\author{Prof. Dr. Lukas Iffländer}
+\institute{HTW Dresden}
+\date{}
+\usepackage{svg}
+
+% Begin document
+\begin{document}
+
+% Title slide
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\section{Codestyle}
+
+\begin{frame}{Einrückungen}
+    \begin{itemize}
+        \item Einrückungen sind wichtig, um den Code lesbar zu halten.
+        \item 4 Leerzeichen für jede Einrückungsebene.
+        \item Tabulatoren vermeiden (Spyder wandelt Tabulatoren in Leerzeichen um)
+    \end{itemize}
+    \inputminted{python}{src/style_indentation.py}
+
+\end{frame}
+
+\begin{frame}{Zeilenlänge}
+    \begin{itemize}
+        \item Zeilen auf 79 Zeichen beschränken.
+        \item Lange Blöcke (z.B. mehrzeilige Kommentare) auf 72 Zeichen beschränken.
+        \item Öffnende Klammer am Ende der Zeile, schließende Klammer in der nächsten Zeile.
+    \end{itemize}
+    \inputminted[firstline=14]{python}{src/style_length.py}
+\end{frame}
+
+\begin{frame}{Leerzeilen}
+    \begin{itemize}
+        \item Leerzeilen können verwendet werden, um logische Abschnitte im Code zu trennen.
+        \item zwei Leerzeilen zwischen Klassen
+        \item eine Leerzeile zwischen Funktionen und Methoden einer Klasse
+    \end{itemize}
+    \inputminted{python}{src/style_blank_lines.py}
+\end{frame}
+
+\begin{frame}{Imports}
+    \begin{itemize}
+        \item Imports sollten am Anfang der Datei stehen.
+        \item Import-Reihenfolge:
+              \begin{enumerate}
+                  \item Standardbibliothek
+                  \item Drittanbieter-Bibliotheken
+                  \item Eigene Module
+              \end{enumerate}
+        \item \mintinline{python}|import module| anstelle von \mintinline{python}|from module import *|.
+    \end{itemize}
+    \inputminted{python}{src/style_imports.py}
+\end{frame}
+
+\begin{frame}{Namensgebung}
+    \begin{itemize}
+        \item Variablen, Funktionen und Methoden: \mintinline{python}|snake_case|
+        \item Klassen: \mintinline{python}|CamelCase|
+        \item Konstanten: \mintinline{python}|UPPER_CASE_WITH_UNDERSCORES|
+        \item Sinnvolle und beschreibende Namen verwenden. Z. B. \texttt{number\_of\_participants}
+        \item Datentyp im Namen vermeiden (schlecht: \texttt{str\_stud\_name})
+    \end{itemize}
+    \inputminted{python}{src/style_naming_variables.py}
+
+\end{frame}
+
+\begin{frame}{Docstrings}
+    \begin{itemize}
+        \item Docstrings sind wichtig für die Dokumentation von Funktionen und Klassen.
+        \item Dreifache Anführungszeichen für mehrzeilige Docstrings.
+        \item Docstrings sollten den Zweck der Funktion oder Klasse beschreiben, die Parameter und den Rückgabewert.
+    \end{itemize}
+    \inputminted[firstline=4]{python}{src/style_docstrings.py}
+
+\end{frame}
+
+\begin{frame}{Kommentare}
+    \begin{itemize}
+        \item Kommentare sollten verwendet werden, um den Code zu erklären.
+        \item Einzeilige Kommentare mit \mintinline{python}|\#| beginnen.
+        \item Mehrzeilige Kommentare mit dreifachen Anführungszeichen.
+        \item Kommentare sollten klar und präzise sein.
+    \end{itemize}
+    \inputminted{python}{src/style_comments.py}
+
+\end{frame}
+
+\begin{frame}{Leerzeichen}
+    \begin{itemize}
+        \item Unnötige Leerzeichen vermeiden.
+              \begin{itemize}
+                  \item Unmittelbar innerhalb von Klammern, eckigen Klammern und geschweiften Klammern.
+                  \item Unmittelbar vor dem Komma, Semikolon und Doppelpunkt.
+              \end{itemize}
+    \end{itemize}
+    \inputminted{python}{src/style_whitespace.py}
+\end{frame}
+
+\begin{frame}{Fehlerbehandlung}
+    \begin{itemize}
+        \item Fehlerbehandlung mit \mintinline{python}|try|, \mintinline{python}|except|, \mintinline{python}|finally|.
+        \item Verwenden Sie spezifische Ausnahmen anstelle von allgemeinen Ausnahmen.
+        \item Dokumentieren Sie die Fehlerbehandlung in den Docstrings.
+    \end{itemize}
+    \inputminted{python}{src/style_error_handling.py}
+
+\end{frame}
+
+\end{document}

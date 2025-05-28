@@ -8,7 +8,7 @@ class Bike:
         self.electric = True
 
     def bike_info(self): $\tikzmarknode{info}$
-        return f"{self.year} {self.brand} {'Electric' if self.electric else 'Non-Electric'" 
+        return f"{self.year} {self.brand} {'Electric' if self.electric else 'Non-Electric'}" 
 
 bike = Bike("Cube", 2023, False)
 print(bike.bike_info())

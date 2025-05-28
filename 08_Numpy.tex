@@ -1,0 +1,132 @@
+\documentclass[xelatex,aspectratio=169]{beamer}
+\input{preamble.tex}
+
+% Title
+\title{Numpy}
+\author{Prof. Dr. Lukas Iffländer}
+\institute{HTW Dresden}
+\date{}
+\usepackage{svg}
+
+% Begin document
+\begin{document}
+
+% Title slide
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\begin{frame}{Was ist Numpy?}
+    Numpy ist eine Python-Bibliothek, die für numerische Berechnungen optimiert ist. Sie bietet:
+    \begin{itemize}
+        \item Effiziente Arrays und Matrizen
+        \item Eine Vielzahl von mathematischen Funktionen
+        \item Unterstützung für lineare Algebra, Fourier-Transformationen und Zufallszahlen
+        \item Integration mit anderen Bibliotheken wie SciPy und Matplotlib
+        \item Hohe Leistung durch Vektorisierung und Broadcasting
+    \end{itemize}
+
+\end{frame}
+
+\section{Matritzen und Vektoren}
+
+\begin{frame}{Matritzen und Vektoren}
+    \renewcommand{\arraystretch}{0.9}
+    \begin{tabular}{cc}
+        \( \begin{bmatrix}
+               1
+           \end{bmatrix} \)                      & Skalar (1x1 Matrix)       \\ \\
+        \(\begin{bmatrix}
+              0.1 & 1.2 & 3.1 & 2.0 & -0.1 & 0 & 3.9
+          \end{bmatrix}\) & Zeilenvektor (1x7 Matrix)                        \\ \\
+        \(\begin{bmatrix}
+              0.1 \\
+              1.2 \\
+              3.1 \\
+              2.0 \\
+              3.9
+          \end{bmatrix}\)                       & Spaltenvektor (5x1 Matrix) \\ \\
+        \( \begin{bmatrix}
+               1 & 2 & 3 \\
+               4 & 5 & 6 \\
+               7 & 8 & 9
+           \end{bmatrix} \)                      & Quadratische Matrix       \\ \\
+        \( \begin{bmatrix}
+               1 & 2 & 3 & 4 \\
+               5 & 6 & 7 & 8 \\
+           \end{bmatrix} \)
+                                                & 2x4 Matrix
+    \end{tabular}
+
+\end{frame}
+
+\begin{frame}{Was kann Numpy mit Matrizen anstelle?}
+    Die gängigen Operationen mit Vektoren, Matrizen und skalaren Variablen
+    sind in numpy eingebaut. Das sind beispielsweise:
+    \begin{itemize}
+        \item Transposition
+        \item Skalarprodukt
+        \item Matrix-Multiplikation (Falk‘sches Schema)
+        \item Matrix-Invertierung
+    \end{itemize}
+    Dokumentation: \url{https://numpy.org/doc/2.2/}
+\end{frame}
+
+\begin{frame}{Numpy Arrays}
+    Numpy Arrays sind die zentralen Datenstrukturen in Numpy. Sie sind:
+    \begin{itemize}
+        \item Homogen: Alle Elemente haben den gleichen Datentyp
+        \item Mehrdimensional: Unterstützung für Vektoren, Matrizen und höhere Dimensionen
+        \item Effizient: Optimiert für numerische Berechnungen
+    \end{itemize}
+    Erstellen eines Numpy Arrays:
+    \inputminted{python}{src/numpy_arrays.py}
+\end{frame}
+
+\begin{frame}{Numpy Arrays}{Zuweisung}
+    \inputminted[lastline=12]{python}{src/numpy_arrays_example.py}
+\end{frame}
+\begin{frame}{Numpy Arrays}{Zugriff}
+    Der Zugriff erfolgt mittel Bereichsindexierung:
+
+    \inputminted[firstline=14, lastline=24]{python}{src/numpy_arrays_example.py}
+\end{frame}
+\begin{frame}{Numpy Arrays}{Abmessungen}
+    Von den Objekten kann mittels shape-Eigenschaft die Abmessung in den jeweiligen Dimensionen ausgelesen werden.
+    \inputminted[firstline=26, lastline=29]{python}{src/numpy_arrays_example.py}
+\end{frame}
+
+\begin{frame}{Matrixmultiplikation}
+    Numpy unterstützt die Matrixmultiplikation mit dem @-Operator oder der \texttt{dot()}-Funktion. Beispiel:
+    \inputminted[firstline=3]{python}{src/numpy_arrays_multiply.py}
+\end{frame}
+\begin{frame}{Matrixmultiplikation}{Visuelle Darstellung}
+    Bei der Matrixmultiplikation wird jede Zeile der ersten Matrix mit jeder Spalte der zweiten Matrix Elementweise multipliziert und die Ergebnisse addiert.
+    \vspace{0.5cm}
+    \begin{columns}
+        \begin{column}{0.4\textwidth}
+            \begin{center}
+                \flushright
+                $\begin{bmatrix}
+                        \textcolor{white}{0}2 & \textcolor{white}{0}0 & \textcolor{white}{0}0 \\
+                        \textcolor{white}{0}0 & \textcolor{white}{0}2 & \textcolor{white}{0}0 \\
+                        \textcolor{white}{0}0 & \textcolor{white}{0}0 & \textcolor{white}{0}2
+                    \end{bmatrix}$ \\
+                $\begin{bmatrix}
+                        1 & 2 & 3 \\
+                        4 & 5 & 6 \\
+                        7 & 8 & 9
+                    \end{bmatrix}$
+                $\begin{bmatrix}
+                        2  & 4  & 6  \\
+                        8  & 10 & 12 \\
+                        14 & 16 & 18
+                    \end{bmatrix}$
+            \end{center}
+        \end{column}
+    \end{columns}
+    Beispiel für das mittlere Feld: \(4 \cdot 0 + 5 \cdot 2 + 6 \cdot 0 = 10\)
+\end{frame}
+
+
+\end{document}
