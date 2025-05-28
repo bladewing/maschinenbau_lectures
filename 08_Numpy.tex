@@ -108,25 +108,68 @@
             \begin{center}
                 \flushright
                 $\begin{bmatrix}
-                        \textcolor{white}{0}2 & \textcolor{white}{0}0 & \textcolor{white}{0}0 \\
-                        \textcolor{white}{0}0 & \textcolor{white}{0}2 & \textcolor{white}{0}0 \\
-                        \textcolor{white}{0}0 & \textcolor{white}{0}0 & \textcolor{white}{0}2
+                        \textcolor{white}{0}2 & \textcolor{white}{0}\textcolor{blue}{0}  & \textcolor{white}{0}0 \\
+                        \textcolor{white}{0}0 & \textcolor{white}{0}\textcolor{olive}{2} & \textcolor{white}{0}0 \\
+                        \textcolor{white}{0}0 & \textcolor{white}{0}\textcolor{red}{0}   & \textcolor{white}{0}2
                     \end{bmatrix}$ \\
                 $\begin{bmatrix}
-                        1 & 2 & 3 \\
-                        4 & 5 & 6 \\
-                        7 & 8 & 9
+                        1                   & 2                    & 3                  \\
+                        \textcolor{blue}{4} & \textcolor{olive}{5} & \textcolor{red}{6} \\
+                        7                   & 8                    & 9
                     \end{bmatrix}$
                 $\begin{bmatrix}
-                        2  & 4  & 6  \\
-                        8  & 10 & 12 \\
-                        14 & 16 & 18
+                        2  & 4           & 6  \\
+                        8  & \textbf{10} & 12 \\
+                        14 & 16          & 18
                     \end{bmatrix}$
             \end{center}
         \end{column}
     \end{columns}
-    Beispiel für das mittlere Feld: \(4 \cdot 0 + 5 \cdot 2 + 6 \cdot 0 = 10\)
+    \vspace{0.5cm}
+    Beispiel für das mittlere Feld: \(\textcolor{blue}{4} \cdot \textcolor{blue}{0} + \textcolor{olive}{5} \cdot \textcolor{olive}{2} + \textcolor{red}{6} \cdot \textcolor{red}{0} = \textbf{10}\)
 \end{frame}
 
+\begin{frame}{Multiplikation zwischen Vektoren}
+    \begin{block}{Multiplikation Zeilen- mal Spaltenvektor}
+        Hier ergibt sich ein Skalar.
+        \inputminted[firstline=3, lastline=6]{python}{src/numpy_arrays_multiply_vectors.py}
+    \end{block}
+    \begin{block}{Multiplikation Spalten- mal Zeilenvektor}
+        Hier ergibt sich eine Matrix.
+        \inputminted[firstline=3, lastline=6]{python}{src/numpy_arrays_multiply_vectors.py}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Transposition}
+    Die Transposition einer Matrix oder eines Vektors vertauscht Zeilen und Spalten.
+    \begin{block}{Vektortransposition}
+        \inputminted[firstline=3]{python}{src/numpy_vector_transpose.py}
+    \end{block}
+    \begin{block}{Matrixtransposition}
+        \inputminted[firstline=3]{python}{src/numpy_matrix_transpose.py}
+    \end{block}
+
+\end{frame}
+
+\begin{frame}{Matrixinvertierung}
+    Die Inverse einer Matrix ist eine Matrix, die mit der ursprünglichen Matrix multipliziert die Einheitsmatrix ergibt.
+
+    \small
+    \begin{block}{Matrixinvertierung}
+        \inputminted[firstline=3]{python}{src/numpy_matrix_invert.py}
+    \end{block}
+
+\end{frame}
+
+\begin{frame}{Weitere NumPy-Funktionen}
+    \begin{itemize}
+        \item elementweise Operationen auf Arrays (ähnlich der map-Funktion)
+              \inputminted[firstline=3]{python}{src/numpy_element_wise.py}
+
+        \item Lösung linearer Gleichungssysteme \(A \times x = b\)
+              \inputminted[firstline=3,lastline=6]{python}{src/numpy_solve.py}
+    \end{itemize}
+
+\end{frame}
 
 \end{document}
