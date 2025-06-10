@@ -1,0 +1,96 @@
+\documentclass[xelatex,aspectratio=169]{beamer}
+\input{preamble.tex}
+
+% Title
+\title{Visualisierung}
+\author{Prof. Dr. Lukas Iffländer}
+\institute{HTW Dresden}
+\date{}
+\usepackage{svg}
+
+% Begin document
+\begin{document}
+
+% Title slide
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\section{Noch etwas NumPy}
+
+\begin{frame}{Berechnungen}
+    \inputminted{python}{src/numpy_calc_1_dim.py}
+
+\end{frame}
+
+\begin{frame}{Berechnungen und Parametervariation}{Funktionen}
+    \inputminted[firstline=5, lastline=17]{python}{src/numpy_calc_1_dim_func.py}
+
+\end{frame}
+
+\begin{frame}{Zwei zweidimensionale Numpy-Arrays zur Variation zweier Veränderlicher}
+    \begin{exampleblock}{Elementweise Verknüpfung von Matritzen}
+        \inputminted{python}{src/numpy_calc_2_dim.py}
+        Als Ergebnis entsteht eine 3x3 Matrix der Energie in Nm für alle Kombinationen aus Masse (1000,1500 und 2000 kg) und Geschwindigkeiten (20, 40 und 60 m/s).
+
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}{Parametervariation}
+    \begin{columns}
+        \begin{column}{0.6\textwidth}
+            \inputminted[firstline=5,lastline=16]{python}{src/numpy_parameter_variation.py}
+        \end{column}
+        \begin{column}{0.4\textwidth}
+            \begin{block}{Tipp}
+                Die Koordinatenmatrizen müssen nicht per Hand getippt werden, sondern lassen sich aus Vektoren mit dem äußeren Vektorprodukt berechnen.
+            \end{block}
+        \end{column}
+    \end{columns}
+
+\end{frame}
+
+\begin{frame}{Parametervariation}{Meshgrid}
+    \begin{columns}
+        \begin{column}{0.6\textwidth}
+            \inputminted[firstline=3]{python}{src/numpy_meshgrid.py}
+        \end{column}
+        \begin{column}{0.4\textwidth}
+            Das geht auch einfacher in einem Schritt:
+            \begin{block}{\texttt{numpy.meshgrid}}
+                \texttt{meshgrid:} erzeugt zwei Koordinatenmatrizen,
+                \begin{enumerate}
+                    \item Vektor wird horizontal in 1. Matrix variiert
+                    \item Vektor wird vertikal in 2. Matrix variiert
+                \end{enumerate}
+            \end{block}
+        \end{column}
+    \end{columns}
+
+\end{frame}
+
+\section{Matplotlib}
+
+\begin{frame}{Was ist Matplotlib?}
+    \begin{itemize}
+        \item Matplotlib ist eine Bibliothek zur Visualisierung von Daten in Python.
+        \item Sie ermöglicht die Erstellung von 2D- und 3D-Diagrammen, Plots und Grafiken.
+        \item Matplotlib ist besonders nützlich für die Analyse und Präsentation von Daten in wissenschaftlichen und technischen Anwendungen.
+        \item Die darzustellenden Werte sind in der Regel in Numpy-Arrays gespeichert.
+        \item Matplotlib ermöglicht den Export von Grafiken in verschiedenen Formaten wie PNG, PDF, SVG und anderen.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Minimalbeispiel}
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \inputminted{python}{src/plt_sin.py}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \includegraphics[width=\textwidth]{fig/plt_sin.pdf}
+        \end{column}
+    \end{columns}
+
+\end{frame}
+
+\end{document}
