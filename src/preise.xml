@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<preise>
+	<artikelpreis preisart="literpreis">
+		<nr>471121</nr>
+		<bez>Cola</bez>
+		<preis>1.38</preis>
+	</artikelpreis>
+	<artikelpreis preisart="literpreis">
+		<nr>452312</nr>
+		<bez>Mineralwasser</bez>
+		<preis>0.45</preis>
+	</artikelpreis>
+	<artikelpreis preisart="literpreis">
+		<nr>481192</nr>
+		<bez>O-Saft</bez>
+		<preis>1.66</preis>
+	</artikelpreis>
+</preise>

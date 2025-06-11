@@ -1,0 +1,178 @@
+\documentclass[xelatex,aspectratio=169]{beamer}
+\input{preamble.tex}
+
+% Title
+\title{Ein- und Ausgabe von Dateien}
+\author{Prof. Dr. Lukas Iffländer}
+\institute{HTW Dresden}
+\date{}
+\usepackage{svg}
+
+% Begin document
+\begin{document}
+
+% Title slide
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\section{Ein- und Ausgabe von Dateien}
+
+\begin{frame}{Ein- und Ausgabe}
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \begin{itemize}
+                \item nichtflüchtig gespeichertes Datenobjekt das von Programmen gelesen bzw. geschrieben werden kann
+                \item wird gespeichert im Dateisystem, das oft Teil des Betriebssystems ist (Windows, Linux, IOS, Android),
+                \item Vom Dateisystem wird die Zuordnung von Namen, die Platzierung in Verzeichnissen, die Zuordnung von Eigenschaften (Zugriffsdatum und -Zeit, Eigentümer, Berechtigungen u.a.) vorgenommen
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Ein- und Ausgabe}
+    \begin{columns}[T]
+        \begin{column}{0.5\textwidth}
+            \begin{itemize}
+                \item nichtflüchtig gespeichertes Datenobjekt das von Programmen gelesen bzw. geschrieben werden kann
+                \item wird gespeichert im Dateisystem, das oft Teil des Betriebssystems ist (Windows, Linux, IOS, Android),
+                \item Vom Dateisystem wird die Zuordnung von Namen, die Platzierung in Verzeichnissen, die Zuordnung von Eigenschaften (Zugriffsdatum und -Zeit, Eigentümer, Berechtigungen u.a.) vorgenommen
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \centering
+            \includegraphics[height=.7\textheight]{fig/io_basic.pdf}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Dateiinhalt und Strukturierung}
+    \begin{itemize}
+        \item Datei kann Textdaten (utf-8, ASCII) enthalten und zeilenweise gelesen und geschrieben werden.
+        \item Inhalt und Struktur sind Programmierern oder Erstellern der Datei überlassen. Strukturen sind oft vorgegeben, um den Austausch von Daten zu erleichtern.
+        \item Daten können metastrukturiert sein, z.B. in Form von Tabellen, JSON, XML, YAML.
+        \item Datei kann auch Daten im Binärformat enthalten, z.B. Bilder, Audiodateien, Videos, ausführbare Dateien.
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Zeilenweises Einlesen und Schreiben}{Beispiel I}
+    \inputminted[firstline=6,lastline=19]{python}{src/io_example.py}
+\end{frame}
+
+\begin{frame}{Zeilenweises Einlesen und Schreiben}{Beispiel II}
+    \inputminted[firstline=26,lastline=37]{python}{src/io_example.py}
+\end{frame}
+
+\begin{frame}{Zeilenweises Einlesen und Schreiben}{Beispiel III}
+    \inputminted[firstline=43,lastline=52]{python}{src/io_example.py}
+\end{frame}
+
+\begin{frame}{Schreiben von Textdateien}
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \inputminted[firstline=1,lastline=9]{python}{src/io_write_example.py}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            Daten können in Textdateien geschrieben werden, wenn Elemente in String-Qbjekte umgewandelt werden können
+
+            \begin{block}{Access-Modi}
+                \begin{itemize}
+                    \item \texttt{w} - Schreiben, Datei wird überschrieben
+                    \item \texttt{a} - Anhängen, Datei wird erweitert
+                    \item \texttt{r} - Lesen, Datei muss existieren
+                    \item \texttt{t} - Textmodus, Standardmodus
+                \end{itemize}
+
+            \end{block}
+        \end{column}
+    \end{columns}
+
+\end{frame}
+
+\begin{frame}{Schreiben von Textdatein}{Aus Liste}
+    \inputminted[firstline=15,lastline=26]{python}{src/io_write_example.py}
+\end{frame}
+
+\begin{frame}{Lesen und Schreiben von JSON und XML}
+    JSON (JavaScript Object Notation) und XML (eXtensible Markup Language) sind Formate zur strukturierten Speicherung von Daten.
+
+    \begin{itemize}
+        \item Sie werden als Textdateien gespeichert und übertragen, Kodierung ist meist UTF-8.
+        \item Daten sind durch Klammerung (JSON) oder durch Tags (XML) strukturiert.
+        \item Elemente können hierarchisch angeordnet sein. Listen und Dictionaries (JSON) oder Elemente mit Attributen (XML) sind möglich.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{JSON-Format}
+    Beispiel für in JSON kodierte Strings:
+    Array in JSON:
+    \inputminted{JSON}{src/io_json_example1.json}
+
+    Key-Value in JSON:
+    \inputminted{JSON}{src/io_json_example2.json}
+
+    Key-Value in JSON mit Liste:
+    \inputminted{JSON}{src/io_json_example3.json}
+
+\end{frame}
+
+\begin{frame}{JSON IO}{Beispiel -- Datenstruktur}
+    \inputminted[firstline=1,lastline=14]{python}{src/io_json_io.py}
+\end{frame}
+\begin{frame}{JSON IO}{Beispiel -- Schreiben}
+    \small
+    \inputminted[firstline=19,lastline=34]{python}{src/io_json_io.py}
+\end{frame}
+\begin{frame}{JSON IO}{Beispiel -- Lesen I}
+    \small
+    \inputminted[firstline=35,lastline=49]{python}{src/io_json_io.py}
+\end{frame}
+\begin{frame}{JSON IO}{Beispiel -- Lesen II}
+    \small
+    \inputminted[firstline=51,lastline=58]{python}{src/io_json_io.py}
+\end{frame}
+
+\begin{frame}{XML-Format}
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \inputminted{xml}{src/waren_short.xml}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            Speicherung von Daten in XML:
+            \begin{itemize}
+                \item Als Inhalt von Elementen: \mintinline{xml}|<element>inhalt</element>|
+                \item Als Attribute von Elementen: \mintinline{xml}|<element attribut="wert"/>|
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{XML IO}{Beispiel -- Lesen}
+    \small
+    \inputminted[firstline=1,lastline=17]{python}{src/io_xml.py}
+\end{frame}
+
+\begin{frame}{XML IO}{Beispiel -- Schreiben (Root-Element)}
+    \small
+    \inputminted[firstline=19,lastline=21]{python}{src/io_xml.py}
+\end{frame}
+
+\begin{frame}{XML IO}{Beispiel -- Schreiben (Daten)}
+    \smaller
+    \inputminted[firstline=23,lastline=40]{python}{src/io_xml.py}
+\end{frame}
+
+\begin{frame}{XML IO}{Beispiel -- Schreiben (File)}
+    \small
+    \inputminted[firstline=42,lastline=45]{python}{src/io_xml.py}
+\end{frame}
+
+\begin{frame}{NumPy IO}
+    \small
+    \inputminted[firstline=1,lastline=14]{python}{src/io_numpy.py}
+\end{frame}
+
+\end{document}

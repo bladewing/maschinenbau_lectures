@@ -1,0 +1,20 @@
+<waren>
+    <artikel art="getraenk">
+        <nr>471121</nr>
+        <bez>Cola</bez>
+        <volumen>0.5</volumen>
+        <preis>0.69</preis> 
+    </artikel>
+    <artikel art="getraenk">
+        <nr>452312</nr>
+        <bez>Mineralwasser</bez>
+        <volumen>1.0</volumen>
+        <preis>0.45</preis> 
+    </artikel>
+    <artikel art="getraenk">
+        <nr>481192</nr>
+        <bez>O-Saft</bez>
+        <volumen>1.5</volumen>
+        <preis>2.49</preis>
+    </artikel>
+</waren>
