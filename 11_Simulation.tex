@@ -1,0 +1,295 @@
+\documentclass[xelatex,aspectratio=169]{beamer}
+\input{preamble.tex}
+
+% Title
+\title{Simulation}
+\author{Prof. Dr. Lukas Iffländer}
+\institute{HTW Dresden}
+\date{}
+\usepackage{svg}
+
+% Begin document
+\begin{document}
+
+% Title slide
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\begin{frame}{Was ist Simulation?}
+    \begin{block}{Definition (Wikipedia)}
+        Die Simulation ist eine Vorgehensweise zur Analyse von Systemen, die für die theoretische oder formelmäßige Behandlung zu komplex sind. Dies ist überwiegend bei dynamischem Systemverhalten gegeben. Bei der Simulation werden Experimente an einem Modell durchgeführt, um Erkenntnisse über das reale System zu gewinnen.
+    \end{block}
+    \begin{block}{Definition (VDI)}
+        Simulation ist das Nachbilden eines dynamischen Prozesses in einem System mit Hilfe eines experimentierfähigen Modells, um zu Erkenntnissen zu gelangen, die auf die Wirklichkeit übertragbar sind.
+    \end{block}
+
+\end{frame}
+
+\begin{frame}{Arten von Simulation}
+    \begin{block}{Nach Werteabbildung}
+        \begin{itemize}
+            \item Diskrete Simulation (endliche Anzahl von Zuständen)
+            \item \textbf{Kontinuierliche Simulation} (Wertebereich unendlich)
+        \end{itemize}
+    \end{block}
+    \begin{block}{Dynamisch vs. statisch}
+        \begin{itemize}
+            \item Statische Simulation (keine zeitliche Entwicklung)
+            \item \textbf{Dynamische Simulation} (zeitliche Entwicklung)
+        \end{itemize}
+    \end{block}
+    \begin{block}{Stochastisch vs. deterministisch}
+        \begin{itemize}
+            \item Stochastische Simulation (Zufallsvariablen, Wahrscheinlichkeiten)
+            \item \textbf{Deterministische Simulation} (keine Zufallsvariablen)
+        \end{itemize}
+    \end{block}
+
+\end{frame}
+
+\begin{frame}{Explizites Euler-Verfahren}
+    \begin{block}{Idee}
+        Schrittweise Berechnung der Funktionswerte $y(t)$ für $t = t_{0 \cdot dt}, t_{1 \cdot dt}, \ldots, t_{n \cdot dt}$ mit Schrittweite $dt$.
+    \end{block}
+
+    \begin{block}{Verfahren}
+        \begin{itemize}
+            \item Kenntnis des Anfangswertes $y(t_0) = y_0$ und der Ableitung\footnote{erste Ableitung kann vorgegeben werden oder aus $y(t)$ und $t$ berechnet werden} $y'(t) = f(t, y)$.
+            \item Approximation des Funktionswertes mit $y(t + dt) = y(t) + f(t, y) \cdot dt$.
+        \end{itemize}
+    \end{block}
+
+    \begin{block}{Ergebnis}
+        Kontinuierliches, dynamisches und deterministisches Simulationsverfahren.
+
+    \end{block}
+\end{frame}
+
+
+\begin{frame}{Explizites Euler-Verfahren}{Wachstumsprozess}
+    \begin{columns}[onlytextwidth]
+        \begin{column}{0.5\textwidth}
+            \inputminted[firstline=7, lastline=17]{python}{src/sim_growth.py}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \[
+                \begin{aligned}
+                    y(0)   & = 2                                      \\
+                    y(1)   & = y(0) + f(0, y(0)) \cdot dt             \\
+                           & = 2 + 0.5 \cdot 2 \ cdot 1 = 3           \\
+                    y(2)   & = y(1) + f(1, y(1)) \cdot dt             \\
+                           & = 3 + 0.5 \cdot 3 \cdot 1 = 4.5          \\
+                    y(3)   & = y(2) + f(2, y(2)) \cdot dt             \\
+                           & = 4.5 + 0.5 \cdot 4.5 \cdot 1 = 6.75     \\
+                    y(4)   & = y(3) + f(3, y(3)) \cdot dt             \\
+                           & = 6.75 + 0.5 \cdot 6.75 \cdot 1 = 10.125 \\
+                    \cdots & \qquad\cdots                             \\
+                \end{aligned}
+            \]
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Explizites Euler-Verfahren}{Fahrt mit wechselnder Geschwindigkeit}
+    \begin{block}{Aufgabe}
+        Fahrt mit zurückgelegter Strecke $s(t)$, Geschwindigkeit $v(t)$ ist vorgegeben und $v(t) = s'(t)$.
+        \begin{columns}[onlytextwidth]
+            \begin{column}{0.5\textwidth}
+                \[
+                    \begin{aligned}
+                        s(0)    & = 0                    \\
+                        dt      & = 0.1                  \\
+                        s'(t)   & = v(t)                 \\
+                        s(t+dt) & = s(t) + v(t) \cdot dt
+                    \end{aligned}
+                \]
+            \end{column}
+            \begin{column}{0.5\textwidth}
+                \[
+                    v(t) = \begin{cases}
+                        0                                                  & t \leq 2        \\
+                        (t-2) \cdot \frac{\mathrm{v_{max}}}{2}             & 2 \leq t < 4    \\
+                        v_{max}                                            & 4 \leq t \leq 7 \\
+                        v_{max} - (t - 7) \cdot \frac{\mathrm{v_{max}}}{3} & t \geq 7
+                    \end{cases}
+                \]
+            \end{column}
+        \end{columns}
+    \end{block}
+
+    \begin{block}{Berechnung}
+        \[
+            \begin{aligned}
+                s(0)   & = 0                    \\
+                s(0.1) & = s(0) + v(0) \cdot dt \\
+                \cdots & \qquad\cdots           \\
+            \end{aligned}
+        \]
+    \end{block}
+\end{frame}
+\begin{frame}{Explizites Euler-Verfahren}{Fahrt mit wechselnder Geschwindigkeit}
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \small
+            \inputminted[firstline=8, lastline=17]{python}{src/sim_drive.py}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \small
+            \inputminted[firstline=20, lastline=30]{python}{src/sim_drive.py}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Explizites Euler-Verfahren}{Fahrt mit wechselnder Geschwindigkeit}
+    \inputminted[firstline=33, lastline=42]{python}{src/sim_drive.py}
+\end{frame}
+
+\begin{frame}{Explizites Euler-Verfahren}{Fahrt mit wechselnder Geschwindigkeit}
+    \begin{columns}[T]
+        \begin{column}{0.5\textwidth}
+            \inputminted[lastline=12]{python3}{src/sim_drive_result.txt}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \includegraphics[height=.8\textheight]{fig/sim_drive_plot.pdf}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Einschub}{SciencePlots}
+    \begin{block}{Was ist SciencePlots?}
+        \begin{itemize}
+            \item Python-Paket für ansprechende Matplotlib-Plots
+            \item Einfach zu verwenden, nur ein Import nötig
+            \item Viele vordefinierte Stile
+        \end{itemize}
+    \end{block}
+
+    \begin{block}{Installation}
+        \begin{itemize}
+            \item Installation mit pip: \texttt{pip install SciencePlots}
+            \item Import in Python: \texttt{import SciencePlots}
+            \item Aktivierung mit \texttt{plt.style.use(["science", "ieee"])}
+            \item Stile können angepasst und kombiniert werden
+            \item Wenn Schwarz-Weiß-Druck relevant ist, empfiehlt sich der Stil \texttt{"ieee"}.
+        \end{itemize}
+    \end{block}
+
+\end{frame}
+
+\begin{frame}{Explizites Euler-Verfahren}{Logistisches Wachstum}
+    Wachstumsprozess mit Sättigung, z.B. Populationswachstum.
+    \begin{block}{Modell}
+        \begin{columns}[onlytextwidth]
+            \begin{column}{0.5\textwidth}
+                \[
+                    \begin{aligned}
+                        dt        & = 1                             \\
+                        y(0)      & = 2                             \\
+                        y'(t)     & = f(K, N, y(t))                 \\
+                        y(t + dt) & = y(t) + f(K, N, y(t)) \cdot dt
+                    \end{aligned}
+                \]
+            \end{column}
+            \begin{column}{0.5\textwidth}
+                \[
+                    \begin{aligned}
+                        y'(t) & = K \cdot y(t) \cdot \left(1 - \frac{y(t)}{N}\right) \\
+                        K     & \qquad\text{Wachstumsrate}                           \\
+                        N     & \qquad\text{Wachstumsgrenze}                         \\
+                    \end{aligned}
+                \]
+            \end{column}
+        \end{columns}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Explizites Euler-Verfahren}{Logistisches Wachstum}
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \inputminted[firstline=13,lastline=25]{python}{src/sim_growth_log.py}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \includegraphics[width=\textwidth]{fig/sim_growth_log.pdf}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Explizites Euler-Verfahren}{Mehr Ableitungen}
+    Simulation einer Fahrt mit gegebenen Beschleunigungswerten.
+    \begin{block}{Modell}
+        Gegeben:
+        \begin{itemize}
+            \item Anfangsgeschwindigkeit $v_0 = 0$
+            \item Anfangsposition $s_0 = 0$
+            \item Beschleunigung $a(t)$ für $t$-Intervalle
+        \end{itemize}
+        Zusammenhänge:
+        \begin{itemize}
+            \item Geschwindigkeit: Erste Ableitung des Weges $s$ nach der Zeit $t$: $v(t) = s'(t)$
+            \item Beschleunigung: Erste Ableitung der Geschwindigkeit $v$ nach der Zeit $t$: $a(t) = v'(t)$
+            \item Weg: Zweite Ableitung der Position $s$ nach der Zeit $t$: $a(t) = s''(t)$
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Explizites Euler-Verfahren}{Mehr Ableitungen}
+    Umwandlung der DGL zweiter Ordnung $a(t) = s''(t)$ in zwei DGL erster Ordnung:
+    \begin{itemize}
+        \item $v(t) = s'(t)$
+        \item $a(t) = v'(t)$
+    \end{itemize}
+    Für Simulationsschritt gilt dann:
+    \begin{itemize}
+        \item $s(t + dt) = s(t) + v(t) \cdot dt$
+        \item $v(t + dt) = v(t) + a(t) \cdot dt$
+    \end{itemize}
+\end{frame}
+\begin{frame}{Explizites Euler-Verfahren}{Mehr Ableitungen}
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \inputminted[firstline=10, lastline=22]{python}{src/sim_growth_2nd.py}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \includegraphics[width=\textwidth]{fig/sim_growth_2nd.pdf}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Explizites Euler-Verfahren}{Pendelsimulation}
+    \begin{block}{Modell}
+        Gegeben:
+        \begin{itemize}
+            \item DGL 2. Ordnung: $a''(t) = -\frac{g}{l} \cdot \sin(\alpha(t))$
+            \item Anfangswerte für Winkel $\alpha(0) = \alpha_0 = \frac{\pi}{4}$ und Winkelgeschwindigkeit $\omega(0) = \omega_0 = 0$
+            \item Parameter: $g$ (Erdbeschleunigung), $l$ (Länge des Pendels)
+        \end{itemize}
+    \end{block}
+    \begin{block}{Berechnung}
+        Wieder Zerlegung in zwei DGL erster Ordnung:
+        \begin{itemize}
+            \item $\alpha'(t) = \omega(t)$
+            \item $\omega'(t) = -\frac{g}{l} \cdot \sin(\alpha(t))$
+        \end{itemize}
+        Für Simulationsschritt gilt dann:
+        \begin{itemize}
+            \item $\alpha(t + dt) = \alpha(t) + \omega(t) \cdot dt$
+            \item $\omega(t + dt) = \omega(t) - \frac{g}{l} \cdot \sin(\alpha(t)) \cdot dt$
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Explizites Euler-Verfahren}{Pendelsimulation}
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \inputminted[firstline=10, lastline=21]{python}{src/sim_pendel.py}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \includegraphics[width=\textwidth]{fig/sim_pendel.pdf}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+
+
+\end{document}
