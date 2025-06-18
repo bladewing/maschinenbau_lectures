@@ -6,7 +6,7 @@ plt.rcParams["text.usetex"] = True
 
 fig = plt.figure(layout="constrained")
 ax = fig.add_subplot(projection="3d")
-X, Y = np.meshgrid(X=np.arange(-5, 5, 0.25), Y=np.arange(-5, 5, 0.25))
+X, Y = np.meshgrid(np.arange(-5, 5, 0.025), np.arange(-5, 5, 0.025))
 R = np.sqrt(X**2 + Y**2)
 Z = np.sin(R)
 surf = ax.plot_surface(
