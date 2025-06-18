@@ -1,0 +1,30 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import scienceplots
+
+plt.style.use(["science", "ieee"])
+
+tmax = 160
+dt = 1 / 12
+t = np.arange(0, tmax + dt, dt)
+b = np.zeros(len(t))
+w = np.zeros(len(t))
+b[0] = 2000
+Kb = 0.6
+Nb = 4000
+w[0] = 20
+Kw = 0.1
+Nw = 1000
+
+for i in range(0, len(t) - 1):
+    b[i + 1] = b[i] + (Kb * b[i] * (1 - b[i] / Nb)) * dt
+    w[i + 1] = w[i] + (Kw * w[i] * (1 - w[i] / Nw)) * dt
+
+
+plt.plot(t, b, t, w)
+plt.xlabel("$t$ in a")
+plt.ylabel("Population")
+plt.legend(("Wildschweine", "Wölfe"))
+plt.xlim([0, tmax])
+plt.savefig("fig/sim_dependency_a.pdf")
+plt.show()
