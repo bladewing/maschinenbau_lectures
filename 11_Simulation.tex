@@ -55,7 +55,7 @@
 
     \begin{block}{Verfahren}
         \begin{itemize}
-            \item Kenntnis des Anfangswertes $y(t_0) = y_0$ und der Ableitung\footnote{erste Ableitung kann vorgegeben werden oder aus $y(t)$ und $t$ berechnet werden} $y'(t) = f(t, y)$.
+            \item Kenntnis des Anfangswerts $y(t_0) = y_0$ und der Ableitung\footnote{erste Ableitung kann vorgegeben werden oder aus $y(t)$ und $t$ berechnet werden} $y'(t) = f(t, y)$.
             \item Approximation des Funktionswertes mit $y(t + dt) = y(t) + f(t, y) \cdot dt$.
         \end{itemize}
     \end{block}
@@ -266,16 +266,22 @@
         \end{itemize}
     \end{block}
     \begin{block}{Berechnung}
-        Wieder Zerlegung in zwei DGL erster Ordnung:
-        \begin{itemize}
-            \item $\alpha'(t) = \omega(t)$
-            \item $\omega'(t) = -\frac{g}{l} \cdot \sin(\alpha(t))$
-        \end{itemize}
-        Für Simulationsschritt gilt dann:
-        \begin{itemize}
-            \item $\alpha(t + dt) = \alpha(t) + \omega(t) \cdot dt$
-            \item $\omega(t + dt) = \omega(t) - \frac{g}{l} \cdot \sin(\alpha(t)) \cdot dt$
-        \end{itemize}
+        \begin{columns}[onlytextwidth]
+            \begin{column}{0.47\textwidth}
+                Wieder Zerlegung in zwei DGL erster Ordnung:
+                \begin{itemize}
+                    \item $\alpha'(t) = \omega(t)$
+                    \item $\omega'(t) = -\frac{g}{l} \cdot \sin(\alpha(t))$
+                \end{itemize}
+            \end{column}
+            \begin{column}{0.47\textwidth}
+                Für Simulationsschritt gilt dann:
+                \begin{itemize}
+                    \item $\alpha(t + dt) = \alpha(t) + \omega(t) \cdot dt$
+                    \item $\omega(t + dt) = \omega(t) - \frac{g}{l} \cdot \sin(\alpha(t)) \cdot dt$
+                \end{itemize}
+            \end{column}
+        \end{columns}
     \end{block}
 \end{frame}
 
@@ -293,7 +299,7 @@
 \begin{frame}{Explizites Euler-Verfahren}{Abhängigkeiten}
     \begin{columns}
         \begin{column}{0.5\textwidth}
-            \begin{block}{Model}
+            \begin{block}{Modell}
                 Wildschweinbestand und Wolfsbestand, vorerst ohne Beeinflussung
                 \begin{itemize}
                     \item Wildschweine $b$
@@ -324,7 +330,7 @@
 \end{frame}
 
 \begin{frame}{Explizites Euler-Verfahren}{Abhängigkeiten}
-    \begin{block}{Model}
+    \begin{block}{Modell}
         Ein Wolf frisst jedes Jahr eine bestimmte Anzahl Wildschweine
     \end{block}
     \inputminted[firstline=19, lastline=23]{python}{src/sim_dependency_b.py}
@@ -336,7 +342,7 @@
 \end{frame}
 
 \begin{frame}{Explizites Euler-Verfahren}{Abhängigkeiten}
-    \begin{block}{Model}
+    \begin{block}{Modell}
         Alle 10 Jahre wird die Anzahl der Wölfe um 40\% reduziert.
     \end{block}
     \inputminted[firstline=19, lastline=23]{python}{src/sim_dependency_c.py}
@@ -346,5 +352,95 @@
     \centering
     \includegraphics[height=.8\textheight]{fig/sim_dependency_c.pdf}
 \end{frame}
+
+% Beispiel: In eine Beamer-Frame‐Umgebung einfügen
+\begin{frame}[allowframebreaks]{Simulation im Maschinenbau}
+
+    \begin{block}{Strukturanalyse (FEM)}
+        \begin{itemize}
+            \item Festigkeitsberechnung von Bauteilen
+            \item Verformungsanalyse unter Last
+            \item Lebensdauerberechnung (z.\,B. Ermüdung, Bruchmechanik)
+            \item Crash-Simulation (z.\,B. Fahrzeugkomponenten)
+        \end{itemize}
+    \end{block}
+
+    \begin{block}{Strömungssimulation (CFD)}
+        \begin{itemize}
+            \item Luft- und Strömungsführung in Maschinen und Fahrzeugen
+            \item Kühlung von Komponenten (z.\,B. Motoren, Elektronik)
+            \item Strömungsverhalten in Pumpen, Turbinen, Rohrleitungen
+            \item Wärmeübertragung und Thermomanagement
+        \end{itemize}
+    \end{block}
+
+    \begin{block}{Dynamik- und Bewegungsanalyse (MKS)}
+        \begin{itemize}
+            \item Kinematische Analysen von Mechanismen und Getrieben
+            \item Schwingungsanalysen
+            \item Stoß und Aufprallsimulationen
+            \item Analyse von Fahrverhalten (z.\,B. Federung, Dämpfung)
+        \end{itemize}
+    \end{block}
+
+    \begin{block}{Thermische Simulation}
+        \begin{itemize}
+            \item Erwärmung von Bauteilen bei Betrieb
+            \item Wärmeleitung, -konvektion und -strahlung
+            \item Temperaturverteilung in Maschinen oder Prozessen
+        \end{itemize}
+    \end{block}
+
+    \begin{block}{Fertigungs- und Prozesssimulation}
+        \begin{itemize}
+            \item Umformsimulation (z.\,B. Blechumformung, Schmieden)
+            \item Zerspanungssimulation (Fräsen, Drehen etc.)
+            \item Spritzgießsimulation bei Kunststoffbauteilen
+            \item Additive Fertigung (3D-Druck, Schichtaufbau, Nachbehandlung)
+        \end{itemize}
+    \end{block}
+
+    \begin{block}{Akustik- und Lärmsimulation}
+        \begin{itemize}
+            \item Schallausbreitung und Lärmminderung bei Maschinen
+            \item Analyse von Eigenfrequenzen und Resonanzen
+            \item NVH-Analysen (Noise, Vibration, Harshness)
+        \end{itemize}
+    \end{block}
+
+    \begin{block}{Energie- und Antriebssimulation}
+        \begin{itemize}
+            \item Motor- und Antriebsstrangsimulation
+            \item Energieeffizienz-Analysen
+            \item Simulation regenerativer Energiesysteme (z.\,B. Windkraftanlagen)
+        \end{itemize}
+    \end{block}
+
+    \begin{block}{Systemsimulation / Simulative Produktentwicklung}
+        \begin{itemize}
+            \item Modellierung mechatronischer Systeme
+            \item Regelung und Steuerung von Maschinen (Digitale Zwillinge)
+            \item Virtuelle Inbetriebnahme von Maschinen und Anlagen (z.\,B. SPS-Verhalten testen)
+        \end{itemize}
+    \end{block}
+
+    \begin{block}{Logistik- und Produktionssimulation}
+        \begin{itemize}
+            \item Materialfluss- und Layoutoptimierung
+            \item Simulation von Produktionslinien und Fertigungsprozessen
+            \item Kapazitätsplanung, Engpassanalyse
+        \end{itemize}
+    \end{block}
+
+    \begin{block}{Virtuelle Prototypen und Digitaler Zwilling}
+        \begin{itemize}
+            \item Simulation kompletter Maschinen oder Anlagen
+            \item Verhalten in Betriebsszenarien testen, bevor reale Prototypen gebaut werden
+            \item Wartungs- und Lebensdauervorhersage (Predictive Maintenance)
+        \end{itemize}
+    \end{block}
+
+\end{frame}
+
 
 \end{document}
